@@ -4,9 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Inicio de sesión</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+
+        body {
+            background-image: url(https://iteso.blob.core.windows.net/images/f3.jpg);
+            background-size: cover;
+            padding-top: 25vh;
+        }
+
+        #container {
+            background-color: white;
+            border-radius: 6px;
+            padding: 30px;
+        }
+        .a {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div id="container" class="col-12 col-sm-6 col-md-3">
+                    <h4>Incio de sesión</h4>
+                <form class="form-container">
+                    <div class="form-group">
+                        <label>Correo</label>
+                        <input name="" class="form-control" placeholder="Correo" type="email">
+                    </div> 
+                                
+                    <div class="form-group">
+                        <a class="float-right" href="change-password.html">¿Olvidaste tu constraseña?</a>
+                        <label>Contraseña</label>
+                        <input class="form-control" placeholder="******" type="password">
+                    </div> 
+                
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> Iniciar sesión  </button>
+                        </div>                                                          
+                </form>
+                <div class="a">
+                    <a href="register.html">Registrate</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
 </body>
 </html>
