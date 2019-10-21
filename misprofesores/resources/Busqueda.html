@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Administrador</title>
+     <!-- Required meta tags -->
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+<body>
+    <script src="Busqueda.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <a class="navbar-brand" href="#">Califica Profesor</a>
+            <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            
+            aria-expanded="false" aria-label="Toggle navigation"></button>
+         
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                        <a class="nav-link" href="añadirprofe.html">Añadir profesor <span class="sr-only">(current)</span></a>
+                      </li>
+  
+                  <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Ingresar</a>
+                  <div class="dropdown-menu" aria-labelledby="dropdownId">
+  
+                    <a class="dropdown-item" href="#">Profesor</a>
+                    <a class="dropdown-item" href="#">Alumno</a>
+                    <a class="dropdown-item" href="#">Administrador</a>
+                  </div>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar Profesor</button>
+              </form>
+            </div>
+          </nav>
+
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <!------ Include the above in your HEAD tag ---------->
+   <!--PROFESORES-->     
+   
+        <div class="container">
+            <h1>Administracion </h1>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Profesores</h3>
+                                <div class="pull-right">
+                                    <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+                                        <i class="glyphicon glyphicon-filter"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Busqueda por profesor" />
+                            </div>
+                            <table class="table table-hover" id="dev-table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nombre</th>
+                                        <th>Materia</th>
+                                        <th>Departamento</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><p id="uno">1</p> </td>
+                                        <td>Jose Luis Elvira</td>
+                                        <td>Sistemas operativos</td>
+                                        <td>Desi</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Luis fernando Preciado</td>
+                                        <td>Programacion web</td>
+                                        <td>Desi</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td><a href="informacionprofesores.html">Saul Nuño</a> </td>
+                                        <td>Algebra Lineal</td>
+                                        <td>MAF</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+  <!--PROFESORES-->     
+   
+  <div class="container">
+       
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Usuarios</h3>
+                            <div class="pull-right">
+                                <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+                                    <i class="glyphicon glyphicon-filter"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Busqueda por profesor" />
+                        </div>
+                        <table class="table table-hover" id="dev-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nombre</th>
+                                    <th>Tipo de usuario</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Manuel Eduardo Sánchez Valderrama</td>
+                                    <td>Alumno</td>
+                                   
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Irene Reyes Valdez</td>
+                                    <td>Alumno</td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Saul Nuño</td>
+                                    <td>Profesor</td>
+                                </tr>
+                                <tr>
+                                        <td>3</td>
+                                        <td>Luis Fernando Preciado</td>
+                                        <td>Profesor</td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            <script src="busqueda.js"></script>
+
+            <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+
+<div class="Informacion">
+	<div class="row-fluid">
+        <div class="span2" >
+		    <img src="https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm" class="img-circle">
+        </div>
+        
+        <div class="span8">
+            <h3>    Manuel Sanchez</h3>
+            <h6>Email: is693505@iteso.mx</h6>
+            <h6>Departamento:Desi</h6>
+            <h6>Carrera:Sistemas Computacionales</h6>
+            <h6>Telefono📞:3241060250</h6>
+            <h6><a href="#">More... </a></h6>
+        </div>
+        
+        <div class="span2">
+            <div class="btn-group">
+                <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#">
+                    Opcion 
+                    <span class="icon-cog icon-white"></span><span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><span class="icon-wrench"></span> Modificar</a></li>
+                    <li><a href="#"><span class="icon-trash"></span> Eliminar</a></li>
+                </ul>
+            </div>
+        </div>
+</div>
+</div>
+</body>
+</html>
