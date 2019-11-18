@@ -28,14 +28,13 @@
          alert('Número de creditos inválidos.')
      } else {
          let newCourse = {
-            id: 2, //Mock id
             nombre: name.value,
             departamento: department.value,
             creditos: parseInt(credits.value)
          };
          console.log(newCourse);
          let xhr = new XMLHttpRequest();
-         xhr.open("POST", `https://my-json-server.typicode.com/Isaac2357/MisProfesoresServer/cursos`);
+         xhr.open("POST", `http://localhost:3000/cursos`);
          xhr.setRequestHeader("Content-Type", "application/json");
          xhr.send(JSON.stringify(newCourse));
          xhr.onload = function() {
@@ -46,3 +45,4 @@
          }
      }
  }
+ 
