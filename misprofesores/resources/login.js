@@ -11,8 +11,8 @@ loginForm.addEventListener("keyup", (e) => enableLoginBtn(e));
 loginBtn.addEventListener("click", (e) => login(e));
 
 function enableLoginBtn() {
-    loginBtn.disabled = inputEmail.value.length < 0 || !inputEmail.validity.valid 
-                        || inputPass.value == 0;
+    loginBtn.disabled = inputEmail.value.length == 0 || !inputEmail.validity.valid 
+                        || inputPass.value.length == 0;
 }
 
 function login(event) {
@@ -34,8 +34,9 @@ function login(event) {
             console.log(response);
             if (response.correo == inputEmail.value && response["contraseña"] == inputPass.value) {
                 window.open('PantallaPrincipal.html', '_self',false)
-                localStorage.token = "asdfgh123"
+                localStorage.token = "asdfgh123"    // Hardcoded token will change with the backend.
                 localStorage.usermail  = inputEmail.value;
+                localStorage.usertype = 1;
             } else {
                 alert('Usuario no registrado.')
             }
