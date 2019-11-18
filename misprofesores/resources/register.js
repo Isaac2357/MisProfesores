@@ -17,7 +17,6 @@ function enableRegisterBtn(event) {
 function register(event) {
     event.preventDefault();
     let newUser = {
-        id: 2,  // Hardoced id, this will change with our backend
         nombre: inputName.value,
         correo: inputEmail.value,
         contraseña: inputPass.value,
@@ -32,13 +31,12 @@ function register(event) {
      * it just mocks the behavior of the call.
      */
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", `https://my-json-server.typicode.com/Isaac2357/MisProfesoresServer/usuarios`);
+    xhr.open("POST", `http://localhost:3000/usuarios`);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify(newUser));
     xhr.onload = function() {
         console.log(xhr.status, xhr.statusText);
         if (xhr.status == 201) {
-            alert('Usuario registrado correctamente');
             window.open('PantallaPrincipal.html', '_self',false);
             localStorage.token = "asdfgh123"; // Harcoded token, just for now.
             localStorage.usermail  = inputEmail.value;

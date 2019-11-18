@@ -24,7 +24,7 @@ function login(event) {
      * Json-server doesn´t allow us to add more than 5 fields in the db,
      * that's why we don´t use it.
     */
-    xhr.open("GET", `https://my-json-server.typicode.com/Isaac2357/MisProfesoresServer/usuarios/${1}`);
+    xhr.open("GET", `http://localhost:3000/usuarios?correo=${inputEmail.value}`);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send();
     xhr.onload = function() {
@@ -32,14 +32,19 @@ function login(event) {
         if (xhr.status == 200) {
             let response = JSON.parse(xhr.response);
             console.log(response);
-            if (response.correo == inputEmail.value && response["contraseña"] == inputPass.value) {
-                window.open('PantallaPrincipal.html', '_self',false)
-                localStorage.token = "asdfgh123"    // Hardcoded token will change with the backend.
-                localStorage.usermail  = inputEmail.value;
-                localStorage.usertype = 1;
+            if (response.length > 0) {
+                if (response[0].correo == inputEmail.value && response[0]["contraseña"] == inputPass.value) {
+                    window.open('PantallaPrincipal.html', '_self',false)
+                    localStorage.token = "asdfgh123"    // Hardcoded token will change with the backend.
+                    localStorage.usermail  = inputEmail.value;
+                    localStorage.usertype = 1;
+                } else {
+                    alert('Contraseña incorrecta.')
+                }
             } else {
                 alert('Usuario no registrado.')
             }
+            
         } else {
             alert('Ocurrió un error.')
         }

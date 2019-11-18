@@ -7,6 +7,7 @@
  let sendEmailBtn = emailForm.querySelector("button");
  let tokenEmail;
  let email;
+ let user;
 
  /**
   * Code
@@ -32,7 +33,7 @@ let changePassBtn = passForm.querySelector("button");
  verBtn.addEventListener("click", (e) => validateCode(e))
 /** Add event listener  changes in the form pass */
 passForm.addEventListener("keyup", (e) => enableChangePassBtn(e))
-changePassBtn.addEventListener("click", (e) => changePassword(e))
+changePassBtn.addEventListener("click", (e) => getId(e))
 
 
  function enableEmailBtn(event) {
@@ -74,23 +75,43 @@ changePassBtn.addEventListener("click", (e) => changePassword(e))
                                 || (inputPass.value.length != inputConPass.value.length);
  }
 
+ function getId(event) {
+     event.preventDefault();
+     console.log("Get id");
+    let xhr = new XMLHttpRequest();
+    /** The endpoint will change to /${email} when we have our backend.*/
+    xhr.open("GET", `http://localhost:3000/usuarios?correo=${inputEmail.value}`);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send();
+    xhr.onload = function() {
+        if (xhr.status == 200) {
+            user = JSON.parse(xhr.response)[0];
+            console.log(user);
+            if (user == undefined) {
+                alert('El correo proporcionado no corresponde al de ningún usuario.')
+            } else {
+                changePassword(event)
+            }
+        }
+    }
+ }
+
  function changePassword(event) {
      event.preventDefault();
-     if (inputPass.value == inputConPass.value) {
+     if (inputPass.value == inputConPass.value ) {
         console.log("Update pass");
         let xhr = new XMLHttpRequest();
         /** The endpoint will change to /${email} when we have our backend.*/
-        xhr.open("PUT", `https://my-json-server.typicode.com/Isaac2357/MisProfesoresServer/usuarios/${1}`);
+        xhr.open("PUT", `http://localhost:3000/usuarios/${user.id}`);
         xhr.setRequestHeader("Content-Type", "application/json");
-        let json = {};
-        json["contraseña"] = inputConPass.value;
-        console.log(json);
-        xhr.send(JSON.stringify(json));
+        user["contraseña"] = inputConPass.value;
+        console.log(user);
+        xhr.send(JSON.stringify(user));
         xhr.onload = function() {
             console.log(xhr.status, xhr.statusText);
             if (xhr.status == 200) {
-                alert('La contraseña se actualizo correctamente.')
                 window.open('login.html', '_self',false) 
+                alert('La contraseña se actualizo correctamente.')
             } else {
                 alert('Ha ocurrido un error al actualizar su contraseña.')
             }

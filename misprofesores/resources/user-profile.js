@@ -18,7 +18,7 @@ function loadUserData() {
      * Json-server doesn´t allow us to add more than 5 fields in the db,
      * that's why we don´t use it.
     */
-    xhr.open("GET", `https://my-json-server.typicode.com/Isaac2357/MisProfesoresServer/usuarios/${1}`);
+    xhr.open("GET", `http://localhost:3000/usuarios?correo=${localStorage.usermail}`);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send();
     xhr.onload = function() {
@@ -26,8 +26,9 @@ function loadUserData() {
         if (xhr.status == 200) {
             user = JSON.parse(xhr.response);
             console.log(user);
-            name.value = user.nombre;
-            email.value = user.correo;
+            name.value = user[0].nombre;
+            email.value = user[0].correo;
+
         } else {
             alert('Ocurrió un error.')
         }
@@ -45,11 +46,11 @@ function save(event) {
     console.log("Save");
     event.preventDefault();
     let xhr = new XMLHttpRequest();
-    xhr.open("PUT", `https://my-json-server.typicode.com/Isaac2357/MisProfesoresServer/usuarios/${1}`);
+    xhr.open("PUT", `http://localhost:3000/usuarios/${user[0].id}`);
     xhr.setRequestHeader("Content-Type", "application/json");
-    user.name = name.value;
+    user[0].nombre = name.value;
     console.log(user);
-    xhr.send(JSON.stringify(user));
+    xhr.send(JSON.stringify(user[0]));
     xhr.onload = function() {
         console.log(xhr.status, xhr.statusText);
         if (xhr.status == 200) {
