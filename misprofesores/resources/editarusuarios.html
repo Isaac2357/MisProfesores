@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EditarUsuariosAdmin
+    </title>
+     <!-- Required meta tags -->
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+<body>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+     <!-- Bootstrap 4 -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <a class="navbar-brand" href="#">Califica Profesor</a>
+            <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            
+            aria-expanded="false" aria-label="Toggle navigation"></button>
+         
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+
+                </li>
+
+  
+                  <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Ingresar</a>
+                  <div class="dropdown-menu" aria-labelledby="dropdownId">
+  
+                    <a class="dropdown-item" href="#">Profesor</a>
+                    <a class="dropdown-item" href="#">Alumno</a>
+                    <a class="dropdown-item" href="#">Administrador</a>
+                  </div>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar Profesor</button>
+              </form>
+            </div>
+          </nav>
+
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <!------ Include the above in your HEAD tag ---------->
+   <!--PROFESORES-->     
+   <div class="container">
+    <div class="tab tab-1">
+            <button class="btn" id="botonusuarios">Mostrar </button>
+
+        <table id="table" style="width:100%" border="1">
+            <tr>
+                <th >Nombre</th>
+                <th>Correo</th>
+                <th>Departamento</th>
+            </tr>
+            <tbody id = "res1">
+ 
+            </tbody>
+
+        </table>
+    </div>
+    <div class="tab tab-2">
+            <h1 class="h2 text-center my-3">Registra un profesor</h1>
+            <fieldset>
+                <legend class="h4 text-center">
+                    Datos Personales
+                </legend>
+        Nombre :<input type="text" name="fname" id="fname" placeholder="Nombre">
+        Departamento :<input type="text" name="lname" id="lname" placeholder="Departamento">
+        Correo :<input type="email" name="age" id="correo" placeholder="Correo">
+        
+        <button onclick="addHtmlTableRow();" >añadir</button>
+        <button onclick="editHtmlTbleSelectedRow();">Editar</button>
+        <button onclick="removeSelectedRow();">Eliminar</button>
+    </div>
+</div>
+
+<script>
+            
+    var rIndex,
+        table = document.getElementById("table");
+    //ver que no tenga elementos vacios
+    function checkEmptyInput()
+    {
+        var isEmpty = false,
+            fname = document.getElementById("fname").value,
+            lname = document.getElementById("lname").value,
+            correo = document.getElementById("correo").value;
+    
+        if(fname === ""){
+            alert("Nombre vacio");
+            isEmpty = true;
+        }
+        else if(lname === ""){
+            alert("Departamento vacio");
+            isEmpty = true;
+        }
+        else if(correo === ""){
+            alert("Correo incorrecto/vacio");
+            isEmpty = true;
+        }
+        return isEmpty;
+    }
+    
+    // add Row
+    function addHtmlTableRow()
+    {
+ 
+// obtener la tabla por id
+        // crea una nueva fila y celdas
+        // obtener valor del texto de entrada
+        // establece los valores en celdas de fila
+        if(!checkEmptyInput()){
+        var newRow = table.insertRow(table.length),
+            cell1 = newRow.insertCell(0),
+            cell2 = newRow.insertCell(1),
+            cell3 = newRow.insertCell(2),
+            fname = document.getElementById("fname").value,
+            lname = document.getElementById("lname").value,
+            correo = document.getElementById("correo").value;
+    
+        cell1.innerHTML = fname;
+        cell2.innerHTML = lname;
+        cell3.innerHTML = correo;
+        selectedRowToInput();
+    }
+    }
+    
+    function selectedRowToInput()
+    {
+        
+        for(var i = 1; i < table.rows.length; i++)
+        {
+            table.rows[i].onclick = function()
+            {
+              // get the seected row index
+              rIndex = this.rowIndex;
+              document.getElementById("fname").value = this.cells[0].innerHTML;
+              document.getElementById("lname").value = this.cells[1].innerHTML;
+              document.getElementById("correo").value = this.cells[2].innerHTML;
+            };
+        }
+    }
+    selectedRowToInput();
+    
+    function editHtmlTbleSelectedRow()
+    {
+        var fname = document.getElementById("fname").value,
+            lname = document.getElementById("lname").value,
+            correo = document.getElementById("correo").value;
+       if(!checkEmptyInput()){
+        table.rows[rIndex].cells[0].innerHTML = fname;
+        table.rows[rIndex].cells[1].innerHTML = lname;
+        table.rows[rIndex].cells[2].innerHTML = correo;
+      }
+    }
+    
+    function removeSelectedRow()
+    {
+        table.deleteRow(rIndex);
+        document.getElementById("fname").value = "";
+        document.getElementById("lname").value = "";
+        document.getElementById("correo").value = "";
+    }
+</script>
+  
+        <!-- Script para bootstrap -->
+        <script src="busqueda.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+            <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+
+
+</body>
+</html>

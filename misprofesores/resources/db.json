@@ -2,7 +2,7 @@
   "usuarios": [
     {
       "id": 1,
-      "nombre": "Raúl Méndez Rojas",
+      "nombre": "Raúl Méndez",
       "correo": "is685434@iteso.mx",
       "contraseña": "qwe",
       "tipo": "1",
@@ -22,22 +22,12 @@
     {
       "nombre": "Isaac",
       "correo": "is710110@iteso.mx",
-      "contraseña": "qwe",
+      "contraseña": "isaac",
       "tipo": 1,
       "favProfesores": [],
       "favCursos": [],
       "idRelacion": [],
       "id": 2
-    },
-    {
-      "nombre": "Aracelo De la Olla",
-      "correo": "if708243@iteso.mx",
-      "contraseña": "foxydog",
-      "tipo": 1,
-      "favProfesores": [],
-      "favCursos": [],
-      "idRelacion": [],
-      "id": 3
     }
   ],
   "profesores": [
@@ -66,12 +56,6 @@
       "departamento": "DESI",
       "creditos": 8,
       "id": 3
-    },
-    {
-      "nombre": "Danza",
-      "departamento": "CUI",
-      "creditos": 16,
-      "id": 4
     }
   ],
   "usuariosmanuel": [
@@ -89,7 +73,7 @@
   
   "resenas": [
     {
-      "id": "1",
+      "idReseña": "1",
       "puntaje": "3",
       "comentario": "Muy buen profesor.",
       "likes": "46",
