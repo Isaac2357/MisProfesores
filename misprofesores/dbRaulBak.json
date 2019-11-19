@@ -198,15 +198,6 @@
       "dislikes": "0",
       "idUsuario": "5",
       "idRelacion": "2"
-    },
-    {
-      "id": "10",
-      "puntaje": "4",
-      "comentario": "23:32 nuevo comentario test",
-      "likes": "0",
-      "dislikes": "0",
-      "idUsuario": "2",
-      "idRelacion": "1"
     }
   ]
 }
