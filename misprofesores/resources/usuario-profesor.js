@@ -54,7 +54,7 @@ function fetchCurs(id) {
                     container.innerHTML +=` 
                     <div class="card text-center" >
                     <div class="card-body">
-                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <i class="fa fa-book" aria-hidden="true"></i>
                             <hr>
         
                             <h3 class="card-title">${item.nombre}</h3>
