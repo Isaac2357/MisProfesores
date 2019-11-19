@@ -37,7 +37,7 @@ changePassBtn.addEventListener("click", (e) => getId(e))
 
 
  function enableEmailBtn(event) {
-     sendEmailBtn.disabled = inputEmail.value.length < 0 || !inputEmail.validity.valid;
+     sendEmailBtn.disabled = inputEmail.value.length == 0 || !inputEmail.validity.valid;
  }
 
  function sendEmail(event) {
