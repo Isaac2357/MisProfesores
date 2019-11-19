@@ -73,7 +73,7 @@
   
   "resenas": [
     {
-      "idReseña": "1",
+      "id": "1",
       "puntaje": "3",
       "comentario": "Muy buen profesor.",
       "likes": "46",

@@ -75,7 +75,7 @@
                 </legend>
         Nombre :<input type="text" name="fname" id="fname" placeholder="Nombre">
         Departamento :<input type="text" name="lname" id="lname" placeholder="Departamento">
-        Correo :<input type="email" name="age" id="age" placeholder="Correo">
+        Correo :<input type="email" name="age" id="correo" placeholder="Correo">
         
         <button onclick="addHtmlTableRow();" >añadir</button>
         <button onclick="editHtmlTbleSelectedRow();">Editar</button>
@@ -87,13 +87,13 @@
             
     var rIndex,
         table = document.getElementById("table");
-    
+    //ver que no tenga elementos vacios
     function checkEmptyInput()
     {
         var isEmpty = false,
             fname = document.getElementById("fname").value,
             lname = document.getElementById("lname").value,
-            age = document.getElementById("age").value;
+            correo = document.getElementById("correo").value;
     
         if(fname === ""){
             alert("Nombre vacio");
@@ -103,7 +103,7 @@
             alert("Departamento vacio");
             isEmpty = true;
         }
-        else if(age === ""){
+        else if(correo === ""){
             alert("Correo incorrecto/vacio");
             isEmpty = true;
         }
@@ -125,11 +125,11 @@
             cell3 = newRow.insertCell(2),
             fname = document.getElementById("fname").value,
             lname = document.getElementById("lname").value,
-            age = document.getElementById("age").value;
+            correo = document.getElementById("correo").value;
     
         cell1.innerHTML = fname;
         cell2.innerHTML = lname;
-        cell3.innerHTML = age;
+        cell3.innerHTML = correo;
         selectedRowToInput();
     }
     }
@@ -145,7 +145,7 @@
               rIndex = this.rowIndex;
               document.getElementById("fname").value = this.cells[0].innerHTML;
               document.getElementById("lname").value = this.cells[1].innerHTML;
-              document.getElementById("age").value = this.cells[2].innerHTML;
+              document.getElementById("correo").value = this.cells[2].innerHTML;
             };
         }
     }
@@ -155,11 +155,11 @@
     {
         var fname = document.getElementById("fname").value,
             lname = document.getElementById("lname").value,
-            age = document.getElementById("age").value;
+            correo = document.getElementById("correo").value;
        if(!checkEmptyInput()){
         table.rows[rIndex].cells[0].innerHTML = fname;
         table.rows[rIndex].cells[1].innerHTML = lname;
-        table.rows[rIndex].cells[2].innerHTML = age;
+        table.rows[rIndex].cells[2].innerHTML = correo;
       }
     }
     
@@ -168,7 +168,7 @@
         table.deleteRow(rIndex);
         document.getElementById("fname").value = "";
         document.getElementById("lname").value = "";
-        document.getElementById("age").value = "";
+        document.getElementById("correo").value = "";
     }
 </script>
   
