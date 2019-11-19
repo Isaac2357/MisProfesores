@@ -1,0 +1,152 @@
+{
+    "usuarios": [
+      {
+        "id": 1,
+        "nombre": "Raúl Méndez Rojas",
+        "correo": "is685434@iteso.mx",
+        "contraseña": "qwe",
+        "tipo": "1",
+        "favProfesores": [
+          "1",
+          "2"
+        ],
+        "favCursos": [
+          "1",
+          "2"
+        ],
+        "idRelacion": [
+          "1",
+          "2"
+        ]
+      },
+      {
+        "nombre": "Isaac",
+        "correo": "is710110@iteso.mx",
+        "contraseña": "qwe",
+        "tipo": 1,
+        "favProfesores": [],
+        "favCursos": [],
+        "idRelacion": [],
+        "id": 2
+      },
+      {
+        "nombre": "Aracelo De la Olla",
+        "correo": "if708243@iteso.mx",
+        "contraseña": "foxydog",
+        "tipo": 1,
+        "favProfesores": [],
+        "favCursos": [],
+        "idRelacion": [],
+        "id": 3
+      }
+    ],
+    "profesores": [
+      {
+        "idProfesor": "1",
+        "nombre": "Luis",
+        "departamento": "DESI"
+      }
+    ],
+    
+    "cursos": [
+      {
+        "id": 1,
+        "nombre": "DASW",
+        "departamento": "DESI",
+        "creditos": 8
+      },
+      {
+        "nombre": "Sistemas Operativos",
+        "departamento": "DESI",
+        "creditos": 8,
+        "id": 2
+      },
+      {
+        "nombre": "Moviles",
+        "departamento": "DESI",
+        "creditos": 8,
+        "id": 3
+      },
+      {
+        "nombre": "Danza",
+        "departamento": "CUI",
+        "creditos": 16,
+        "id": 4
+      }
+    ],
+    "usuariosmanuel": [
+      {
+        "nombre": "Jose Luis Elvira",
+        "correo": "luis@iteso.mx",
+        "Departamento": "DESI"
+      },
+      {
+        "nombre": "luis Preciado",
+        "correo": "fernando@iteso.mx",
+        "Departamento": "DESI"
+      }
+    ],
+    
+    "resenas": [
+      {
+        "id": "1",
+        "puntaje": "3",
+        "comentario": "Muy buen profesor.",
+        "likes": "46",
+        "dislikes": "19",
+        "idUsuario": "1",
+        "idRelacion": "1"
+      }
+    ],"profesoresmanuel": [
+      {
+        "id": "1",
+        "Nombre": "Jose Luis Elvira",
+        "Materia": "Sistemas Operativos",
+        "Departamento": "DESI"
+      },
+      {
+        "id": "3",
+        "Nombre": "Saul Nuño",
+        "Materia": "Algebra Lineal",
+        "Departamento": "MAF"
+      },
+      {
+        "id": "5",
+        "Nombre": "Saul Nuño",
+        "Materia": "Matematicas Discretas",
+        "Departamento": "MAF"
+      },
+      {
+        "id": "2",
+        "Nombre": "Luis fernando Preciado",
+        "Materia": "Programacion web",
+        "Departamento": "DESI"
+      },
+      {
+        "id": "4",
+        "Nombre": "Luis Fernando Preciado",
+        "Materia": "PAE",
+        "Departamento": "DESI"
+      }],
+    "relaciones": [
+      {
+        "idRelacion": "1",
+        "idProfesor": "1",
+        "idCurso": "1",
+        "periodo": "P",
+        "año": "2019"
+      }
+    ],
+    
+    "reseñas": [
+      {
+        "idReseña": "1",
+        "puntaje": "3",
+        "comentario": "Muy buen profesor.",
+        "likes": "46",
+        "dislikes": "19",
+        "idUsuario": "1",
+        "idRelacion": "1"
+      }
+    ]
+  }

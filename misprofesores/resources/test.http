@@ -18,7 +18,7 @@ GET http://localhost:3000/relaciones?id=1
 Content-Type: application/json
 
 ###
-GET http://localhost:3000/comentarios
+GET http://localhost:3000/resenas
 Content-Type: application/json
 
 ###
