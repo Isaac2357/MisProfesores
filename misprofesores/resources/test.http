@@ -1,0 +1,31 @@
+GET http://localhost:3000/profesores?id=3
+Content-Type: application/json
+
+###
+GET http://localhost:3000/relaciones?idProfesor=1
+Content-Type: application/json
+
+###
+GET http://localhost:3000/cursos?id=2
+Content-Type: application/json
+
+###
+GET http://localhost:3000/relaciones?id=1
+Content-Type: application/json
+
+###
+GET http://localhost:3000/relaciones?id=1
+Content-Type: application/json
+
+###
+GET http://localhost:3000/comentarios
+Content-Type: application/json
+
+###
+GET http://localhost:3000/usuarios?id=1
+Content-Type: application/json
+
+###
+GET http://localhost:3000/resenas?idUsuario=1
+Content-Type: application/json
+
