@@ -74,8 +74,8 @@
                     Datos Personales
                 </legend>
         Nombre :<input type="text" name="fname" id="fname" placeholder="Nombre">
-        Correo :<input type="email" name="lname" id="correo" placeholder="Correo">
-        Departamento :<input type="text" name="age" id="lname" placeholder="Departamento">
+        Departamento :<input type="text" name="lname" id="correo" placeholder="Departamento">
+        Correo :<input type="email" name="age" id="lname" placeholder="Correo">
         
         <button onclick="addHtmlTableRow();" >añadir</button>
         <button onclick="editHtmlTbleSelectedRow();">Editar</button>
@@ -100,11 +100,11 @@
             isEmpty = true;
         }
         else if(lname === ""){
-            alert("Departamento vacio");
+            alert("correo vacio");
             isEmpty = true;
         }
         else if(correo === ""){
-            alert("Correo incorrecto/vacio");
+            alert("Departamento incorrecto/vacio");
             isEmpty = true;
         }
         return isEmpty;
