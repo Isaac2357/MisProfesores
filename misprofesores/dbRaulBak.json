@@ -2,7 +2,7 @@
   "usuarios": [
     {
       "id": 1,
-      "nombre": "Raúl Méndez",
+      "nombre": "Raúl Méndez Rojas",
       "correo": "is685434@iteso.mx",
       "contraseña": "qwe",
       "tipo": "1",
@@ -12,9 +12,7 @@
       ],
       "favCursos": [
         "1",
-        "2",
-        "3",
-        "4"
+        "2"
       ],
       "idRelacion": [
         "1",
@@ -89,50 +87,6 @@
       "id": 5,
       "nombre": "Seguridad en Redes",
       "departamento": "DESI"
-    }
-  ],
-  "usuariosmanuel": [
-    {
-      "nombre": "Jose Luis Elvira",
-      "correo": "luis@iteso.mx",
-      "Departamento": "DESI"
-    },
-    {
-      "nombre": "luis Preciado",
-      "correo": "fernando@iteso.mx",
-      "Departamento": "DESI"
-    }
-  ],
-  "profesoresmanuel": [
-    {
-      "id": "1",
-      "Nombre": "Jose Luis Elvira",
-      "Materia": "Sistemas Operativos",
-      "Departamento": "DESI"
-    },
-    {
-      "id": "3",
-      "Nombre": "Saul Nuño",
-      "Materia": "Algebra Lineal",
-      "Departamento": "MAF"
-    },
-    {
-      "id": "5",
-      "Nombre": "Saul Nuño",
-      "Materia": "Matematicas Discretas",
-      "Departamento": "MAF"
-    },
-    {
-      "id": "2",
-      "Nombre": "Luis fernando Preciado",
-      "Materia": "Programacion web",
-      "Departamento": "DESI"
-    },
-    {
-      "id": "4",
-      "Nombre": "Luis Fernando Preciado",
-      "Materia": "PAE",
-      "Departamento": "DESI"
     }
   ],
   "relaciones": [
@@ -244,15 +198,6 @@
       "dislikes": "0",
       "idUsuario": "5",
       "idRelacion": "2"
-    },
-    {
-      "id": "10",
-      "puntaje": "5",
-      "comentario": "buenadcacac",
-      "likes": "0",
-      "dislikes": "0",
-      "idUsuario": "2",
-      "idRelacion": "1"
     }
   ]
 }
