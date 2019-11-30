@@ -37,7 +37,7 @@ function login(event) {
                     window.open('PantallaPrincipal.html', '_self',false)
                     localStorage.token = "asdfgh123"    // Hardcoded token will change with the backend.
                     localStorage.usermail  = inputEmail.value;
-                    localStorage.usertype = 1;
+                    localStorage.usertype = reponse[0].tipo;
                 } else {
                     alert('Contraseña incorrecta.')
                 }
