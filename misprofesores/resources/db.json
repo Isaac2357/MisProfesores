@@ -37,7 +37,6 @@
       "departamento": "DESI"
     }
   ],
-  
   "cursos": [
     {
       "id": 1,
@@ -60,17 +59,33 @@
   ],
   "usuariosmanuel": [
     {
+      "id": "1",
       "nombre": "Jose Luis Elvira",
       "correo": "luis@iteso.mx",
       "Departamento": "DESI"
     },
     {
+      "id": "2",
       "nombre": "luis Preciado",
       "correo": "fernando@iteso.mx",
       "Departamento": "DESI"
+    },
+    {
+      "id": "mC57-JQ"
+    },
+    {
+      "id": "P0f00zd"
+    },
+    {
+      "id": "TIzPHso"
+    },
+    {
+      "id": "VHvQhZd"
+    },
+    {
+      "id": "EGrpang"
     }
   ],
-  
   "resenas": [
     {
       "idReseña": "1",
@@ -81,7 +96,8 @@
       "idUsuario": "1",
       "idRelacion": "1"
     }
-  ],"profesoresmanuel": [
+  ],
+  "profesoresmanuel": [
     {
       "id": "1",
       "Nombre": "Jose Luis Elvira",
@@ -111,7 +127,23 @@
       "Nombre": "Luis Fernando Preciado",
       "Materia": "PAE",
       "Departamento": "DESI"
-    }],
+    },
+    {
+      "id": "mtHXpr3"
+    },
+    {
+      "id": "Xjosplz"
+    },
+    {
+      "id": "p2TrIW_"
+    },
+    {
+      "id": "tb35ISq"
+    },
+    {
+      "id": "k-DR1Wl"
+    }
+  ],
   "relaciones": [
     {
       "idRelacion": "1",
@@ -121,7 +153,6 @@
       "año": "2019"
     }
   ],
-  
   "reseñas": [
     {
       "idReseña": "1",

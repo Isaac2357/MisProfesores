@@ -168,7 +168,7 @@ function sortTable() {
 
 
 
-						document.querySelector("#botonusuarios").addEventListener('click',traerDatos1);
+			let btnUsuarios =	document.querySelector("#botonusuarios").addEventListener('click',traerDatos1);
 
 						function traerDatos1(){
 						console.log('dentro de funcion');
@@ -199,15 +199,15 @@ function sortTable() {
 function registrarProfe(event){
 	var nombre = document.getElementById("fname").value,
 	lname = document.getElementById("lname").value,
-	age = document.getElementById("age").value;
+	correo = document.getElementById("correo").value;
 	let nuevoprofe ={
 		nombre1:nombre.value,
-		departamento1:lname.value,
-		age1:age.value
+		age1:correo.value,
+		departamento1:lname.value
 
 	};
 	let xhr = new XMLHttpRequest();
-	xhr.open("POST",`http://localhost:3000/profesoresmanuel`);
+	xhr.open("POST",`http://localhost:3000/usuariosmanuel`);
 	xhr.setRequestHeader("content-Type","application/json");
 	xhr.send(JSON.stringify(nuevoprofe));
 	xhr.onload=function(){
@@ -252,3 +252,4 @@ function mostrarComentarios(){
 		}
 	
 	}
+	
