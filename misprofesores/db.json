@@ -40,6 +40,16 @@
       "favCursos": [],
       "idRelacion": [],
       "id": 3
+    },
+    {
+      "nombre": "Manuel",
+      "correo": "is693505@iteso.mx",
+      "contraseña": "1234",
+      "tipo": 1,
+      "favProfesores": [],
+      "favCursos": [],
+      "idRelacion": [],
+      "id": 4
     }
   ],
   "profesores": [
@@ -62,6 +72,11 @@
       "id": 4,
       "nombre": "José Luis Elvira",
       "departamento": "DESI"
+    },
+    {
+      "nombre": "Manuel",
+      "departamento": "Desi",
+      "id": 5
     }
   ],
   "cursos": [

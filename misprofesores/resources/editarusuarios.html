@@ -51,6 +51,8 @@
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         <!------ Include the above in your HEAD tag ---------->
    <!--PROFESORES-->     
+   <h1 class="h2 text-center my-3">Profesores</h1>
+
    <div class="container">
     <div class="tab tab-1">
             <button class="btn" id="botonusuarios">Mostrar </button>
@@ -58,7 +60,6 @@
         <table id="table" style="width:100%" border="1">
             <tr>
                 <th >Nombre</th>
-                <th>Correo</th>
                 <th>Departamento</th>
             </tr>
             <tbody id = "res1">
@@ -74,14 +75,49 @@
                     Datos Personales
                 </legend>
         Nombre :<input type="text" name="fname" id="fname" placeholder="Nombre">
-        Departamento :<input type="text" name="lname" id="correo" placeholder="Departamento">
-        Correo :<input type="email" name="age" id="lname" placeholder="Correo">
+        Departamento :<input type="text" name="lname" id="lname" placeholder="Departamento">
         
-        <button onclick="addHtmlTableRow();" >añadir</button>
+        <button onclick="registrarProfe();" >añadir</button>
+        
         <button onclick="editHtmlTbleSelectedRow();">Editar</button>
         <button onclick="removeSelectedRow();">Eliminar</button>
     </div>
 </div>
+  <!--PROFESORES-->     
+  <h1 class="h2 text-center my-3">Alumnos</h1>
+
+  <div class="container">
+   <div class="tab tab-1">
+           <button class="btn" id="botonAlumno">Mostrar </button>
+
+       <table id="table" style="width:100%" border="1">
+           <tr>
+               <th >Nombre</th>
+               <th>Correo</th>
+               <th >Contraseña</th>
+           </tr>
+           <tbody id = "res2">
+
+           </tbody>
+
+       </table>
+   </div>
+   <div class="tab tab-2">
+           <h1 class="h2 text-center my-3">Registra un Alumno</h1>
+           <fieldset>
+               <legend class="h4 text-center">
+                   Datos Personales
+               </legend>
+       Nombre :<input type="text" name="fname" id="nombre" placeholder="Nombre">
+       Correo :<input type="text" name="lname" id="correo" placeholder="Correo">
+       Contraseña :<input type="text" name="lname" id="contraseña" placeholder="Contraseña">
+       
+       <button onclick="registrarAlumno();" >añadir</button>
+       <button onclick="editHtmlTbleSelectedRow();">Editar</button>
+       <button onclick="removeSelectedRow();">Eliminar</button>
+   </div>
+</div>
+
 
 <script>
             
@@ -93,16 +129,12 @@
         var isEmpty = false,
             fname = document.getElementById("fname").value,
             lname = document.getElementById("lname").value,
-            correo = document.getElementById("correo").value;
     
         if(fname === ""){
             alert("Nombre vacio");
             isEmpty = true;
         }
-        else if(lname === ""){
-            alert("correo vacio");
-            isEmpty = true;
-        }
+
         else if(correo === ""){
             alert("Departamento incorrecto/vacio");
             isEmpty = true;
@@ -122,14 +154,11 @@
         var newRow = table.insertRow(table.length),
             cell1 = newRow.insertCell(0),
             cell2 = newRow.insertCell(1),
-            cell3 = newRow.insertCell(2),
             fname = document.getElementById("fname").value,
-            lname = document.getElementById("lname").value,
-            correo = document.getElementById("correo").value;
+            lname = document.getElementById("lname").value
     
         cell1.innerHTML = fname;
         cell2.innerHTML = lname;
-        cell3.innerHTML = correo;
         selectedRowToInput();
     }
     }
@@ -145,7 +174,6 @@
               rIndex = this.rowIndex;
               document.getElementById("fname").value = this.cells[0].innerHTML;
               document.getElementById("lname").value = this.cells[1].innerHTML;
-              document.getElementById("correo").value = this.cells[2].innerHTML;
             };
         }
     }
@@ -173,10 +201,45 @@
 </script>
   
         <!-- Script para bootstrap -->
-        <script src="busqueda.js"></script>
+        <script src="editarprofes.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
             <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
+  Launch
+</button>
 
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+                <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    Add rows here
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#exampleModal').on('show.bs.modal', event => {
+        var button = $(event.relatedTarget);
+        var modal = $(this);
+        // Use above variables to manipulate the DOM
+        
+    });
+</script>
 </body>
 </html>
