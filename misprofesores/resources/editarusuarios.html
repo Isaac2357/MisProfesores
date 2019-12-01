@@ -9,7 +9,20 @@
      <!-- Required meta tags -->
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<style>
+    #EditProf{
+        display: none;
+        position: relative;
+  left: 750px;
+  top:-500px;
+    }
+    #Datos{
+        display: none;
+        position: relative;
+  left: 750px;
+  top:-500px;
+    }
+</style>
 </head>
 <body>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -57,9 +70,9 @@
     <div class="tab tab-1">
             <button class="btn" id="botonusuarios">Mostrar </button>
 
-        <table id="table" style="width:100%" border="1">
+        <table id="table" style="width:50%" border="1">
             <tr>
-                <th >Nombre</th>
+                <th >Nombre<button onclick="sortProf()">🔽</button></th>
                 <th>Departamento</th>
             </tr>
             <tbody id = "res1">
@@ -68,7 +81,7 @@
 
         </table>
     </div>
-    <div class="tab tab-2">
+    <div class="tab tab-2" style="width:54%">
             <h1 class="h2 text-center my-3">Registra un profesor</h1>
             <fieldset>
                 <legend class="h4 text-center">
@@ -79,20 +92,18 @@
         
         <button onclick="registrarProfe();" >añadir</button>
         
-        <button onclick="editHtmlTbleSelectedRow();">Editar</button>
-        <button onclick="removeSelectedRow();">Eliminar</button>
     </div>
 </div>
-  <!--PROFESORES-->     
+  <!--Alumnos-->     
   <h1 class="h2 text-center my-3">Alumnos</h1>
 
   <div class="container">
-   <div class="tab tab-1">
+   <div class="tab tab-1" >
            <button class="btn" id="botonAlumno">Mostrar </button>
 
-       <table id="table" style="width:100%" border="1">
+       <table id="table1" style="width:50%" border="1">
            <tr>
-               <th >Nombre</th>
+               <th >Nombre<button onclick="sortAlu()">🔽</button></th>
                <th>Correo</th>
                <th >Contraseña</th>
            </tr>
@@ -102,7 +113,7 @@
 
        </table>
    </div>
-   <div class="tab tab-2">
+   <div class="tab tab-2" style="width:50%">
            <h1 class="h2 text-center my-3">Registra un Alumno</h1>
            <fieldset>
                <legend class="h4 text-center">
@@ -117,8 +128,24 @@
        <button onclick="removeSelectedRow();">Eliminar</button>
    </div>
 </div>
+<div id="EditProf" style="width:40%">
+        <h4>Editar Usuario</h4>
 
+        <label for="text">Nombre</label>
+        <input id="nombreprof" name="" class="form-control" placeholder="Luis Fernando" type="text">
+        <button onclick="ProfeEdit()" >Buscar</button>
+                                                                 
+</div>
+<div id="Datos" style="width:40%">
+        <h4>Datos</h4>
 
+        <label for="text">Nombre</label>
+        <input id="editnombre" name="" class="form-control" placeholder="Luis Fernando" type="text">
+
+        <input id="editdpto" name="" class="form-control" placeholder="DESI" type="text">
+        <button onclick="changedatos()" >Editar</button>
+                                                                 
+</div>
 <script>
             
     var rIndex,
@@ -128,7 +155,7 @@
     {
         var isEmpty = false,
             fname = document.getElementById("fname").value,
-            lname = document.getElementById("lname").value,
+            lname = document.getElementById("lname").value
     
         if(fname === ""){
             alert("Nombre vacio");
@@ -205,41 +232,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
             <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
-  Launch
-</button>
 
-<!-- Modal -->
-<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-                <div class="modal-header">
-                        <h5 class="modal-title">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                    </div>
-            <div class="modal-body">
-                <div class="container-fluid">
-                    Add rows here
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    $('#exampleModal').on('show.bs.modal', event => {
-        var button = $(event.relatedTarget);
-        var modal = $(this);
-        // Use above variables to manipulate the DOM
-        
-    });
-</script>
 </body>
 </html>
