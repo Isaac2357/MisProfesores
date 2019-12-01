@@ -109,6 +109,11 @@
       "id": 5,
       "nombre": "Seguridad en Redes",
       "departamento": "DESI"
+    },
+    {
+      "id": 6,
+      "nombre": "Test para nombres largos ola ola ola ola ola ola ola ola olaajjaja jaajsjsjsa jasjasjsajsa jasjasjsajsaajsjas dq",
+      "departamento": "DESI"
     }
   ],
   "usuariosmanuel": [
@@ -232,7 +237,7 @@
     {
       "id": "5",
       "puntaje": "5",
-      "comentario": "A veces va rápido pero es un excelente profe. Me gusta mucho su clase.",
+      "comentario": "A veces va rápido pero es un excelente profe. Me gusta mucho su clase. Test para comentario largo ola ola olao lasjbkansxbhjsx hbsahbjsxahsxajkhasxkj sxahjksxahk shjksx ahjksxa hjksxa hkjs axhjksx ahjksxa hkjsxa hkjsa xsxa jhjhsax hjksxa khjasx hkjsa xkhsax hkjsax khjsxa khjsxa hkjs xakhjsaxkhjs axhkjasx khjsa xsaj hksxa kjh",
       "likes": "32",
       "dislikes": "0",
       "idUsuario": "1",

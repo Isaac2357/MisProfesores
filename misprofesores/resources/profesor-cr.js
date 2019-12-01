@@ -38,7 +38,7 @@ function fetch(curso) {
                 for(let item of userHtml){
                     container.innerHTML +=` 
                     <div class="card text-center" >
-                    <div class="card-body">
+                    <div class="card-body" style="min-height:200px; max-height:200px; overflow:auto;">
                             <i class="fa fa-book" aria-hidden="true"></i>
                             <hr>
         
