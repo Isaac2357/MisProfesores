@@ -48,7 +48,7 @@ function fetchProf(id) {
                 for(let item of userHtml){
                     contProf.innerHTML +=` 
                     <div class="card text-center" >
-                    <div class="card-body">
+                    <div class="card-body" style="min-height:200px; max-height:200px; overflow:auto;">
                             <i class="fa fa-user" aria-hidden="true"></i>
                             <hr>
         
@@ -87,7 +87,7 @@ function fetchCurs(id) {
                 for(let item of userHtml){
                     contCurs.innerHTML +=` 
                     <div class="card text-center" >
-                    <div class="card-body">
+                    <div class="card-body" style="min-height:200px; max-height:200px; overflow:auto;">
                             <i class="fa fa-book" aria-hidden="true"></i>
                             <hr>
         
