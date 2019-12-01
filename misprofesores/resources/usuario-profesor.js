@@ -1,6 +1,6 @@
 "use strict"
 //let globalUsers = [];
-let container= document.getElementById("lista");
+let container = document.getElementById("lista");
 let hNom = document.getElementById("hNom");
 let idUser = 1;
 fetchUsr(idUser);
@@ -14,28 +14,28 @@ function fetchUsr(idUser) {
     let xhrR = new XMLHttpRequest();
     xhrR.open("GET", `http://localhost:3000/usuarios?id=${idUser}`, true);
     xhrR.send();
-    xhrR.onload = function() {
-        console.log("fetchUsr:",JSON.parse(xhrR.responseText), xhrR.status, xhrR.statusText, xhrR.response, JSON.parse(xhrR.response));
+    xhrR.onload = function () {
+        console.log("fetchUsr:", JSON.parse(xhrR.responseText), xhrR.status, xhrR.statusText, xhrR.response, JSON.parse(xhrR.response));
         if (xhrR.status == 200) {
             let usuario = JSON.parse(xhrR.responseText);
-                for(let item of usuario){
-                    let favProf = item.favProfesores;
-                    let favCurs = item.favCursos;
-                    hNom.innerHTML = `<i class="fa fa-user" aria-hidden="true"></i>${item.nombre}<small>${item.correo}</small>`
-                    if(item.tipo==1){
-                        fetchCom(idUser);
-                    }else if(item.tipo==2){
-                        console.log("Cursos:",favCurs);
-                        for(let i of favCurs){
-                            fetchCurs(i);
-                        }
-
+            for (let item of usuario) {
+                let favProf = item.favProfesores;
+                let favCurs = item.favCursos;
+                hNom.innerHTML = `<i class="fa fa-user" aria-hidden="true"></i>${item.nombre}<small>${item.correo}</small>`
+                if (item.tipo == 1) {
+                    fetchCom(idUser);
+                } else if (item.tipo == 2) {
+                    console.log("Cursos:", favCurs);
+                    for (let i of favCurs) {
+                        fetchCurs(i);
                     }
-                    
+
                 }
+
+            }
         }
-   }
-    
+    }
+
 }
 
 function fetchCurs(id) {
@@ -43,17 +43,17 @@ function fetchCurs(id) {
     let xhr = new XMLHttpRequest();
     xhr.open("GET", `http://localhost:3000/cursos?id=${id}`);
     xhr.send();
-    xhr.onload = function() {
+    xhr.onload = function () {
         console.log(xhr.status, xhr.statusText, xhr.response, JSON.parse(xhr.response));
         if (xhr.status == 200) {
             //globalUsers.push(JSON.parse(xhr.response));
             let userHtml = JSON.parse(xhr.responseText);
             //let usr = xhr.response
             //let users = usr.map(user => user.nombre);
-                for(let item of userHtml){
-                    container.innerHTML +=` 
+            for (let item of userHtml) {
+                container.innerHTML += ` 
                     <div class="card text-center" >
-                    <div class="card-body">
+                    <div class="card-body" style="min-height:200px; max-height:200px; overflow:auto;" >
                             <i class="fa fa-book" aria-hidden="true"></i>
                             <hr>
         
@@ -71,9 +71,9 @@ function fetchCurs(id) {
                 </div>
                 </div>           
                 `;
-                }
+            }
         }
-   }
+    }
 }
 
 function fetchCom(id) {
@@ -81,15 +81,15 @@ function fetchCom(id) {
     let xhr = new XMLHttpRequest();
     xhr.open("GET", `http://localhost:3000/resenas?idUsuario=${id}`);
     xhr.send();
-    xhr.onload = function() {
+    xhr.onload = function () {
         console.log("fetchComm:", xhr.status, xhr.statusText, xhr.response, JSON.parse(xhr.response));
         if (xhr.status == 200) {
             let comHtml = JSON.parse(xhr.responseText);
-                for(let item of comHtml){
+            for (let item of comHtml) {
 
-                    container.innerHTML +=` 
+                container.innerHTML += ` 
                     <div class="card text-center" >
-                    <div class="card-body">
+                    <div class="card-body" style="min-height:200px; max-height:200px; overflow:auto;">
                             <i class="fa fa-comment" aria-hidden="true"></i>
                             <hr>
                             <i class="fa fa-star" aria-hidden="true">${item.puntaje}</i>
@@ -104,7 +104,7 @@ function fetchCom(id) {
                     </div>
                 </div>         
                 `;
-                }
+            }
         }
-   }
-} 
+    }
+}

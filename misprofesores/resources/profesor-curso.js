@@ -79,7 +79,7 @@ function fetchCom(id) {
                     
                     container.innerHTML +=` 
                     <div class="card text-center" >
-                    <div class="card-body">
+                    <div class="card-body" style="min-height:200px; max-height:200px; overflow:auto;">
                             <i class="fa fa-comment" aria-hidden="true"></i>
                             <hr>
                             <i class="fa fa-star" aria-hidden="true">${item.puntaje}</i>
