@@ -42,16 +42,6 @@
       "id": 3
     },
     {
-      "nombre": "Manuel",
-      "correo": "is693505@iteso.mx",
-      "contraseña": "1234",
-      "tipo": 1,
-      "favProfesores": [],
-      "favCursos": [],
-      "idRelacion": [],
-      "id": 4
-    },
-    {
       "nombre": "David",
       "correo": "is659424@iteso.mx",
       "contraseña": "12345",
@@ -84,6 +74,14 @@
       "departamento": "DESI"
     }
   ],
+  "Departamentos": [
+    {
+      "departamento": "DESI"
+    },
+    {
+      "departamento": "MAF"
+    }
+  ],
   "cursos": [
     {
       "id": 1,
@@ -114,50 +112,6 @@
       "id": 6,
       "nombre": "Test para nombres largos ola ola ola ola ola ola ola ola olaajjaja jaajsjsjsa jasjasjsajsa jasjasjsajsaajsjas dq",
       "departamento": "DESI"
-    }
-  ],
-  "usuariosmanuel": [
-    {
-      "nombre": "Jose Luis Elvira",
-      "correo": "luis@iteso.mx",
-      "Departamento": "DESI"
-    },
-    {
-      "nombre": "luis Preciado",
-      "correo": "fernando@iteso.mx",
-      "Departamento": "DESI"
-    }
-  ],
-  "profesoresmanuel": [
-    {
-      "id": "1",
-      "Nombre": "Jose Luis Elvira",
-      "Materia": "Sistemas Operativos",
-      "Departamento": "DESI"
-    },
-    {
-      "id": "3",
-      "Nombre": "Saul Nuño",
-      "Materia": "Algebra Lineal",
-      "Departamento": "MAF"
-    },
-    {
-      "id": "5",
-      "Nombre": "Saul Nuño",
-      "Materia": "Matematicas Discretas",
-      "Departamento": "MAF"
-    },
-    {
-      "id": "2",
-      "Nombre": "Luis fernando Preciado",
-      "Materia": "Programacion web",
-      "Departamento": "DESI"
-    },
-    {
-      "id": "4",
-      "Nombre": "Luis Fernando Preciado",
-      "Materia": "PAE",
-      "Departamento": "DESI"
     }
   ],
   "relaciones": [
