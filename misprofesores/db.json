@@ -43,7 +43,7 @@
     },
     {
       "nombre": "David",
-      "correo": "is659424@iteso.mx",
+      "correo": "is693@iteso.mx",
       "contraseña": "12345",
       "tipo": 1,
       "favProfesores": [],
@@ -72,6 +72,11 @@
       "id": 4,
       "nombre": "José Luis Elvira",
       "departamento": "DESI"
+    },
+    {
+      "nombre": "Manuel",
+      "departamento": "DESI",
+      "id": 5
     }
   ],
   "Departamentos": [
