@@ -16,7 +16,8 @@
             let datos1 = JSON.parse(this.responseText);
             let res1 = document.querySelector("#res1");
             res1.innerHTML = '';
-            //console.log(datos);
+			//console.log(datos);
+			for(let i=0;i<20;i++){
             for(let item of datos1){
             
             res1.innerHTML +=`
@@ -24,17 +25,18 @@
             <td>${item.nombre} </td>
             <td>${item.departamento}</td>
             </tr>`
-            }
+			}
+			
                     }
                 }
             
             }
 function registrarProfe(event){
 var nombre = document.getElementById("fname").value,
-lname = document.getElementById("lname").value
+dep = document.getElementById("producto").value
 let nuevoprofe ={
 nombre:nombre,
-departamento:lname
+departamento:dep
 
 };
 let xhr = new XMLHttpRequest();
@@ -56,6 +58,8 @@ location.reload();
 let btnUsuarios =	document.querySelector("#botonAlumno").addEventListener('click',traerDatos2);
 
 function traerDatos2(){
+	document.getElementById("EditAlumno").style.display="block";
+
 console.log('dentro de funcion');
     const xhttp = new XMLHttpRequest();
     //true es igual a que sea asincrono
@@ -77,6 +81,7 @@ res2.innerHTML +=`
 <td>${item.contraseña}</td>
 
 </tr>`
+}
 }
         }
     }
@@ -171,14 +176,13 @@ let inputNombre = document.getElementById("nombreprof");
 let divForm = document.getElementById("EditProf");
 let divFormD = document.getElementById("Datos");
 let inputNombreEdit = document.getElementById("editnombre");
-let inputDptoEdit = document.getElementById("editdpto");
+let inputDptoEdit = document.getElementById("producto");
 
 
 
 function ProfeEdit(event) {
 	console.log("Get id");
    let xhr = new XMLHttpRequest();
-   /** The endpoint will change to /${email} when we have our backend.*/
    xhr.open("GET", `http://localhost:3000/profesores?nombre=${inputNombre.value}`);
    xhr.setRequestHeader("Content-Type", "application/json");
    xhr.send();
@@ -199,7 +203,6 @@ function ProfeEdit(event) {
 function changedatos(event) {
 //	event.preventDefault();
 	   let xhr = new XMLHttpRequest();
-	   /** The endpoint will change to /${email} when we have our backend.*/
 	   xhr.open("PUT", `http://localhost:3000/profesores/${user.id}`);
 	   xhr.setRequestHeader("Content-Type", "application/json");
 	   user["nombre"] = inputNombreEdit.value;
@@ -215,3 +218,77 @@ function changedatos(event) {
 		   }
 	  }
 	} 
+//-------------------------------------Editar Alumno------------------------------------
+let inputNombreA = document.getElementById("nombreAlumno");
+let divFormA = document.getElementById("EditAlumno");
+let divFormDA = document.getElementById("DatosAlumno");
+let inputCorreoEditA = document.getElementById("editCorreoA");
+
+
+
+function alumonEdit(event) {
+	console.log("Get id");
+   let xhr = new XMLHttpRequest();
+   xhr.open("GET", `http://localhost:3000/usuarios?nombre=${inputNombreA.value}`);
+   xhr.setRequestHeader("Content-Type", "application/json");
+   xhr.send();
+   xhr.onload = function() {
+	   if (xhr.status == 200) {
+		   user = JSON.parse(xhr.response)[0];
+		   console.log(user);
+		   if (user == undefined) {
+			   alert('El Alumno proporcionado no corresponde al de ningún usuario.')
+		   } else {
+			divFormA.style.display="none";	
+			divFormDA.style.display="block";
+
+			   }
+	   }
+   }
+}
+function changedatosA(event) {
+	//	event.preventDefault();
+		   let xhr = new XMLHttpRequest();
+		   xhr.open("PUT", `http://localhost:3000/usuarios/${user.id}`);
+		   xhr.setRequestHeader("Content-Type", "application/json");
+		   user["correo"] = inputCorreoEditA.value;
+		   console.log(user);
+		   xhr.send(JSON.stringify(user));
+		   xhr.onload = function() {
+			   console.log(xhr.status, xhr.statusText);
+			   if (xhr.status == 200) {
+				   alert('Se actualizaron datos.')
+			   } else {
+				   alert('Ha ocurrido un error al actualizar datos.')
+			   }
+		  }
+		} 
+		//-----------------
+//departamento get
+		//-------------------
+		function ShowSelected(){
+		console.log('dentro de funciossn');
+			const xhttp = new XMLHttpRequest();
+			//true es igual a que sea asincrono
+			xhttp.open('GET',' http://localhost:3000/Departamentos',true);
+			xhttp.send();
+			xhttp.onreadystatechange= function(){
+				if(this.readyState==4 && this.status == 200){
+		//console.log(this.responseText);
+		let datos1 = JSON.parse(this.responseText);
+		let res1 = document.querySelector("#producto");
+		res1.innerHTML = '';
+		//console.log(datos);
+		for(let item of datos1){
+		
+		res1.innerHTML +=`
+		<option> ${item.departamento}</option>
+	`
+		}
+				}
+			}
+		
+		}
+				//-----------------
+//Paginacion
+		//-------------------

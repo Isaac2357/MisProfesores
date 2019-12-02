@@ -22,6 +22,18 @@
   left: 750px;
   top:-500px;
     }
+    #EditAlumno{
+        display: none;
+        position: relative;
+  left: 750px;
+  top:-250px;
+    }
+    #DatosAlumno{
+        display: none;
+        position: relative;
+  left: 750px;
+  top:-250px;
+    }
 </style>
 </head>
 <body>
@@ -80,6 +92,7 @@
             </tbody>
 
         </table>
+        
     </div>
     <div class="tab tab-2" style="width:54%">
             <h1 class="h2 text-center my-3">Registra un profesor</h1>
@@ -88,8 +101,11 @@
                     Datos Personales
                 </legend>
         Nombre :<input type="text" name="fname" id="fname" placeholder="Nombre">
-        Departamento :<input type="text" name="lname" id="lname" placeholder="Departamento">
-        
+        Departamento :<!--<input type="text" name="lname" id="lname" placeholder="Departamento">-->
+        <select id="producto" name="producto" onchange="ShowSelected()">
+                <option >Texto One</option>
+                <option >Texto Two</option>
+                </select>
         <button onclick="registrarProfe();" >añadir</button>
         
     </div>
@@ -128,8 +144,11 @@
        <button onclick="removeSelectedRow();">Eliminar</button>
    </div>
 </div>
+<!-------------------------------------------------------------------------
+                                Editar Profesor
+    ---------------------------------------------------------------------->
 <div id="EditProf" style="width:40%">
-        <h4>Editar Usuario</h4>
+        <h4>Editar Profesor</h4>
 
         <label for="text">Nombre</label>
         <input id="nombreprof" name="" class="form-control" placeholder="Luis Fernando" type="text">
@@ -141,11 +160,34 @@
 
         <label for="text">Nombre</label>
         <input id="editnombre" name="" class="form-control" placeholder="Luis Fernando" type="text">
-
-        <input id="editdpto" name="" class="form-control" placeholder="DESI" type="text">
+        Departamento :<!--<input type="text" name="lname" id="lname" placeholder="Departamento">-->
+        <select id="producto" name="producto" onchange="ShowSelected()">
+                <option value="12">Texto One</option>
+                <option value="13">Texto Two</option>
+                </select>
         <button onclick="changedatos()" >Editar</button>
                                                                  
 </div>
+
+<!-------------------------------------------------------------------------
+                                Editar Alumno
+    ---------------------------------------------------------------------->
+    <div id="EditAlumno" style="width:40%">
+            <h4>Editar Alumno</h4>
+    
+            <label for="text">Nombre</label>
+            <input id="nombreAlumno" name="" class="form-control" placeholder="Manuel" type="text">
+            <button onclick="alumonEdit()" >Buscar</button>
+                                                                     
+    </div>
+    <div id="DatosAlumno" style="width:40%">
+            <h4>Datos</h4>
+    
+            <label for="text">Correo</label>
+            <input id="editCorreoA" name="" class="form-control" placeholder="is693505@iteso.mx" type="text">
+                <button onclick="changedatosA()" >Editar</button>
+                                                                     
+    </div>
 <script>
             
     var rIndex,
@@ -226,8 +268,10 @@
         document.getElementById("correo").value = "";
     }
 </script>
+
   
         <!-- Script para bootstrap -->
+        <script src="paginacion.js"></script>
         <script src="editarprofes.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
             <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
