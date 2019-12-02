@@ -9,6 +9,28 @@
      <!-- Required meta tags -->
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <style type="text/css">
+        .pag_btn {
+            border: solid 1px;
+            border-color: rgb(0, 0, 255);
+            color: rgb(0, 0, 255);
+            background-color: rgb(255, 255, 255);
+        }
+         
+        .pag_btn_des {
+            border: solid 1px;
+            border-color: rgb(200, 200, 200);
+            color: rgb(200, 200, 200);
+            background-color: rgb(245, 245, 245);
+        }
+         
+        .pag_num {
+            border: solid 1px;
+            border-color: rgb(0, 0, 255);
+            color: rgb(255, 255, 255);
+            background-color: rgb(0, 0, 255);
+        }
+        </style>
 <style>
     #EditProf{
         display: none;
@@ -34,11 +56,28 @@
   left: 750px;
   top:-250px;
     }
+    .my-custom-scrollbar {
+position: relative;
+height: 200px;
+overflow: auto;
+}
+.table-wrapper-scroll-y {
+display: block;
+}
+
 </style>
 </head>
 <body>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-     <!-- Bootstrap 4 -->
+        <div id="nav-placeholder"></div>
+
+        <script>
+            $(function () {
+                $("#nav-placeholder").load("nav.html");
+            });
+        </script>
+        <!--end of Navigation bar-->
+  <!--      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      Bootstrap 4 
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <a class="navbar-brand" href="#">Califica Profesor</a>
@@ -70,7 +109,7 @@
               </form>
             </div>
           </nav>
-
+        -->
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -81,12 +120,15 @@
    <div class="container">
     <div class="tab tab-1">
             <button class="btn" id="botonusuarios">Mostrar </button>
+        
+        <div class="table-wrapper-scroll-y my-custom-scrollbar" >
 
-        <table id="table" style="width:50%" border="1">
+        <table id="table"class="table table-striped table-bordered table-sm" style="width:50%" border="1">
             <tr>
                 <th >Nombre<button onclick="sortProf()">🔽</button></th>
                 <th>Departamento</th>
             </tr>
+            
             <tbody id = "res1">
  
             </tbody>
@@ -116,15 +158,73 @@
   <div class="container">
    <div class="tab tab-1" >
            <button class="btn" id="botonAlumno">Mostrar </button>
+           <div id="paginador"></div>
 
-       <table id="table1" style="width:50%" border="1">
+       <table id="table1"class="table table-striped table-bordered table-sm" style="width:50%" border="1">
            <tr>
                <th >Nombre<button onclick="sortAlu()">🔽</button></th>
                <th>Correo</th>
                <th >Contraseña</th>
            </tr>
            <tbody id = "res2">
-
+                <tr>
+                        <td>Manuel </td>
+                        <td>is693505@iteso.mx</td>
+                        <td>12345</td>
+                        
+                </tr>  <tr>
+                        <td>Manuel </td>
+                        <td>is693505@iteso.mx</td>
+                        <td>12345</td>
+                        
+                        </tr>
+                <tr>
+                        <td>Manuel </td>
+                        <td>is693505@iteso.mx</td>
+                        <td>12345</td>
+                        
+                        </tr>
+                <tr>
+                        <td>Manuel </td>
+                        <td>is693505@iteso.mx</td>
+                        <td>12345</td>
+                        
+                        </tr>
+                <tr>
+                        <td>Manuel </td>
+                        <td>is693505@iteso.mx</td>
+                        <td>12345</td>
+                        
+                        </tr>
+                        <tr>
+                                <td>Manuel </td>
+                                <td>is693505@iteso.mx</td>
+                                <td>12345</td>
+                                
+                        </tr>  <tr>
+                                <td>Manuel </td>
+                                <td>is693505@iteso.mx</td>
+                                <td>12345</td>
+                                
+                                </tr>
+                        <tr>
+                                <td>Manuel </td>
+                                <td>is693505@iteso.mx</td>
+                                <td>12345</td>
+                                
+                                </tr>
+                        <tr>
+                                <td>Manuel </td>
+                                <td>is693505@iteso.mx</td>
+                                <td>12345</td>
+                                
+                                </tr>
+                        <tr>
+                                <td>Manuel </td>
+                                <td>is693505@iteso.mx</td>
+                                <td>12345</td>
+                                
+                                </tr>
            </tbody>
 
        </table>
@@ -188,94 +288,15 @@
                 <button onclick="changedatosA()" >Editar</button>
                                                                      
     </div>
-<script>
-            
-    var rIndex,
-        table = document.getElementById("table");
-    //ver que no tenga elementos vacios
-    function checkEmptyInput()
-    {
-        var isEmpty = false,
-            fname = document.getElementById("fname").value,
-            lname = document.getElementById("lname").value
-    
-        if(fname === ""){
-            alert("Nombre vacio");
-            isEmpty = true;
-        }
 
-        else if(correo === ""){
-            alert("Departamento incorrecto/vacio");
-            isEmpty = true;
-        }
-        return isEmpty;
-    }
-    
-    // add Row
-    function addHtmlTableRow()
-    {
- 
-// obtener la tabla por id
-        // crea una nueva fila y celdas
-        // obtener valor del texto de entrada
-        // establece los valores en celdas de fila
-        if(!checkEmptyInput()){
-        var newRow = table.insertRow(table.length),
-            cell1 = newRow.insertCell(0),
-            cell2 = newRow.insertCell(1),
-            fname = document.getElementById("fname").value,
-            lname = document.getElementById("lname").value
-    
-        cell1.innerHTML = fname;
-        cell2.innerHTML = lname;
-        selectedRowToInput();
-    }
-    }
-    
-    function selectedRowToInput()
-    {
-        
-        for(var i = 1; i < table.rows.length; i++)
-        {
-            table.rows[i].onclick = function()
-            {
-              // get the seected row index
-              rIndex = this.rowIndex;
-              document.getElementById("fname").value = this.cells[0].innerHTML;
-              document.getElementById("lname").value = this.cells[1].innerHTML;
-            };
-        }
-    }
-    selectedRowToInput();
-    
-    function editHtmlTbleSelectedRow()
-    {
-        var fname = document.getElementById("fname").value,
-            lname = document.getElementById("lname").value,
-            correo = document.getElementById("correo").value;
-       if(!checkEmptyInput()){
-        table.rows[rIndex].cells[0].innerHTML = fname;
-        table.rows[rIndex].cells[1].innerHTML = lname;
-        table.rows[rIndex].cells[2].innerHTML = correo;
-      }
-    }
-    
-    function removeSelectedRow()
-    {
-        table.deleteRow(rIndex);
-        document.getElementById("fname").value = "";
-        document.getElementById("lname").value = "";
-        document.getElementById("correo").value = "";
-    }
-</script>
 
-  
+
+
         <!-- Script para bootstrap -->
-        <script src="paginacion.js"></script>
         <script src="editarprofes.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
             <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
-
+          
 
 </body>
 </html>
