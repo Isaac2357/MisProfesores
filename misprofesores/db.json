@@ -24,7 +24,7 @@
     {
       "nombre": "Isaac",
       "correo": "is710110@iteso.mx",
-      "contraseña": "qwe",
+      "contraseña": "isaac123",
       "tipo": 1,
       "favProfesores": [],
       "favCursos": [],
@@ -40,16 +40,6 @@
       "favCursos": [],
       "idRelacion": [],
       "id": 3
-    },
-    {
-      "nombre": "David",
-      "correo": "is693@iteso.mx",
-      "contraseña": "12345",
-      "tipo": 1,
-      "favProfesores": [],
-      "favCursos": [],
-      "idRelacion": [],
-      "id": 5
     }
   ],
   "profesores": [
@@ -111,11 +101,6 @@
     {
       "id": 5,
       "nombre": "Seguridad en Redes",
-      "departamento": "DESI"
-    },
-    {
-      "id": 6,
-      "nombre": "Test para nombres largos ola ola ola ola ola ola ola ola olaajjaja jaajsjsjsa jasjasjsajsa jasjasjsajsaajsjas dq",
       "departamento": "DESI"
     }
   ],
