@@ -11,7 +11,6 @@
 
 </head>
 <body>
-    <script src="Busqueda.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -24,10 +23,12 @@
               <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
                   <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+
                 </li>
                 <li class="nav-item active">
-                        <a class="nav-link" href="añadirprofe.html">Añadir profesor <span class="sr-only">(current)</span></a>
-                      </li>
+                        <a class="nav-link" href="editarusuarios.html">Detalles Profesor <span class="sr-only">(current)</span></a>
+      
+                </li>
   
                   <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Ingresar</a>
@@ -65,10 +66,18 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="panel-body">
-                                <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Busqueda por profesor" />
-                            </div>
-                            <table class="table table-hover" id="dev-table">
+
+                            <button class="btn" id="boton">Mostrar profesores</button>
+                            <div class="form-group">
+                                <label for="nombre">Buscar por Nombre</label>
+                                <input type="text" id="myInput" onkeyup="filtrarNombre()" placeholder="Alfredo" title="Type in a name">
+                                <div class="form-group">
+                                        <label for="nombre">Buscar por Materia</label>
+                                        <input type="text" id="myInput2" onkeyup="filtrarmateria()" placeholder="Sistemas" title="Type in a name"></div>
+                                        <div class="form-group">
+                                                <label for="nombre">Buscar por Departamento</label>
+                                                <input type="text" id="dep" onkeyup="filtrardep()" placeholder="maf,desi..." title="Type in a name"></div>
+                                <!-- <table class="table table-hover" id="TABLITA">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -77,7 +86,7 @@
                                         <th>Departamento</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id = "res">
                                     <tr>
                                         <td><p id="uno">1</p> </td>
                                         <td>Jose Luis Elvira</td>
@@ -97,63 +106,27 @@
                                         <td>MAF</td>
                                     </tr>
                                 </tbody>
-                            </table>
-                        </div>
-                    </div>
-  <!--PROFESORES-->     
-   
-  <div class="container">
-       
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Usuarios</h3>
-                            <div class="pull-right">
-                                <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
-                                    <i class="glyphicon glyphicon-filter"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Busqueda por profesor" />
-                        </div>
-                        <table class="table table-hover" id="dev-table">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nombre</th>
-                                    <th>Tipo de usuario</th>
+                            </table>-->
+                        
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Manuel Eduardo Sánchez Valderrama</td>
-                                    <td>Alumno</td>
-                                   
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Irene Reyes Valdez</td>
-                                    <td>Alumno</td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Saul Nuño</td>
-                                    <td>Profesor</td>
-                                </tr>
-                                <tr>
-                                        <td>3</td>
-                                        <td>Luis Fernando Preciado</td>
-                                        <td>Profesor</td>
-                                    </tr>
-                            </tbody>
-                        </table>
+<table id="myTable" style="width:100%">
+  <tr class="header">
+    <th>#</th>
+    <th>Nombre<button onclick="sortTable()">🔽</button>
+    </th>
+    <th>Materia<button onclick="sortTablemateria()">🔽</button></th>
+    <th>Departamento<button onclick="sortTabledepartamento()"> 🔽</button></th>
+  </tr>
+  <tbody id = "res">
+ 
+  </tbody>
+</table>
+
+
+                        </div>
                     </div>
-                </div>
+  
+
 
             <script src="busqueda.js"></script>
 
@@ -163,34 +136,6 @@
 <!------ Include the above in your HEAD tag ---------->
 
 
-<div class="Informacion">
-	<div class="row-fluid">
-        <div class="span2" >
-		    <img src="https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm" class="img-circle">
-        </div>
-        
-        <div class="span8">
-            <h3>    Manuel Sanchez</h3>
-            <h6>Email: is693505@iteso.mx</h6>
-            <h6>Departamento:Desi</h6>
-            <h6>Carrera:Sistemas Computacionales</h6>
-            <h6>Telefono📞:3241060250</h6>
-            <h6><a href="#">More... </a></h6>
-        </div>
-        
-        <div class="span2">
-            <div class="btn-group">
-                <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#">
-                    Opcion 
-                    <span class="icon-cog icon-white"></span><span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#"><span class="icon-wrench"></span> Modificar</a></li>
-                    <li><a href="#"><span class="icon-trash"></span> Eliminar</a></li>
-                </ul>
-            </div>
-        </div>
-</div>
 </div>
 </body>
 </html>

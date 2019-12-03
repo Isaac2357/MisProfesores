@@ -15,7 +15,7 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   </head>
   <body>
-      <!-- <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
           <a class="navbar-brand" href="#">MisProfesores</a>
           <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
               aria-expanded="false" aria-label="Toggle navigation">
@@ -23,42 +23,35 @@
           </button>
           <div class="collapse navbar-collapse" id="collapsibleNavId">
               <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                  <li class="nav-item">
-                      <a class="nav-link" href="profesores.html">Profesores </a>
-                  </li>
                   <li class="nav-item active">
-                      <a class="nav-link" href="cursos.html">Cursos <span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="profesores.html">Profesores <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="cursos.html">Cursos</a>
                   </li>
                   <li class="nav-item">
                         <a class="nav-link" href="favoritos.html">Favoritos</a>
                     </li>
                     <li class="nav-item">
+                            <a> </a>
+                    </li>
+                    <li class="nav-item fa-pull-left">
                             <a class="nav-link" href="usuario-profesor.html">Usuario</a>
                     </li>
+                    <li class="nav-item fa-pull-left">
+                        <a class="nav-link" href="test.html">Test</a>
+                </li>
               </ul>
               <form class="form-inline my-2 my-lg-0">
                   <input class="form-control mr-sm-2" type="text" placeholder="Buscar">
                   <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Buscar</button>
               </form>
           </div>
-      </nav> -->
-      <!--Navigation bar-->
-    <div id="nav-placeholder"></div>
-
-    <script>
-    $(function(){
-    $("#nav-placeholder").load("nav.html");
-    });
-    </script>
-    <!--end of Navigation bar-->
+      </nav>
 
 
         <div class="bs-header" id="content">
                 <div class="container">
-                    <h2 id="hCurs"><i class="fa fa-book" aria-hidden="true"></i>Curso 1 <small>DESI</small></h2>
-                    <i class="fa fa-comment" aria-hidden="true">42</i>
-                    <i class="fa fa-thumbs-up" aria-hidden="true">12</i>
-                    <i class="fa fa-thumbs-down" aria-hidden="true">3</i>
                     <h1>Profesores:</h1>
                             <p> Testing: haz click en Profesor 1. </p>
                     </div>
@@ -66,7 +59,7 @@
     <hr>
 
     <div class="container" style="background: linear-gradient(to bottom right, #fcb045 0%, #fd1d1d 50%, #833ab4 100%);">
-            <div id="lista" class="card-columns" style=" padding-top: 10px;" >
+            <div id ="lista" class="card-columns" style=" padding-top: 10px;" >
 
                 <div class="card text-center" >
                     <div class="card-body">
@@ -75,24 +68,6 @@
         
                             <h3 class="card-title">Profesor 1</h3>
                             <p class="card-text">DESI</p>
-                            <a href="curso-profesor.html" class="stretched-link"></a>
-                    </div>
-        
-                    <div class="card-footer text-muted">
-                        <i class="fa fa-star" aria-hidden="true">4.5</i>
-                        <i class="fa fa-comment" aria-hidden="true">42</i>
-                        <i class="fa fa-thumbs-up" aria-hidden="true">12</i>
-                        <i class="fa fa-thumbs-down" aria-hidden="true">3</i>
-                    </div>
-                </div>
-
-                <div class="card text-center">
-                    <div class="card-body">
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                            <hr>
-        
-                            <h3 class="card-title">Profesor </h3>
-                            <p class="card-text">DESI</p>
                             <a href="profesor-cr.html" class="stretched-link"></a>
                     </div>
         
@@ -157,6 +132,44 @@
                         <i class="fa fa-thumbs-down" aria-hidden="true">3</i>
                     </div>
                 </div>
+
+                <div class="card text-center">
+                    <div class="card-body">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <hr>
+        
+                            <h3 class="card-title">Profesor </h3>
+                            <p class="card-text">DESI</p>
+                            <a href="profesor-cr.html" class="stretched-link"></a>
+                    </div>
+        
+                    <div class="card-footer text-muted">
+                        <i class="fa fa-star" aria-hidden="true">4.5</i>
+                        <i class="fa fa-comment" aria-hidden="true">42</i>
+                        <i class="fa fa-thumbs-up" aria-hidden="true">12</i>
+                        <i class="fa fa-thumbs-down" aria-hidden="true">3</i>
+                    </div>
+                </div>
+
+                <div class="card text-center">
+                    <div class="card-body">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <hr>
+        
+                            <h3 class="card-title">Profesor </h3>
+                            <p class="card-text">DESI</p>
+                            <a href="profesor-cr.html" class="stretched-link"></a>
+                    </div>
+        
+                    <div class="card-footer text-muted">
+                        <i class="fa fa-star" aria-hidden="true">4.5</i>
+                        <i class="fa fa-comment" aria-hidden="true">42</i>
+                        <i class="fa fa-thumbs-up" aria-hidden="true">12</i>
+                        <i class="fa fa-thumbs-down" aria-hidden="true">3</i>
+                    </div>
+                </div>
+
+                
 
             </div>
         
@@ -174,6 +187,6 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
               <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
               <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
-    <script src="curso-pr.js"></script>
-    </body>
+              <script src="test.js"></script>
+  </body>
 </html>
