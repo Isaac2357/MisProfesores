@@ -2,7 +2,7 @@
 //let globalUsers = [];
 let container = document.getElementById("lista");
 let hCurs = document.getElementById("hCurs");
-let idCurso = 2; //clicked
+let idCurso = localStorage.cursID; //clicked
 var nombre; //glob
 var depto; //glob
 fetchCurs(idCurso); //titlle
@@ -27,6 +27,7 @@ let xhrProf = new XMLHttpRequest();
 function fetch(profesor) {
     let xhr = new XMLHttpRequest();
     xhr.open("GET", `http://localhost:3000/profesores?id=${profesor}`);
+    xhr.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
     xhr.send();
     xhr.onload = function() {
         console.log("Prof:",xhr.status, xhr.statusText, xhr.response, JSON.parse(xhr.response));
@@ -44,7 +45,7 @@ function fetch(profesor) {
         
                             <h3 class="card-title">${item.nombre}</h3>
                             <p class="card-text">${item.departamento}</p>
-                            <a href="curso-profesor.html" class="stretched-link"></a>
+                            <a id="${item.id}" href="#" class="stretched-link" onclick="openProf('${item.id}');"></a>
                     </div>
         
                     <div class="card-footer text-muted">
@@ -62,22 +63,28 @@ function fetch(profesor) {
    }
 }
 
+function openProf(id) {
+    console.log("ID selected", id);
+    window.location.href = "curso-profesor.html" 
+    localStorage.profID = id;
+}
+
 //____
 function fetchCurs(idProf) {
     //let nombre = "";
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", `http://localhost:3000/cursos?id=${idProf}`);
+    xhr.open("GET", `http://localhost:3000/api/courses/${idProf}`);
+    xhr.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
     xhr.send();
     xhr.onload = function() {
         console.log("fetchCurs:",JSON.parse(xhr.responseText), xhr.status, xhr.statusText, xhr.response, JSON.parse(xhr.response));
         if (xhr.status == 200) {
-            let curso = JSON.parse(xhr.responseText);
-                for(let item of curso){
+            let item = JSON.parse(xhr.responseText);
                     nombre = item.nombre;
-                    depto = item.departamento;
+                    depto = item.correo;
                     hCurs.innerHTML = `<i class="fa fa-book" aria-hidden="true"></i>${nombre}<small>${depto}</small>`
                     console.log(nombre, depto);
-                }
+                
         }
    }
    

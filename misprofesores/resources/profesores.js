@@ -8,15 +8,19 @@ container.innerHTML = "";
 fetch();
 function fetch() {
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", `http://localhost:3000/profesores`);
+    xhr.open("GET", `http://localhost:3000/api/professors`); //`http://localhost:3000/profesores`
+    xhr.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
     xhr.send();
     xhr.onload = function() {
         console.log(xhr.status, xhr.statusText, xhr.response, JSON.parse(xhr.response));
         if (xhr.status == 200) {
             //globalUsers.push(JSON.parse(xhr.response));
             let userHtml = JSON.parse(xhr.responseText);
+            console.log(xhr.responseText)
             //let usr = xhr.response
             //let users = usr.map(user => user.nombre);
+                
+                
                 for(let item of userHtml){
                     container.innerHTML +=` 
                     <div class="card text-center" >
@@ -25,8 +29,8 @@ function fetch() {
                             <hr>
         
                             <h3 class="card-title">${item.nombre}</h3>
-                            <p class="card-text">${item.departamento}</p>
-                            <a id="${item.id}" href="profesor-cr.html" class="stretched-link"></a>
+                            <p class="card-text">${item.correo}</p>
+                            <a id="${item.uid}" href="#" class="stretched-link" onclick="openProf('${item.uid}');"></a>
                     </div>
         
                     <div class="card-footer text-muted">
@@ -44,29 +48,9 @@ function fetch() {
    }
 }
 
+function openProf(id) {
+    console.log("ID selected", id);
+    window.location.href = "profesor-cr.html" 
+    localStorage.profID = id;
+}
 
-/* function userToHtml(user) {
-    return `<div class="media col-8 mt-2">
-                <div class="media-left align-self-center mr-3">
-                    <img class="rounded-circle" src="https://randomuser.me/api/portraits/men/0.jpg">
-                </div>
-                <div class="media-body">
-                    <h4>${user.nombre + " " + user.departamento}</h4>
-                    <p >Correo:${user.nombre}</p>
-                    <p >Fecha de nacimiento: ${user.fecha} </p>
-                    <p >Sexo: ${user.departamento} </p>
-                </div>
-                <div class="media-right align-self-center">
-                    <div class="row">
-                        <a href="#" class="btn btn-primary edit "><i class="fas fa-search edit  " onclick="openDetail('${user.correo}');"></i></a>
-                    </div>
-                    <div class="row">
-                        <a href="#" class="btn btn-primary mt-2"><i class="fas fa-pencil-alt edit  " onclick="showEditModal('${user.correo}');"  data-toggle="modal" data-target="#edit"></i></a>
-                    </div>
-                    <div class="row">
-                        <a href="#" class="btn btn-primary mt-2"><i class="fas fa-trash-alt  remove " onclick="showDeleteModal('${user.correo}');" data-toggle="modal" data-target="#delete"></i></i></a>
-                    </div>
-                </div>
-            </div>
-            `
-} */

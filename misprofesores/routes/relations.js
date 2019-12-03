@@ -7,7 +7,17 @@ const {auth} = require("../middlewares/auth")
 
 router.route('/')
 .get(auth, async (req, res) => {
-    res.send("relations get");
+    try {
+        let docs = await Relation.getRelations();
+        if (docs) {
+            res.send(docs);
+        } else {
+            res.status(500).send()
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(400).send();
+    }
 })
 .post(   async (req, res) => {
     let profId = 2;
