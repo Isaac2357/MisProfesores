@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken')
 router.route('/')
 .post(async (req, res) => {
     let {correo, password} = req.body;
+    localStorage.correo = correo;
 
     if (correo != undefined && password != undefined) {
         let doc = await User.getUser(correo);

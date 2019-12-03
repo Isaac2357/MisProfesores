@@ -5,11 +5,14 @@ let hProf = document.getElementById("hProf");
 let hCurs = document.getElementById("hCurs")
 var idRel = 2; //clicked
 let nombreC;
-fetchRel(idRel); //títulos
 
-function fetchRel(idRel) {
+let profID = localStorage.profID;
+let cursID = localStorage.cursID;
+fetchRel(); //títulos
+
+function fetchRel() {
     let xhrR = new XMLHttpRequest();
-    xhrR.open("GET", `http://localhost:3000/relaciones?id=${idRel}`, true);
+    xhrR.open("GET", `http://localhost:3000/relaciones?idProfesor=${profID}&idCurso=${cursID}`, true); //`http://localhost:3000/relaciones?id=${idRel}`
     xhrR.send();
     xhrR.onload = function() {
         console.log("fetchRel:",JSON.parse(xhrR.responseText), xhrR.status, xhrR.statusText, xhrR.response, JSON.parse(xhrR.response));
@@ -18,6 +21,7 @@ function fetchRel(idRel) {
                 for(let item of relacion){
                     let idProf = item.idProfesor;
                     let idCurs = item.idCurso;
+                    let idRel = item.id;
                     console.log("id:",idProf,idCurs);
                     fetchProf(idProf);
                     fetchCurs(idCurs);
