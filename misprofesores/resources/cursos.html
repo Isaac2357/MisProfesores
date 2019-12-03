@@ -16,27 +16,36 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-    <style>
-
-            body {
-                padding-top: 25px;
-                background-color: white;
-            }
-    
-            #container {
-                background-color: whitesmoke;
-                border-radius: 6px;
-                border-style: solid;
-                border-color: black;
-                border-width: 1px;
-                padding: 30px;
-            }
-    
-        </style>
 </head>
 
 <body>
+    <!-- <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+          <a class="navbar-brand" href="#">MisProfesores</a>
+          <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+              aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavId">
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                  <li class="nav-item ">
+                      <a class="nav-link" href="profesores.html">Profesores </a>
+                  </li>
+                  <li class="nav-item active">
+                      <a class="nav-link" href="cursos.html">Cursos<span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                        <a class="nav-link" href="favoritos.html">Favoritos</a>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link" href="usuario-profesor.html">Usuario</a>
+                    </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                  <input class="form-control mr-sm-2" type="text" placeholder="Buscar">
+                  <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Buscar</button>
+              </form>
+          </div>
+      </nav> -->
     <!--Navigation bar-->
     <div id="nav-placeholder"></div>
 
@@ -47,33 +56,28 @@
     </script>
     <!--end of Navigation bar-->
 
-    <div class="col-12">
-            <div class="row justify-content-center">
-                <div id="container"  class="col-6">
-                    <h4 style="text-align: center;">Registro de asignatura</h4>
-                    <form class="form-container">
-                        <div class="form-group">
-                            <label>Nombre</label>
-                            <input name="" class="form-control" placeholder="Materia" type="text" required>
-                        </div> 
-                                    
-                        <div class="form-group">
-                            <label>Departamento</label>
-                            <input name="" class="form-control" placeholder="Departamento" type="text" required>
-                        </div> 
-                                    
-                        <div class="form-group">
-                            <label>Créditos</label>
-                            <input name="" class="form-control" placeholder="Créditos" type="number" min="4" max="16" required>
-                        </div> 
 
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block" disabled> Registrar materia</button>
-                        </div>                                                          
-                    </form>
-                </div>
-            </div>
+    <div class="bs-header" id="content">
+        <div class="container">
+            <h2>Cursos:</h2>
+            <p> Testing: haz click en Curso 1. </p>
+        </div>
     </div>
+    <hr>
+
+    <div class="container" style="background: linear-gradient(to bottom right, #fcb045 0%, #fd1d1d 50%, #833ab4 100%);">
+        <div id="lista" class="card-columns" style=" padding-top: 10px;">
+
+        </div>
+
+    </div>
+
+    <!-- <style>
+        .card{
+            max-height: 300px;
+        }
+
+    </style> -->
 
 
 
@@ -93,8 +97,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
     <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
-
-    <script src="register-course.js"></script>
+    <script src="cursos.js"></script>
 </body>
 
 </html>
