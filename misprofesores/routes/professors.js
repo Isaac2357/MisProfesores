@@ -22,7 +22,19 @@ router.route('/')
 
 router.route('/:id')
 .get(async (req, res) =>{
-
+    let id = req.params.id;
+    try {
+        let doc = await    User.findOne({uid: id});
+        console.log(doc);
+        if (doc) {
+            res.send(doc);
+        } else {
+            res.status(500).send({error: "Someting went wrong fetching the professor."});
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).send();
+    }
 });
 
 module.exports = router;
