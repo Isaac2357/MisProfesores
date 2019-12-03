@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Relation = require('../models/Relation')
+const User = require('../models/User')
 const {auth} = require("../middlewares/auth")
 
 
@@ -8,7 +9,12 @@ router.route('/')
 .get(auth, async (req, res) => {
     res.send("relations get");
 })
-.post(auth, async (req, res) => {
+.post(   async (req, res) => {
+    let profId = 2;
+    let courseId = 27;
+
+    let doc = await User.findOne({uid: profId, tipo: "PROF"});
+    console.log(doc);
     res.send("relations post");
 })
 .delete(auth, async (req, res) => {
