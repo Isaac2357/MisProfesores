@@ -27,7 +27,12 @@ let relationsSchema = mongoose.Schema({
 });
 
 relationsSchema.statics.getRelations = function() {
-    return Relation.find({});
+    return Relation.find({},  { idProfesor: 1, 
+                                idCurso: 1,
+                                periodo: 1,
+                                year: 1,
+                                rid: 1, 
+                                _id: 0 });
 }
 
 relationsSchema.statics.getRelation = function(rid){

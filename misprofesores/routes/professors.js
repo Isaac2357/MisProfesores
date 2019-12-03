@@ -21,7 +21,7 @@ router.route('/')
 });
 
 router.route('/:id')
-.get(async (req, res) =>{
+.get(auth, async (req, res) =>{
     let id = req.params.id;
     try {
         let doc = await    User.findOne({uid: id});
