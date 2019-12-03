@@ -35,14 +35,12 @@
     #EditProf{
         display: none;
         position: relative;
-  left: 750px;
-  top:-500px;
+
     }
     #Datos{
         display: none;
         position: relative;
-  left: 750px;
-  top:-500px;
+
     }
     #EditAlumno{
         display: none;
@@ -66,6 +64,20 @@ display: block;
 }
 
 </style>
+<style>
+        body {
+        background-image: url(https://iteso.blob.core.windows.net/images/f3.jpg);
+        background-size: cover;
+        padding-top: 25vh;
+    }
+        .container {
+        background-color: white;
+        border-radius: 6px;
+        padding: 30px;
+    }
+</style>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
 </head>
 <body>
         <div id="nav-placeholder"></div>
@@ -110,20 +122,26 @@ display: block;
             </div>
           </nav>
         -->
-        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <div class="container">
+
+        <button id="profeir" ><a href="editarusuarios.html">Profesores</a> </button>
+        <button id="alumnoir"><a href="editarAlumno.html">Alumnos</a> </button>
+        <button id="registroProfeir"><a href="profe-materia.html"> Registro Profe-Curso</a></button>
+
+
+
         <!------ Include the above in your HEAD tag ---------->
    <!--PROFESORES-->     
    <h1 class="h2 text-center my-3">Profesores</h1>
 
-   <div class="container">
     <div class="tab tab-1">
             <button class="btn" id="botonusuarios">Mostrar </button>
         
         <div class="table-wrapper-scroll-y my-custom-scrollbar" >
 
-        <table id="table"class="table table-striped table-bordered table-sm" style="width:50%" border="1">
+        <table id="table"class="table table-striped table-bordered table-sm"  border="1">
             <tr>
                 <th >Nombre<button onclick="sortProf()">🔽</button></th>
                 <th>Departamento</th>
@@ -136,7 +154,7 @@ display: block;
         </table>
         
     </div>
-    <div class="tab tab-2" style="width:54%">
+    <div class="tab tab-2" >
             <h1 class="h2 text-center my-3">Registra un profesor</h1>
             <fieldset>
                 <legend class="h4 text-center">
@@ -152,102 +170,11 @@ display: block;
         
     </div>
 </div>
-  <!--Alumnos-->     
-  <h1 class="h2 text-center my-3">Alumnos</h1>
 
-  <div class="container">
-   <div class="tab tab-1" >
-           <button class="btn" id="botonAlumno">Mostrar </button>
-           <div id="paginador"></div>
-
-       <table id="table1"class="table table-striped table-bordered table-sm" style="width:50%" border="1">
-           <tr>
-               <th >Nombre<button onclick="sortAlu()">🔽</button></th>
-               <th>Correo</th>
-               <th >Contraseña</th>
-           </tr>
-           <tbody id = "res2">
-                <tr>
-                        <td>Manuel </td>
-                        <td>is693505@iteso.mx</td>
-                        <td>12345</td>
-                        
-                </tr>  <tr>
-                        <td>Manuel </td>
-                        <td>is693505@iteso.mx</td>
-                        <td>12345</td>
-                        
-                        </tr>
-                <tr>
-                        <td>Manuel </td>
-                        <td>is693505@iteso.mx</td>
-                        <td>12345</td>
-                        
-                        </tr>
-                <tr>
-                        <td>Manuel </td>
-                        <td>is693505@iteso.mx</td>
-                        <td>12345</td>
-                        
-                        </tr>
-                <tr>
-                        <td>Manuel </td>
-                        <td>is693505@iteso.mx</td>
-                        <td>12345</td>
-                        
-                        </tr>
-                        <tr>
-                                <td>Manuel </td>
-                                <td>is693505@iteso.mx</td>
-                                <td>12345</td>
-                                
-                        </tr>  <tr>
-                                <td>Manuel </td>
-                                <td>is693505@iteso.mx</td>
-                                <td>12345</td>
-                                
-                                </tr>
-                        <tr>
-                                <td>Manuel </td>
-                                <td>is693505@iteso.mx</td>
-                                <td>12345</td>
-                                
-                                </tr>
-                        <tr>
-                                <td>Manuel </td>
-                                <td>is693505@iteso.mx</td>
-                                <td>12345</td>
-                                
-                                </tr>
-                        <tr>
-                                <td>Manuel </td>
-                                <td>is693505@iteso.mx</td>
-                                <td>12345</td>
-                                
-                                </tr>
-           </tbody>
-
-       </table>
-   </div>
-   <div class="tab tab-2" style="width:50%">
-           <h1 class="h2 text-center my-3">Registra un Alumno</h1>
-           <fieldset>
-               <legend class="h4 text-center">
-                   Datos Personales
-               </legend>
-       Nombre :<input type="text" name="fname" id="nombre" placeholder="Nombre">
-       Correo :<input type="text" name="lname" id="correo" placeholder="Correo">
-       Contraseña :<input type="text" name="lname" id="contraseña" placeholder="Contraseña">
-       
-       <button onclick="registrarAlumno();" >añadir</button>
-       <button onclick="editHtmlTbleSelectedRow();">Editar</button>
-       <button onclick="removeSelectedRow();">Eliminar</button>
-   </div>
-</div>
 <!-------------------------------------------------------------------------
                                 Editar Profesor
     ---------------------------------------------------------------------->
-<div id="EditProf" style="width:40%">
+<div id="EditProf" >
         <h4>Editar Profesor</h4>
 
         <label for="text">Nombre</label>
@@ -255,7 +182,7 @@ display: block;
         <button onclick="ProfeEdit()" >Buscar</button>
                                                                  
 </div>
-<div id="Datos" style="width:40%">
+<div id="Datos" >
         <h4>Datos</h4>
 
         <label for="text">Nombre</label>
@@ -268,27 +195,6 @@ display: block;
         <button onclick="changedatos()" >Editar</button>
                                                                  
 </div>
-
-<!-------------------------------------------------------------------------
-                                Editar Alumno
-    ---------------------------------------------------------------------->
-    <div id="EditAlumno" style="width:40%">
-            <h4>Editar Alumno</h4>
-    
-            <label for="text">Nombre</label>
-            <input id="nombreAlumno" name="" class="form-control" placeholder="Manuel" type="text">
-            <button onclick="alumonEdit()" >Buscar</button>
-                                                                     
-    </div>
-    <div id="DatosAlumno" style="width:40%">
-            <h4>Datos</h4>
-    
-            <label for="text">Correo</label>
-            <input id="editCorreoA" name="" class="form-control" placeholder="is693505@iteso.mx" type="text">
-                <button onclick="changedatosA()" >Editar</button>
-                                                                     
-    </div>
-
 
 
 

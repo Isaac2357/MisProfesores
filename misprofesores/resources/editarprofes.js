@@ -53,67 +53,6 @@ location.reload();
 }}
 
 
-//--------------------------------------------------------------//
-                    //ALUMNOS
-//--------------------------------------------------------------//                  
-let btnUsuarios =	document.querySelector("#botonAlumno").addEventListener('click',traerDatos2);
-
-function traerDatos2(){
-	document.getElementById("EditAlumno").style.display="block";
-
-console.log('dentro de funcion');
-    const xhttp = new XMLHttpRequest();
-    //true es igual a que sea asincrono
-    xhttp.open('GET',' http://localhost:3000/usuarios',true);
-    xhttp.send();
-    xhttp.onreadystatechange= function(){
-        if(this.readyState==4 && this.status == 200){
-//console.log(this.responseText);
-let datos2 = JSON.parse(this.responseText);
-let res2 = document.querySelector("#res2");
-res2.innerHTML = '';
-//console.log(datos);
-for(let item of datos2){
-
-res2.innerHTML +=`
-<tr>
-<td>${item.nombre} </td>
-<td>${item.correo}</td>
-<td>${item.contraseña}</td>
-
-</tr>`
-}
-}
-        }
-    }
-
-
-function registrarAlumno(event){
-var nombre = document.getElementById("nombre").value,
-correo = document.getElementById("correo").value,
-contraseña = document.getElementById("contraseña").value
-
-let nuevoAlumno ={
-nombre:nombre,
-correo:correo,
-contraseña,contraseña,
-tipo:1,
-favProfesores: [],
-favCursos: [],
-idRelacion: [],
-
-};
-let xhr = new XMLHttpRequest();
-xhr.open("POST",`http://localhost:3000/usuarios`);
-xhr.setRequestHeader("content-Type","application/json");
-xhr.send(JSON.stringify(nuevoAlumno));
-xhr.onload=function(){
-if (xhr.status==201){
-//aqui agregue los profes pero no se porque dentro del post no me funciona ,por lo tanto lo saque de la funcion
-alert("Alumno registrado exitosamente :)");
-location.reload();
-}
-}}
 
 
 function sortProf() {
@@ -219,51 +158,7 @@ function changedatos(event) {
 		   }
 	  }
 	} 
-//-------------------------------------Editar Alumno------------------------------------
-let inputNombreA = document.getElementById("nombreAlumno");
-let divFormA = document.getElementById("EditAlumno");
-let divFormDA = document.getElementById("DatosAlumno");
-let inputCorreoEditA = document.getElementById("editCorreoA");
 
-
-
-function alumonEdit(event) {
-	console.log("Get id");
-   let xhr = new XMLHttpRequest();
-   xhr.open("GET", `http://localhost:3000/usuarios?nombre=${inputNombreA.value}`);
-   xhr.setRequestHeader("Content-Type", "application/json");
-   xhr.send();
-   xhr.onload = function() {
-	   if (xhr.status == 200) {
-		   user = JSON.parse(xhr.response)[0];
-		   console.log(user);
-		   if (user == undefined) {
-			   alert('El Alumno proporcionado no corresponde al de ningún usuario.')
-		   } else {
-			divFormA.style.display="none";	
-			divFormDA.style.display="block";
-
-			   }
-	   }
-   }
-}
-function changedatosA(event) {
-	//	event.preventDefault();
-		   let xhr = new XMLHttpRequest();
-		   xhr.open("PUT", `http://localhost:3000/usuarios/${user.id}`);
-		   xhr.setRequestHeader("Content-Type", "application/json");
-		   user["correo"] = inputCorreoEditA.value;
-		   console.log(user);
-		   xhr.send(JSON.stringify(user));
-		   xhr.onload = function() {
-			   console.log(xhr.status, xhr.statusText);
-			   if (xhr.status == 200) {
-				   alert('Se actualizaron datos.')
-			   } else {
-				   alert('Ha ocurrido un error al actualizar datos.')
-			   }
-		  }
-		} 
 		//-----------------
 //departamento get
 		//-------------------
