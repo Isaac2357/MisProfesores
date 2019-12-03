@@ -1,29 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>EditarUsuariosAdmin
-    </title>
-     <!-- Required meta tags -->
-     <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-     <style type="text/css">
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <style type="text/css">
         .pag_btn {
             border: solid 1px;
             border-color: rgb(0, 0, 255);
             color: rgb(0, 0, 255);
             background-color: rgb(255, 255, 255);
         }
-         
+
         .pag_btn_des {
             border: solid 1px;
             border-color: rgb(200, 200, 200);
             color: rgb(200, 200, 200);
             background-color: rgb(245, 245, 245);
         }
-         
+
         .pag_num {
             border: solid 1px;
             border-color: rgb(0, 0, 255);
@@ -185,24 +193,208 @@ display: block;
 <div id="Datos" >
         <h4>Datos</h4>
 
-        <label for="text">Nombre</label>
-        <input id="editnombre" name="" class="form-control" placeholder="Luis Fernando" type="text">
-        Departamento :<!--<input type="text" name="lname" id="lname" placeholder="Departamento">-->
-        <select id="producto" name="producto" onchange="ShowSelected()">
-                <option value="12">Texto One</option>
-                <option value="13">Texto Two</option>
-                </select>
-        <button onclick="changedatos()" >Editar</button>
-                                                                 
-</div>
+
+     <!--PROFESORES-->
+     <h1 class="h2 text-center my-3">Profesores</h1>
+
+<<<<<<< HEAD
+=======
+     <div class="container">
+         <div class="tab tab-1">
+             <button class="btn" id="botonusuarios">Mostrar </button>
+ 
+             <div class="table-wrapper-scroll-y my-custom-scrollbar">
+ 
+                 <table id="table" class="table table-striped table-bordered table-sm" style="width:50%" border="1">
+                     <tr>
+                         <th>Nombre<button onclick="sortProf()">🔽</button></th>
+                         <th>Departamento</th>
+                     </tr>
+ 
+                     <tbody id="res1">
+ 
+                     </tbody>
+ 
+                 </table>
+ 
+             </div>
+             <div class="tab tab-2" style="width:54%">
+                 <h1 class="h2 text-center my-3">Registra un profesor</h1>
+                 <fieldset>
+                     <legend class="h4 text-center">
+                         Datos Personales
+                     </legend>
+                     Nombre :<input type="text" name="fname" id="fname" placeholder="Nombre">
+                     Departamento :
+                     <!--<input type="text" name="lname" id="lname" placeholder="Departamento">-->
+                     <select id="producto" name="producto" onchange="ShowSelected()">
+                         <option>Texto One</option>
+                         <option>Texto Two</option>
+                     </select>
+                     <button onclick="registrarProfe();">añadir</button>
+ 
+             </div>
+         </div>
+         <!--Alumnos-->
+         <h1 class="h2 text-center my-3">Alumnos</h1>
+ 
+         <div class="container">
+             <div class="tab tab-1">
+                 <button class="btn" id="botonAlumno">Mostrar </button>
+                 <div id="paginador"></div>
+ 
+                 <table id="table1" class="table table-striped table-bordered table-sm" style="width:50%" border="1">
+                     <tr>
+                         <th>Nombre<button onclick="sortAlu()">🔽</button></th>
+                         <th>Correo</th>
+                         <th>Contraseña</th>
+                     </tr>
+                     <tbody id="res2">
+                         <tr>
+                             <td>Manuel </td>
+                             <td>is693505@iteso.mx</td>
+                             <td>12345</td>
+ 
+                         </tr>
+                         <tr>
+                             <td>Manuel </td>
+                             <td>is693505@iteso.mx</td>
+                             <td>12345</td>
+ 
+                         </tr>
+                         <tr>
+                             <td>Manuel </td>
+                             <td>is693505@iteso.mx</td>
+                             <td>12345</td>
+ 
+                         </tr>
+                         <tr>
+                             <td>Manuel </td>
+                             <td>is693505@iteso.mx</td>
+                             <td>12345</td>
+ 
+                         </tr>
+                         <tr>
+                             <td>Manuel </td>
+                             <td>is693505@iteso.mx</td>
+                             <td>12345</td>
+ 
+                         </tr>
+                         <tr>
+                             <td>Manuel </td>
+                             <td>is693505@iteso.mx</td>
+                             <td>12345</td>
+ 
+                         </tr>
+                         <tr>
+                             <td>Manuel </td>
+                             <td>is693505@iteso.mx</td>
+                             <td>12345</td>
+ 
+                         </tr>
+                         <tr>
+                             <td>Manuel </td>
+                             <td>is693505@iteso.mx</td>
+                             <td>12345</td>
+ 
+                         </tr>
+                         <tr>
+                             <td>Manuel </td>
+                             <td>is693505@iteso.mx</td>
+                             <td>12345</td>
+ 
+                         </tr>
+                         <tr>
+                             <td>Manuel </td>
+                             <td>is693505@iteso.mx</td>
+                             <td>12345</td>
+ 
+                         </tr>
+                     </tbody>
+ 
+                 </table>
+             </div>
+             <div class="tab tab-2" style="width:50%">
+                 <h1 class="h2 text-center my-3">Registra un Alumno</h1>
+                 <fieldset>
+                     <legend class="h4 text-center">
+                         Datos Personales
+                     </legend>
+                     Nombre :<input type="text" name="fname" id="nombre" placeholder="Nombre">
+                     Correo :<input type="text" name="lname" id="correo" placeholder="Correo">
+                     Contraseña :<input type="text" name="lname" id="contraseña" placeholder="Contraseña">
+ 
+                     <button onclick="registrarAlumno();">añadir</button>
+                     <button onclick="editHtmlTbleSelectedRow();">Editar</button>
+                     <button onclick="removeSelectedRow();">Eliminar</button>
+             </div>
+         </div>
+         <!-------------------------------------------------------------------------
+                                 Editar Profesor
+     ---------------------------------------------------------------------->
+         <div id="EditProf" style="width:40%">
+             <h4>Editar Profesor</h4>
+ 
+             <label for="text">Nombre</label>
+             <input id="nombreprof" name="" class="form-control" placeholder="Luis Fernando" type="text">
+             <button onclick="ProfeEdit()">Buscar</button>
+ 
+         </div>
+         <div id="Datos" style="width:40%">
+             <h4>Datos</h4>
+ 
+             <label for="text">Nombre</label>
+             <input id="editnombre" name="" class="form-control" placeholder="Luis Fernando" type="text">
+             Departamento :
+             <!--<input type="text" name="lname" id="lname" placeholder="Departamento">-->
+             <select id="producto" name="producto" onchange="ShowSelected()">
+                 <option value="12">Texto One</option>
+                 <option value="13">Texto Two</option>
+             </select>
+             <button onclick="changedatos()">Editar</button>
+ 
+         </div>
+ 
+         <!-------------------------------------------------------------------------
+                                 Editar Alumno
+     ---------------------------------------------------------------------->
+         <div id="EditAlumno" style="width:40%">
+             <h4>Editar Alumno</h4>
+ 
+             <label for="text">Nombre</label>
+             <input id="nombreAlumno" name="" class="form-control" placeholder="Manuel" type="text">
+             <button onclick="alumonEdit()">Buscar</button>
+ 
+         </div>
+         <div id="DatosAlumno" style="width:40%">
+             <h4>Datos</h4>
+ 
+             <label for="text">Correo</label>
+             <input id="editCorreoA" name="" class="form-control" placeholder="is693505@iteso.mx" type="text">
+             <button onclick="changedatosA()">Editar</button>
+ 
+         </div>
 
 
+>>>>>>> 3add1a1e319b0fe643bf7a66613b8f8ae7519fe0
 
-        <!-- Script para bootstrap -->
-        <script src="editarprofes.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-            <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
-          
 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
+    <script src="editarprofes.js"></script>
 </body>
+
 </html>
