@@ -54,7 +54,7 @@ function fetchProf(id) {
         
                             <h3 class="card-title">${item.nombre}</h3>
                             <p class="card-text">${item.departamento}</p>
-                            <a id="${item.id}" href="profesor-cr.html" class="stretched-link"></a>
+                            <a id="${item.id}" href="#" class="stretched-link" onclick="openProf('${item.id}');"></a>
                     </div>
         
                     <div class="card-footer text-muted">
@@ -70,6 +70,12 @@ function fetchProf(id) {
             //container.innerHTML += userHtml += xhr.response;
         }
    }
+}
+
+function openProf(id) {
+    console.log("ID selected", id);
+    window.location.href = "profesor-cr.html" 
+    localStorage.profID = id;
 }
 
 function fetchCurs(id) {
@@ -93,7 +99,7 @@ function fetchCurs(id) {
         
                             <h3 class="card-title">${item.nombre}</h3>
                             <p class="card-text">${item.departamento}</p>
-                            <a id="${item.id}" href="profesor-cr.html" class="stretched-link"></a>
+                            <a id="${item.id}" href="#" class="stretched-link" onclick="openCurs('${item.id}');"></a>
                     </div>
         
                     <div class="card-footer text-muted">
@@ -109,6 +115,12 @@ function fetchCurs(id) {
             //container.innerHTML += userHtml += xhr.response;
         }
    }
+}
+
+function openCurs(id) {
+    console.log("ID selected", id);
+    window.location.href = "curso-pr.html" 
+    localStorage.cursID = id;
 }
 
 

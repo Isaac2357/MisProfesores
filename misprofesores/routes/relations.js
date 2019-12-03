@@ -10,33 +10,16 @@ const {auth} = require("../middlewares/auth")
 router.route('/')
 .get(auth, async (req, res) => {
     try {
-        let usrs = await Relation.getRelations();
-        if (usrs != null) {
-            let mappedUsrs = usrs.map((user) => {
-                let usr = {};
-                const fields = ["rid",
-                "idProfesor",
-                "idCurso",
-                "periodo",
-                "year"];
-                                
-                for (let key in user) {
-                    if (fields.includes(key)) {
-                        usr[key] = user[key];
-                    }
-                }
-                return usr;
-            });
-            res.send(mappedUsrs);
+
+        let docs = await Relation.getRelations();
+        if (docs) {
+            res.send(docs);
         } else {
-            res.status(400);
-            res.statusMessage = "Internal error."
-            res.send();
+            res.status(500).send()
         }
     } catch (error) {
-        res.status(400);
-        res.statusMessage = "Internal error."
-        res.send();
+        console.log(error);
+        res.status(400).send();
     }
 })
 .post(auth, async (req, res) => {

@@ -4,7 +4,7 @@ const Course = require('../models/Course')
 const {auth} = require("../middlewares/auth")
 const fields = ["nombre", "departamento", "creditos"];
 const updateFields = ["nombre", "departamento", "creditos"];
-const departments = ["DESI"];
+const departments = ["DESI", "DEL", "DFH", "EAM", "MAF", "PTI", "PES", "HDU"];
 const credits = ["4", "6", "8", "16"];
 
 router.route('/')

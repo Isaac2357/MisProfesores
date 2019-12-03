@@ -15,7 +15,7 @@ let coursesSchema = mongoose.Schema({
     departamento: {
         type: String,
         required: true,
-        enum: ["DESI"]
+        enum: ["DESI", "DEL", "DFH", "EAM", "MAF", "PTI", "PES", "HDU"]
     },  
     creditos: {
         type: String,

@@ -141,58 +141,52 @@ router.route('/:email')
 })
 .put(auth, async (req, res) => {
     let type = req.tipo;
-    if (type != null && type == "ADMIN") {
-        let correo = req.params.email;
-            if (correo != undefined) {
-                try {
-                    let usr = await User.getUser(correo);
-                    if (usr != null) {
-                        let data = req.body;
-                        if (data != null && !isEmpty(data)) {
-                            if (isValidUpdate(data)) {
-                                if (data.tipo != undefined && !types.includes(data.tipo)) {
-                                    res.status(406);
-                                    res.statusMessage = `User type: ${data.tipo} is invalid.`
-                                    res.send();
-                                } else {
-                                    let doc = await User.updateUser(correo, data);
-                                    if (doc) {
-                                        res.status(200).send()
-                                    } else {
-                                        res.status(500).send();
-                                    }
-                                }
-                            } else {
+    let correo = req.params.email;
+        if (correo != undefined) {
+            try {
+                let usr = await User.getUser(correo);
+                if (usr != null) {
+                    let data = req.body;
+                    if (data != null && !isEmpty(data)) {
+                        if (isValidUpdate(data)) {
+                            if (data.tipo != undefined && !types.includes(data.tipo)) {
                                 res.status(406);
-                                res.statusMessage = "Invalid payload."
+                                res.statusMessage = `User type: ${data.tipo} is invalid.`
                                 res.send();
+                            } else {
+                                let doc = await User.updateUser(correo, data);
+                                if (doc) {
+                                    res.status(200).send()
+                                } else {
+                                    res.status(500).send();
+                                }
                             }
                         } else {
                             res.status(406);
-                            res.statusMessage = "Empty payload."
+                            res.statusMessage = "Invalid payload."
                             res.send();
                         }
                     } else {
                         res.status(406);
-                        res.statusMessage = "User doesn't exist in the database.";
+                        res.statusMessage = "Empty payload."
                         res.send();
                     }
-                } catch (error) {
-                    console.log(error);
-                    res.status(500);
-                    res.statusMessage = "Internal server error";
+                } else {
+                    res.status(406);
+                    res.statusMessage = "User doesn't exist in the database.";
                     res.send();
                 }
-            } else {
-                res.status(406);
-                res.statusMessage = "Missing params."
+            } catch (error) {
+                console.log(error);
+                res.status(500);
+                res.statusMessage = "Internal server error";
                 res.send();
             }
-    } else {
-        res.status(403);
-        res.statusMessage = `User type: ${type} hasn't permissions to perform this action`;
-        res.send();
-    }
+        } else {
+            res.status(406);
+            res.statusMessage = "Missing params."
+            res.send();
+        }
 })
 .get(auth, async (req, res) => {
     let correo = req.params.email;
@@ -217,6 +211,29 @@ router.route('/:email')
             res.statusMessage = "Missing params."
             res.send();
         }
+});
+
+router.route('/alumn/:email/favcourses')
+.post(async (req, res) =>{
+    //validar id
+    /// validar tipo usuario
+    let user = await User.getUser(req.params.email);
+    console.log(req.body.id);
+    let favs =  user.favCursos;
+    favs.push(req.body.id);
+    console.log(favs);
+
+    let update = await User.findOneAndUpdate({correo: req.params.email}, {favCursos: favs});
+    console.log(update);
+
+    res.send(`${req.params.email} post favs courses`);
+});
+
+router.route('/alumn/:email/favprof')
+.post(async (req, res) =>{
+    res.send(`${req.params.email} post favs prof`);
+    //validar id
+    /// validar tipo usuario
 });
 
 function isValidUser(user) {
