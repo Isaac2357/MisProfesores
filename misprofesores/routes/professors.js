@@ -6,7 +6,8 @@ const {auth} = require("../middlewares/auth")
 
 router.route('/')
 .get(auth, async (req, res) => {
-    res.send("professors get");
+    let prfs = await Professor.getProfessors();
+    res.send(prfs);
 })
 .post(auth, async (req, res) => {
     res.send("professors post");
