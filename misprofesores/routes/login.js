@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken')
 router.route('/')
 .post(async (req, res) => {
     let {correo, password} = req.body;
+    localStorage.correo = correo;
 
     if (correo != undefined && password != undefined) {
         let doc = await User.getUser(correo);
@@ -20,7 +21,8 @@ router.route('/')
                 }, 'signature', {
                     expiresIn: 60*60*24*7 //una semana
                 });
-                res.send({token})
+                res.setHeader("Curr-User-ID", doc.uid);
+                res.send({token});
             } else {
                 res.status(401).send({error: "Password does not match."})
             }

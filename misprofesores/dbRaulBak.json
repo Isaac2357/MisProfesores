@@ -2,7 +2,7 @@
   "usuarios": [
     {
       "id": 1,
-      "nombre": "Raúl Méndez",
+      "nombre": "Raúl Méndez Rojas",
       "correo": "is685434@iteso.mx",
       "contraseña": "qwe",
       "tipo": "1",
@@ -12,9 +12,7 @@
       ],
       "favCursos": [
         "1",
-        "2",
-        "3",
-        "4"
+        "2"
       ],
       "idRelacion": [
         "1",
@@ -24,7 +22,7 @@
     {
       "nombre": "Isaac",
       "correo": "is710110@iteso.mx",
-      "contraseña": "isaac123",
+      "contraseña": "qwe",
       "tipo": 1,
       "favProfesores": [],
       "favCursos": [],
@@ -62,19 +60,6 @@
       "id": 4,
       "nombre": "José Luis Elvira",
       "departamento": "DESI"
-    },
-    {
-      "nombre": "Manuel",
-      "departamento": "DESI",
-      "id": 5
-    }
-  ],
-  "Departamentos": [
-    {
-      "departamento": "DESI"
-    },
-    {
-      "departamento": "MAF"
     }
   ],
   "cursos": [
@@ -161,6 +146,15 @@
       "idRelacion": "1"
     },
     {
+      "id": "3",
+      "puntaje": "2",
+      "comentario": "Es el mejor profe que he tenido. Su clase siempre es muy interesante",
+      "likes": "39",
+      "dislikes": "10",
+      "idUsuario": "2",
+      "idRelacion": "2"
+    },
+    {
       "id": "4",
       "puntaje": "3",
       "comentario": "Algo pesada pero es buen profe",
@@ -172,7 +166,7 @@
     {
       "id": "5",
       "puntaje": "5",
-      "comentario": "A veces va rápido pero es un excelente profe. Me gusta mucho su clase. Test para comentario largo ola ola olao lasjbkansxbhjsx hbsahbjsxahsxajkhasxkj sxahjksxahk shjksx ahjksxa hjksxa hkjs axhjksx ahjksxa hkjsxa hkjsa xsxa jhjhsax hjksxa khjasx hkjsa xkhsax hkjsax khjsxa khjsxa hkjs xakhjsaxkhjs axhkjasx khjsa xsaj hksxa kjh",
+      "comentario": "A veces va rápido pero es un excelente profe. Me gusta mucho su clase.",
       "likes": "32",
       "dislikes": "0",
       "idUsuario": "1",
@@ -204,15 +198,6 @@
       "dislikes": "0",
       "idUsuario": "5",
       "idRelacion": "2"
-    },
-    {
-      "id": "10",
-      "puntaje": "5",
-      "comentario": "buenadcacac",
-      "likes": "0",
-      "dislikes": "0",
-      "idUsuario": "2",
-      "idRelacion": "1"
     }
   ]
 }
