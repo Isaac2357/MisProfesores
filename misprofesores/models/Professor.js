@@ -14,7 +14,7 @@ let professorSchema = mongoose.Schema({
     departamento: {
         type: String,
         required: true,
-        enum: ["DESI"]
+        enum: ["DESI", "DEL", "DFH", "EAM", "MAF", "PTI", "PES", "HDU"]
     }
 });
 
