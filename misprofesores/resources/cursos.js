@@ -9,6 +9,59 @@ fetch();
 
 function fetch() {
     let xhr = new XMLHttpRequest();
+    xhr.open("GET", `http://localhost:3000/api/courses`);
+    xhr.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+    xhr.send();
+    xhr.onload = function () {
+        console.log(xhr.status, xhr.statusText, xhr.response, JSON.parse(xhr.response));
+        if (xhr.status == 200) {
+            let userHtml = JSON.parse(xhr.responseText);
+            for (let item of userHtml) {
+                container.innerHTML += ` 
+                
+                    <div class="card text-center "  >
+                   
+                        <div class="card-body" style="min-height:200px; max-height:200px; overflow:auto;">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <hr>
+            
+                                <h3 class="card-title">${item.nombre}</h3>
+                                <p class="card-text">${item.departamento}</p>
+                                <a id="${item.couid}" href="#" class="stretched-link" onclick="openCurs('${item.couid}');"></a>
+                        </div>
+        
+                        <div class="card-footer text-muted">
+                            <i class="fa fa-star" aria-hidden="true">4.5</i>
+                            <i class="fa fa-comment" aria-hidden="true">42</i>
+                            <i class="fa fa-thumbs-up" aria-hidden="true">12</i>
+                            <i class="fa fa-thumbs-down" aria-hidden="true">3</i>
+                        </div>
+                </div>      
+                `;
+            }
+            //container.innerHTML += userHtml += xhr.response;
+        }
+    }
+}
+
+function openCurs(id) {
+    console.log("ID selected", id);
+    window.location.href = "curso-pr.html" 
+    localStorage.cursID = id;
+}
+
+/* //___________json server
+"use strict"
+//let globalUsers = [];
+let container = document.getElementById("lista");
+
+container.innerHTML = "";
+
+//profesor.html
+fetch();
+
+function fetch() {
+    let xhr = new XMLHttpRequest();
     xhr.open("GET", `http://localhost:3000/cursos`);
     xhr.send();
     xhr.onload = function () {
@@ -26,7 +79,7 @@ function fetch() {
             
                                 <h3 class="card-title">${item.nombre}</h3>
                                 <p class="card-text">${item.departamento}</p>
-                                <a id="${item.id}" href="curso-pr.html" class="stretched-link"></a>
+                                <a id="${item.id}" href="#" class="stretched-link" onclick="openCurs('${item.id}');"></a>
                         </div>
         
                         <div class="card-footer text-muted">
@@ -43,29 +96,9 @@ function fetch() {
     }
 }
 
-
-/* function userToHtml(user) {
-    return `<div class="media col-8 mt-2">
-                <div class="media-left align-self-center mr-3">
-                    <img class="rounded-circle" src="https://randomuser.me/api/portraits/men/0.jpg">
-                </div>
-                <div class="media-body">
-                    <h4>${user.nombre + " " + user.departamento}</h4>
-                    <p >Correo:${user.nombre}</p>
-                    <p >Fecha de nacimiento: ${user.fecha} </p>
-                    <p >Sexo: ${user.departamento} </p>
-                </div>
-                <div class="media-right align-self-center">
-                    <div class="row">
-                        <a href="#" class="btn btn-primary edit "><i class="fas fa-search edit  " onclick="openDetail('${user.correo}');"></i></a>
-                    </div>
-                    <div class="row">
-                        <a href="#" class="btn btn-primary mt-2"><i class="fas fa-pencil-alt edit  " onclick="showEditModal('${user.correo}');"  data-toggle="modal" data-target="#edit"></i></a>
-                    </div>
-                    <div class="row">
-                        <a href="#" class="btn btn-primary mt-2"><i class="fas fa-trash-alt  remove " onclick="showDeleteModal('${user.correo}');" data-toggle="modal" data-target="#delete"></i></i></a>
-                    </div>
-                </div>
-            </div>
-            `
+function openCurs(id) {
+    console.log("ID selected", id);
+    window.location.href = "curso-pr.html" 
+    localStorage.cursID = id;
 } */
+
