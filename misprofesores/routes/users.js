@@ -11,25 +11,7 @@ router.route('/')
     try {
         let usrs = await User.getUsers();
         if (usrs != null) {
-            let mappedUsrs = usrs.map((user) => {
-                let usr = {};
-                const fields = ["favProfesores",
-                                "favCursos",
-                                "idRelacion",
-                                "nombre",
-                                "correo",
-                                "password",
-                                "tipo",
-                                "uid"];
-                                
-                for (let key in user) {
-                    if (fields.includes(key)) {
-                        usr[key] = user[key];
-                    }
-                }
-                return usr;
-            });
-            res.send(mappedUsrs);
+            res.send(usrs);
         } else {
             res.status(400);
             res.statusMessage = "Internal error."
@@ -215,17 +197,6 @@ router.route('/:email')
 
 router.route('/alumn/:email/favcourses')
 .post(async (req, res) =>{
-    //validar id
-    /// validar tipo usuario
-    let user = await User.getUser(req.params.email);
-    console.log(req.body.id);
-    let favs =  user.favCursos;
-    favs.push(req.body.id);
-    console.log(favs);
-
-    let update = await User.findOneAndUpdate({correo: req.params.email}, {favCursos: favs});
-    console.log(update);
-
     res.send(`${req.params.email} post favs courses`);
 });
 

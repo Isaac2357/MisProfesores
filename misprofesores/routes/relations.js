@@ -26,7 +26,6 @@ router.route('/')
             res.status(500).send();
         }
     }   
-    console.log(query);
     try {
         let docs = await Relation.getRelations();
         if (docs) {
