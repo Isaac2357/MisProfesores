@@ -2,7 +2,7 @@
   "usuarios": [
     {
       "id": 1,
-      "nombre": "Raúl Méndez Rojas",
+      "nombre": "Raúl Méndez",
       "correo": "is685434@iteso.mx",
       "contraseña": "qwe",
       "tipo": "1",
@@ -22,7 +22,7 @@
     {
       "nombre": "Isaac",
       "correo": "is710110@iteso.mx",
-      "contraseña": "qwe",
+      "contraseña": "isaac123",
       "tipo": 1,
       "favProfesores": [],
       "favCursos": [],
@@ -38,6 +38,16 @@
       "favCursos": [],
       "idRelacion": [],
       "id": 3
+    },
+    {
+      "nombre": "Hugo Castillo",
+      "correo": "hugo@iteso.mx",
+      "contraseña": "hugo",
+      "tipo": 1,
+      "favProfesores": [],
+      "favCursos": [],
+      "idRelacion": [],
+      "id": 4
     }
   ],
   "profesores": [
@@ -71,6 +81,12 @@
       "departamento": "CUI",
       "creditos": 16,
       "id": 4
+    },
+    {
+      "nombre": "Calculo Diferencial",
+      "departamento": "MAF",
+      "creditos": 10,
+      "id": 5
     }
   ],
   "relaciones": [
