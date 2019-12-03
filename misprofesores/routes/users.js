@@ -219,6 +219,29 @@ router.route('/:email')
         }
 });
 
+router.route('/:email/favcourses')
+.post(async (req, res) =>{
+    //validar id
+    /// validar tipo usuario
+    let user = await User.getUser(req.params.email);
+    console.log(req.body.id);
+    let favs =  user.favCursos;
+    favs.push(req.body.id);
+    console.log(favs);
+
+    let update = await User.findOneAndUpdate({correo: req.params.email}, {favCursos: favs});
+    console.log(update);
+
+    res.send(`${req.params.email} post favs courses`);
+});
+
+router.route('/:email/favprof')
+.post(async (req, res) =>{
+    res.send(`${req.params.email} post favs prof`);
+    //validar id
+    /// validar tipo usuario
+});
+
 function isValidUser(user) {
     if (user != null) {
         let validFields = 0;

@@ -43,4 +43,20 @@ professorSchema.statics.createProfessor = async function(prof){
 
 let Professor = mongoose.model('professors', professorSchema);
 
+// let prof = {
+//     nombre: "Rulas",
+//     departamento: "DESI"
+// }
+// let fun = async () => {
+//     let doc = await Professor.createProfessor(prof);
+//     if (doc) {
+//         console.log(doc);
+//     } else {
+//         console.log("error");
+//     }
+// }
+
+// fun();
+
+
 module.exports = Professor;
