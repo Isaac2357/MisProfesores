@@ -11,14 +11,17 @@ container.innerHTML = "";
 
 
 let xhrProf = new XMLHttpRequest();
-    xhrProf.open("GET", `http://localhost:3000/relaciones?idProfesor=${idProf}`);
-    xhrProf.send();
+    xhrProf.open("GET", `http://localhost:3000/api/relations?idProfesor=${idProf}`);
+    xhrProf.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+    xhrProf.send()
     xhrProf.onload = function() {
         console.log(xhrProf.status, xhrProf.statusText, xhrProf.response, JSON.parse(xhrProf.response));
         if (xhrProf.status == 200) {
             let rels = JSON.parse(xhrProf.responseText);
+            console.log("OLA" + rels);
                 for(let item of rels){
-                    fetch(item.idCurso);
+                    fetch(item.idCurso)
+                    console.log("ola curso: " + item.idCurso + item.idProfesor + item.periodo);
                 }
             //container.innerHTML += userHtml += xhrProf.response;
         }
@@ -26,17 +29,19 @@ let xhrProf = new XMLHttpRequest();
 
 function fetch(curso) {
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", `http://localhost:3000/cursos?id=${curso}`);
+    xhr.open("GET", `http://localhost:3000/api/courses/${curso}`);
+    xhr.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
     xhr.send();
     xhr.onload = function() {
         console.log(xhr.status, xhr.statusText, xhr.response, JSON.parse(xhr.response));
         if (xhr.status == 200) {
             //globalUsers.push(JSON.parse(xhr.response));
-            let userHtml = JSON.parse(xhr.responseText);
+            let item = JSON.parse(xhr.responseText);
             //let usr = xhr.response
             //let users = usr.map(user => user.nombre);
             console.log("idProfe clickeado:"+ xhr.responseText);
-                for(let item of userHtml){
+            console.log("TEST" + item.nombre);
+                
                     container.innerHTML +=` 
                     <div class="card text-center" >
                     <div class="card-body" style="min-height:200px; max-height:200px; overflow:auto;">
@@ -45,7 +50,7 @@ function fetch(curso) {
         
                             <h3 class="card-title">${item.nombre}</h3>
                             <p class="card-text">${item.departamento}</p>
-                            <a href="#" class="stretched-link" onclick="openCurs('${item.id}');"></a>
+                            <a href="#" class="stretched-link" onclick="openCurs('${item.couid}');"></a>
                     </div>
         
                     <div class="card-footer text-muted">
@@ -57,7 +62,7 @@ function fetch(curso) {
                 </div>
                 </div>           
                 `;
-                }
+                
             //container.innerHTML += userHtml += xhr.response;
         }
    }

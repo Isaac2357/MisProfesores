@@ -11,14 +11,16 @@ container.innerHTML = "";
 
 
 let xhrProf = new XMLHttpRequest();
-    xhrProf.open("GET", `http://localhost:3000/relaciones?idCurso=${idCurso}`);
+    xhrProf.open("GET", `http://localhost:3000/api/relations?idCurso=${idCurso}`);
+    xhrProf.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
     xhrProf.send();
     xhrProf.onload = function() {
-        console.log("rels:",xhrProf.status, xhrProf.statusText, xhrProf.response, JSON.parse(xhrProf.response));
+        //console.log("rels:",xhrProf.status, xhrProf.statusText, xhrProf.response, JSON.parse(xhrProf.response));
         if (xhrProf.status == 200) {
             let rels = JSON.parse(xhrProf.responseText);
                 for(let item of rels){
                     fetch(item.idProfesor);
+                    console.log("debug: "+item.idProfesor);
                 }
             //container.innerHTML += userHtml += xhrProf.response;
         }
@@ -26,17 +28,18 @@ let xhrProf = new XMLHttpRequest();
 
 function fetch(profesor) {
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", `http://localhost:3000/profesores?id=${profesor}`);
+    xhr.open("GET", `http://localhost:3000/api/professors/${profesor}`);
     xhr.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
     xhr.send();
     xhr.onload = function() {
-        console.log("Prof:",xhr.status, xhr.statusText, xhr.response, JSON.parse(xhr.response));
+        //console.log("Prof:",xhr.status, xhr.statusText, xhr.response, JSON.parse(xhr.response));
         if (xhr.status == 200) {
             //globalUsers.push(JSON.parse(xhr.response));
-            let userHtml = JSON.parse(xhr.responseText);
+            let item = JSON.parse(xhr.responseText);
             //let usr = xhr.response
             //let users = usr.map(user => user.nombre);
-                for(let item of userHtml){
+            console.log(item.nombre + item.correo);
+                
                     container.innerHTML +=` 
                     <div class="card text-center" >
                     <div class="card-body" style="min-height:200px; max-height:200px; overflow:auto;">
@@ -44,8 +47,8 @@ function fetch(profesor) {
                             <hr>
         
                             <h3 class="card-title">${item.nombre}</h3>
-                            <p class="card-text">${item.departamento}</p>
-                            <a id="${item.id}" href="#" class="stretched-link" onclick="openProf('${item.id}');"></a>
+                            <p class="card-text">${item.correo}</p>
+                            <a id="${item.uid}" href="#" class="stretched-link" onclick="openProf('${item.uid}');"></a>
                     </div>
         
                     <div class="card-footer text-muted">
@@ -57,7 +60,7 @@ function fetch(profesor) {
                 </div>
                 </div>           
                 `;
-                }
+                
             //container.innerHTML += userHtml += xhr.response;
         }
    }
@@ -81,7 +84,7 @@ function fetchCurs(idProf) {
         if (xhr.status == 200) {
             let item = JSON.parse(xhr.responseText);
                     nombre = item.nombre;
-                    depto = item.correo;
+                    depto = item.departamento;
                     hCurs.innerHTML = `<i class="fa fa-book" aria-hidden="true"></i>${nombre}<small>${depto}</small>`
                     console.log(nombre, depto);
                 
