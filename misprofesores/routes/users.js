@@ -207,6 +207,23 @@ router.route('/alumn/:email/favprof')
     /// validar tipo usuario
 });
 
+router.route('/:id')
+.get(auth, async (req, res) =>{
+    let id = req.params.id;
+    try {
+        let doc = await    User.findOne({uid: id});
+        console.log(doc);
+        if (doc) {
+            res.send(doc);
+        } else {
+            res.status(500).send({error: "Someting went wrong fetching the user."})
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).send();
+    }
+});
+
 function isValidUser(user) {
     if (user != null) {
         let validFields = 0;

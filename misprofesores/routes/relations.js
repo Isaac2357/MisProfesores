@@ -8,6 +8,7 @@ const {auth} = require("../middlewares/auth")
 router.route('/')
 .get(auth, async (req, res) => {
     let profesor = req.query.idProfesor;
+    let curso = req.query.idCurso;
     if (profesor != undefined) {
         try {
             let docs = await Relation.find({idProfesor: profesor}, { idProfesor: 1, 
@@ -26,6 +27,25 @@ router.route('/')
             res.status(500).send();
         }
     }   
+    if (curso != undefined) {
+        try {
+            let docs = await Relation.find({idCurso: curso}, { idProfesor: 1, 
+                                                                    idCurso: 1,
+                                                                    periodo: 1,
+                                                                    year: 1,
+                                                                    rid: 1, 
+                                                                    _id: 0 });
+            if (docs) {
+                res.send(docs);
+            } else {
+                res.status(406).send({error: "Error relations not found."});
+            }
+        } catch (error) {
+            console.log(error);
+            res.status(500).send()
+        }
+    }   
+
     try {
         let docs = await Relation.getRelations();
         if (docs) {
