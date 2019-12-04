@@ -5,7 +5,9 @@
             console.log('dentro de funciossn');
                 const xhttp = new XMLHttpRequest();
                 //true es igual a que sea asincrono
-                xhttp.open('GET',' http://localhost:3000/profesores',true);
+                xhttp.open('GET','  http://localhost:3000/api/users/?tipo=PROF',true);
+                xhttp.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+
                 xhttp.send();
                 xhttp.onreadystatechange= function(){
                     if(this.readyState==4 && this.status == 200){
@@ -17,7 +19,7 @@
             for(let item of datosP){
             
             resP.innerHTML +=`
-            <option> ${item.nombre}</option>
+            <option> ${item.uid} </option>
         `
             }
                     }
@@ -54,7 +56,9 @@
             console.log('dentro de funciossn');
                 const xhttp = new XMLHttpRequest();
                 //true es igual a que sea asincrono
-                xhttp.open('GET',' http://localhost:3000/cursos',true);
+                xhttp.open('GET','http://localhost:3000/api/courses',true);
+                xhttp.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+
                 xhttp.send();
                 xhttp.onreadystatechange= function(){
                     if(this.readyState==4 && this.status == 200){
@@ -66,13 +70,47 @@
             for(let item of datos2){
             
             res2.innerHTML +=`
-            <option> ${item.nombre}</option>
+            <option> ${item.couid}</option>
+        `
+            }
+            let res3 = document.querySelector("#BusquedaProfesor");
+            res3.innerHTML = '';
+            //console.log(datos);
+            for(let item of datos2){
+            
+            res3.innerHTML +=`
+            <option> ${item.couid}</option>
         `
             }
                     }
                 }
             
             }
+            function ShowSelectedid(){
+                console.log('dentro de funciossn');
+                    const xhttp = new XMLHttpRequest();
+                    //true es igual a que sea asincrono
+                    xhttp.open('GET',`http://localhost:3000/api/users?tipo=PROF`,true);
+                    xhttp.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+    
+                    xhttp.send();
+                    xhttp.onreadystatechange= function(){
+                        if(this.readyState==4 && this.status == 200){
+                //console.log(this.responseText);
+                let datos2 = JSON.parse(this.responseText);
+                let res2 = document.querySelector("#id");
+                res2.innerHTML = '';
+                //console.log(datos);
+                for(let item of datos2){
+                
+                res2.innerHTML +=`
+                <option> ${item.uid}</option>
+            `
+                }
+                        }
+                    }
+                
+                }
 
             let btnProfes =	document.querySelector("#botonusuarios").addEventListener('click',traerDatos1);
 
@@ -80,11 +118,16 @@
                 ShowSelectedProfeBuscar()
                 ShowSelectedProfe()
                 ShowSelectedMateria()
+                ShowSelectedid()
                 ShowSelectedAlumnos()
+                traerDatos2()
+                traerDatos3()
             console.log('dentro de funcion');
                 const xhttp = new XMLHttpRequest();
                 //true es igual a que sea asincrono
-                xhttp.open('GET',' http://localhost:3000/profeMateria',true);
+                xhttp.open('GET','http://localhost:3000/api/relations ',true);
+                xhttp.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+
                 xhttp.send();
                 xhttp.onreadystatechange= function(){
                     if(this.readyState==4 && this.status == 200){
@@ -97,11 +140,11 @@
             
             res1.innerHTML +=`
             <tr>
-            <td>${item.id} </td>
-            <td>${item.nombre} </td>
-            <td>${item.materia}</td>
+            <td>${item.rid} </td>
+            <td>${item.idProfesor} </td>
+            <td>${item.idCurso}</td>
             <td>${item.periodo} </td>
-            <td>${item.año}</td>
+            <td>${item.year}</td>
             </tr>`
 			}
 			
@@ -109,24 +152,86 @@
                 }
             
             }}
+            function traerDatos2(){
+
+            console.log('dentro de funcion');
+                const xhttp = new XMLHttpRequest();
+                //true es igual a que sea asincrono
+                xhttp.open('GET','http://localhost:3000/api/users?tipo=PROF',true);
+                xhttp.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+
+                xhttp.send();
+                xhttp.onreadystatechange= function(){
+                    if(this.readyState==4 && this.status == 200){
+            //console.log(this.responseText);
+            let datos1 = JSON.parse(this.responseText);
+            let res1 = document.querySelector("#res2");
+            res1.innerHTML = '';
+			//console.log(datos);
+            for(let item of datos1){
             
+            res1.innerHTML +=`
+            <tr>
+            <td>${item.uid} </td>
+            <td>${item.nombre} </td>
+
+            </tr>`
+			}
+			
+                    
+                }
+            
+            }}
+            function traerDatos3(){
+
+                console.log('dentro de funcion');
+                    const xhttp = new XMLHttpRequest();
+                    //true es igual a que sea asincrono
+                    xhttp.open('GET','http://localhost:3000/api/courses',true);
+                    xhttp.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+    
+                    xhttp.send();
+                    xhttp.onreadystatechange= function(){
+                        if(this.readyState==4 && this.status == 200){
+                //console.log(this.responseText);
+                let datos1 = JSON.parse(this.responseText);
+                let res1 = document.querySelector("#res3");
+                res1.innerHTML = '';
+                //console.log(datos);
+                for(let item of datos1){
+                
+                res1.innerHTML +=`
+                <tr>
+                <td>${item.couid} </td>
+                <td>${item.nombre} </td>
+    
+                </tr>`
+                }
+            }
+        }
+            }
             function registrarProfeMateria(event){
+                
                 var prof = document.getElementById("Profesor").value,
                 mat = document.getElementById("Materia").value
+                ruid = document.getElementById("id").value
+
                 per = document.getElementById("Periodo").value
                 año = document.getElementById("Año").value
 
-                let nuevoprofe ={
-                nombre:prof,
-                materia:mat,
+                let data ={
+                    rid:ruid,
+                    idProfesor:prof,
+                    idCurso:mat,
                 periodo:per,
-                año,año
-                
+                year:año
+              
                 };
                 let xhr = new XMLHttpRequest();
-                xhr.open("POST",`http://localhost:3000/profeMateria`);
+                xhr.open("POST",`http://localhost:3000/api/relations`);
+                xhr.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
                 xhr.setRequestHeader("content-Type","application/json");
-                xhr.send(JSON.stringify(nuevoprofe));
+                xhr.send(JSON.stringify(data));
                 xhr.onload=function(){
                 if (xhr.status==201){
                 //aqui agregue los profes pero no se porque dentro del post no me funciona ,por lo tanto lo saque de la funcion
@@ -142,7 +247,7 @@
                     table = document.getElementById("table");
                     tr = table.getElementsByTagName("tr");
                     for (i = 0; i < tr.length; i++) {
-                      td = tr[i].getElementsByTagName("td")[1];
+                      td = tr[i].getElementsByTagName("td")[2];
                       if (td) {
                         txtValue = td.textContent || td.innerText;
                         if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -176,3 +281,6 @@
                         }
                     
                     }
+                    
+
+                 

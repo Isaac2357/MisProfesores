@@ -45,6 +45,10 @@ userSchema.statics.getUsers = function() {
 
 userSchema.statics.getUser = function(correo){
     return User.findOne({correo}); 
+
+}
+userSchema.statics.getUseruid = function(uid){
+    return User.findOne({uid}); 
 }
 
 userSchema.statics.createUser = async function(usr){

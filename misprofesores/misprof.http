@@ -8,7 +8,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/api/users
+GET http://localhost:3000/api/users/?"tipo"=PROF
 x-user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs
 
 ###
@@ -34,12 +34,12 @@ Content-Type: application/json
 
 {
     "nombre": "Alexis Arturo",
-    "password": "arturoprofe",
+    "password": "arturopr",
     "tipo": "PROF"
 }
 
 ###
-GET http://localhost:3000/api/users/alexis@itesomx
+GET http://localhost:3000/api/users/?"tipo"=PROF
 x-user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs
 
 ###
@@ -54,8 +54,14 @@ Content-Type: application/json
 
 {
     "rid": 2,
-    "idProfesor": 2,
+    "idProfesor": 33,
     "idCurso": 1,
     "periodo": "V",
     "year": 2019
 }
+###
+GET http://localhost:3000/api/courses
+x-user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs
+###
+GET http://localhost:3000/api/professors
+x-user-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs

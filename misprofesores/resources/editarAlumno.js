@@ -4,12 +4,13 @@
 let btnUsuarios = document.querySelector("#botonAlumno").addEventListener('click', traerDatos2);
 
 function traerDatos2() {
-	document.getElementById("EditAlumno").style.display = "block";
 
+	
 	console.log('dentro de funcion');
 	const xhttp = new XMLHttpRequest();
 	//true es igual a que sea asincrono
-	xhttp.open('GET', ' http://localhost:3000/usuarios', true);
+	xhttp.open('GET', ' http://localhost:3000/api/users', true);//http://localhost:3000/usuarios
+	xhttp.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
 	xhttp.send();
 	xhttp.onreadystatechange = function () {
 		if (this.readyState == 4 && this.status == 200) {
@@ -22,9 +23,12 @@ function traerDatos2() {
 
 				res2.innerHTML += `
 <tr>
+<td>${item.uid} </td>
 <td>${item.nombre} </td>
 <td>${item.correo}</td>
-<td>${item.contraseña}</td>
+<td>${item.password}</td>
+<td>${item.tipo}</td>
+
 </tr>`
 			}
 		}
@@ -36,22 +40,26 @@ function registrarAlumno(event) {
 	var nombre = document.getElementById("nombre").value,
 		correo = document.getElementById("correo").value,
 		contraseña = document.getElementById("contraseña").value
+		tipo = document.getElementById("tipo").value
 
-	let nuevoAlumno = {
+	let data = {
 		nombre: nombre,
 		correo: correo,
-		contraseña,
-		contraseña,
-		tipo: 1,
-		favProfesores: [],
-		favCursos: [],
-		idRelacion: [],
+		password:contraseña,
+		tipo: tipo,
+		/*favProfesores :[],
+        favCursos :[],
+        idRelacion : []*/
+
 
 	};
 	let xhr = new XMLHttpRequest();
-	xhr.open("POST", `http://localhost:3000/usuarios`);
-	xhr.setRequestHeader("content-Type", "application/json");
-	xhr.send(JSON.stringify(nuevoAlumno));
+	xhr.open("POST", `http://localhost:3000/api/users`);
+	xhr.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+
+	xhr.setRequestHeader("content-Type","application/json");
+
+	xhr.send(JSON.stringify(data));
 	xhr.onload = function () {
 		if (xhr.status == 201) {
 			//aqui agregue los profes pero no se porque dentro del post no me funciona ,por lo tanto lo saque de la funcion
@@ -64,15 +72,18 @@ function registrarAlumno(event) {
 let inputNombreA = document.getElementById("nombreAlumno");
 let divFormA = document.getElementById("EditAlumno");
 let divFormDA = document.getElementById("DatosAlumno");
+let inputnombreEditA = document.getElementById("editnombreA");
 let inputCorreoEditA = document.getElementById("editCorreoA");
+let inputcontraseñaEditA = document.getElementById("editcontraseñaA");
+let inputtipoEditA = document.getElementById("edittipoA");
 
 
 
 function alumonEdit(event) {
 	console.log("Get id");
 	let xhr = new XMLHttpRequest();
-	xhr.open("GET", `http://localhost:3000/usuarios?nombre=${inputNombreA.value}`);
-	xhr.setRequestHeader("Content-Type", "application/json");
+	xhr.open("GET", `http://localhost:3000/api/users?${inputNombreA.value}`);
+	xhr.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
 	xhr.send();
 	xhr.onload = function () {
 		if (xhr.status == 200) {
@@ -91,10 +102,17 @@ function alumonEdit(event) {
 
 function changedatosA(event) {
 	//	event.preventDefault();
+	console.log("ENTRAMOS");
 	let xhr = new XMLHttpRequest();
-	xhr.open("PUT", `http://localhost:3000/usuarios/${user.id}`);
+	xhr.open("PUT", `http://localhost:3000/api/users${inputNombreA.value}`);
+	xhr.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+
 	xhr.setRequestHeader("Content-Type", "application/json");
+	user["nombre"] = inputnombreEditA.value;
 	user["correo"] = inputCorreoEditA.value;
+	user["password"] = inputcontraseñaEditA.value;
+	user["tipo"] = inputtipoEditA.value;
+
 	console.log(user);
 	xhr.send(JSON.stringify(user));
 	xhr.onload = function () {
@@ -182,3 +200,22 @@ var p = new paginador(
 	4
 );
 p.Mostrar();
+
+function filtrarmateria() {
+	var input, filter, table, tr, td, i, txtValue;
+	input = document.getElementById("BusquedaProfesor");
+	filter = input.value.toUpperCase();
+	table = document.getElementById("table1");
+	tr = table.getElementsByTagName("tr");
+	for (i = 0; i < tr.length; i++) {
+	  td = tr[i].getElementsByTagName("td")[4];
+	  if (td) {
+		txtValue = td.textContent || td.innerText;
+		if (txtValue.toUpperCase().indexOf(filter) > -1) {
+		  tr[i].style.display = "";
+		} else {
+		  tr[i].style.display = "none";
+		}
+	  }       
+	}
+  }

@@ -27,11 +27,19 @@ let relationsSchema = mongoose.Schema({
 });
 
 relationsSchema.statics.getRelations = function() {
-    return Relation.find({});
+    return Relation.find({},  { idProfesor: 1, 
+                                idCurso: 1,
+                                periodo: 1,
+                                year: 1,
+                                rid: 1, 
+                                _id: 0 });
 }
 
-relationsSchema.statics.getRelation = function(rid){
-    return Relation.findOne({rid}); 
+relationsSchema.statics.getRelation = async function(rid){
+    return await Relation.findOne({rid}); 
+}
+relationsSchema.statics.getRelationP =  function(idProfesor){
+    return  Relation.findOne({idProfesor}); 
 }
 
 relationsSchema.statics.updateRelation = function(rid, datos){
