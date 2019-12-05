@@ -4,6 +4,7 @@ const User = require('../models/User')
 const {auth} = require("../middlewares/auth")
 const fields = ["nombre", "correo", "password", "tipo"];
 const updateFields = ["nombre", "password", "tipo"];
+const updateFieldsProfile = ["nombre", "imagen"];
 const types = ["ADMIN", "PROF", "ALUMN"];
 
 router.route('/')
@@ -72,6 +73,7 @@ router.route('/')
                             data.favProfesores = [];
                             data.favCursos = [];
                             data.idRelacion = [];
+                            data.imagen = "https://pngimage.net/wp-content/uploads/2018/05/default-user-profile-image-png-2.png" //default img
                             let doc = await User.createUser(data);
                             if (doc) {
                                 res.status(201);
@@ -218,8 +220,52 @@ router.route('/:email')
         }
 });
 
+router.route('/:email/updateprofile')
+.put(auth, async (req, res) =>{
+    let correo = req.params.email;
+        if (correo != undefined) {
+            try {
+                let usr = await User.getUser(correo);
+                if (usr != null) {
+                    let data = req.body;
+                    if (data != null && !isEmpty(data)) {
+                        if (isValidUpdateProfile(data)) {
+                            let doc = await User.updateUser(correo, data);
+                            if (doc) {
+                                res.status(200).send({status: "User profile updated."})
+                            } else {
+                                res.status(500).send();
+                            }
+                        } else {
+                            res.status(406);
+                            res.statusMessage = "Invalid payload."
+                            res.send({error: "Invalid payload."});
+                        }
+                    } else {
+                        res.status(406);
+                        res.statusMessage = "Empty payload."
+                        res.send({error: "Empty payload."});
+                    }
+                } else {
+                    res.status(406);
+                    res.statusMessage = "User doesn't exist in the database.";
+                    res.send({error: "User doesn't exist in the database."});
+                }
+            } catch (error) {
+                console.log(error);
+                res.status(500);
+                res.statusMessage = "Internal server error";
+                res.send({error: "Internal server error"});
+            }
+        } else {
+            res.status(406);
+            res.statusMessage = "Missing params."
+            res.send({error: "Missing params."});
+        }
+});
+
 router.route('/alumn/:email/favcourses')
-.post(async (req, res) =>{
+.post(async (req, res) => {
     res.send(`${req.params.email} post favs courses`);
 });
 
@@ -285,7 +331,17 @@ function isValidUpdate(user) {
     return false;
 }
 
-router.route('/:id')
+function isValidUpdateProfile(user) {
+    if (user != null) {
+        for (let key in user) {
+            if (!updateFieldsProfile.includes(key)) {
+                return false;
+            }
+        }
+        return true
+    }
+    return false;
+}
 
 function formatUser(user) {
     let c = {};
