@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Agregar curso</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+    <style>
+        .media {
+            border:1px solid #d5dbdd;
+            padding:5px 20px; 
+            border-radius: 5px; 
+            box-shadow:0px 2px 1px rgba(0,0,0,0.04); 
+            background:#fff;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 10px;
+        }
+        .container {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .nav-pag {
+          margin-left: 10px;
+        }
+        
+        #in-msg {
+            background-color:skyblue;
+        }
+    </style>
+
+  </head>
+  <body>
+      <nav class="navbar navbar-expand-md navbar-light bg-light fixed top">
+          <a href="profesores.html" class="navbar-brand navbar-dark">
+              <a href="#" class="navbar-brand"><img src="logo.png" height="20" alt="MisProfesores"><small>Mis<b>Profesores</b></small></a>
+              
+          </a>
+          <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+              <div class="navbar-nav">
+                  <a href=""></a>
+                  <a href="profesores.html" class="nav-item nav-link">Profesores</a>
+                  <a href="cursos.html" class="nav-item nav-link">Cursos</a>
+                  <a href="favoritos.html" class="nav-item nav-link">Favoritos</a>
+                  <a href="usuario-profesor.html" class="nav-item nav-link" tabindex="-1">Historial</a>
+                  
+              </div>
+              <div class="navbar-nav navbar-right ml-auto">
+                      <div class="nav-item dropdown">
+                              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Admin</a>
+                              <div class="dropdown-menu">
+                                  <a href="register-course.html" class="dropdown-item">Agregar curso</a>
+                                  <a href="editarAlumno.html" class="dropdown-item">Agregar Usuarios</a>
+                              </div>
+                      </div>
+                      <div class="nav-item dropdown">
+                          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Usuario</a>
+                          <div class="dropdown-menu">
+                              <a href="user-profile.html" class="dropdown-item">Mi perfil</a>
+                              <a href="login.html" class="dropdown-item">Logout</a>
+                          </div>
+                      </div>
+              </div>
+          </div>
+      </nav>
+      <hr>
+    <div class="container">
+      <div class="row mt-3">
+          <div class="col-6">
+              <div class="form-group">
+                  <input type="text" name="" id="" class="form-control" placeholder="Nombre del curso"
+                      aria-describedby="helpId">
+                  <small id="helpId" class="text-muted">Buscar curso</small>
+              </div>
+          </div>
+          <div class="col-4">
+              <div id="search-courses-btn" class="btn btn-secondary">Buscar</div>
+              <button type="button" id="add-courses-btn" class="btn btn-primary" data-toggle="modal" data-target="#add">Añadir</div>
+          </div>
+    </div>
+
+      <div class="row  mt-4" id="lista">
+          <div class="media col-8 mt-2">
+              <div class="media-body">
+                  <h4>Seguridad en Redes</h4>
+                  <p >Departamento: DESI</p>
+                  <p >Creditos: 8 </p>
+              </div>
+              <div class="media-right align-self-center">
+                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit">Editar</button>
+                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">Eliminar</button>
+              </div>
+          </div>
+      </div>
+
+  <!-- Modal agregar materia -->
+  <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Agregar materia</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div class="input-group">
+                  <input id="credits-input-add-modal" type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Número de créditos" disabled>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Créditos</button>
+                    <div class="dropdown-menu" id="drop-credits-add-modal" >
+                      <a class="dropdown-item" href="#">4</a>
+                      <a class="dropdown-item" href="#">6</a>
+                      <a class="dropdown-item" href="#">8</a>
+                      <a class="dropdown-item" href="#">16</a>
+                    </div>
+                  </div>
+                </div> 
+  
+                <div class="input-group">
+                    <input id="department-input-add-modal" type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Departamento" disabled>
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dpto</button>
+                      <div id="drop-department-add-modal"  class="dropdown-menu">
+                        <a class="dropdown-item" href="#">DESI</a>
+                        <a class="dropdown-item" href="#">PTI</a>
+                        <a class="dropdown-item" href="#">MAF</a>
+                        <a class="dropdown-item" href="#">LAE</a>
+                      </div>
+                    </div>
+                  </div> 
+       
+                  <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Nombre</span>
+                      </div>
+                      <input id="nombre-input-add-model" type="text" class="form-control" placeholder="Course" aria-label="Course" aria-describedby="basic-addon1">
+                    </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button id="save-btn-add-modal"  type="button" class="btn btn-primary">Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- Modal Editar materia -->
+  <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar materia</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="input-group">
+                <input id="credits-input-update-model"  type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Número de créditos" disabled>
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Créditos</button>
+                  <div class="dropdown-menu"  id="drop-credits-update-modal">
+                    <a class="dropdown-item" href="#">4</a>
+                    <a class="dropdown-item" href="#">6</a>
+                    <a class="dropdown-item" href="#">8</a>
+                    <a class="dropdown-item" href="#">16</a>
+                  </div>
+                </div>
+              </div> 
+
+              <div class="input-group">
+                  <input id="department-input-update-model" type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Departamento" disabled>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dpto</button>
+                    <div id="drop-department-update-modal" class="dropdown-menu">
+                      <a class="dropdown-item" href="#">DESI</a>
+                      <a class="dropdown-item" href="#">PTI</a>
+                      <a class="dropdown-item" href="#">MAF</a>
+                      <a class="dropdown-item" href="#">LAE</a>
+                    </div>
+                  </div>
+                </div> 
+     
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">Nombre</span>
+                    </div>
+                    <input id="nombre-input-update-model" type="text" class="form-control" placeholder="Course" aria-label="Course" aria-describedby="basic-addon1">
+                  </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button id="save-btn-update-model" type="button" class="btn btn-primary">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Eliminar materia  -->
+    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Eliminar curso</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Curso</span>
+                      </div>
+                      <input id="del-course-name-modal" type="text" class="form-control" placeholder="Course" aria-label="Course" aria-describedby="basic-addon1">
+                  </div>
+                  <button id="cofirm-btn-c" type="submit" class="btn btn-success mt-3">Confirmar</button>
+                  <button id="cancel-btn-c" type="button" class="btn btn-secondary mt-3" data-dismiss="modal">Cancelar</button>
+              </div> 
+            </div>
+          </div>
+    </div>
+
+  <!-- Dialogo de msg  -->
+  <div class="modal fade" id="modal-msg" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span id="in-msg" class="input-group-text">MSG</span>
+                      </div>
+                      <input id="input-msg-modal" type="text" class="form-control" aria-label="Course" aria-describedby="basic-addon1"
+                             disabled>
+                  </div>
+              </div> 
+            </div>
+          </div>
+    </div>    
+
+    <nav class="nav-pag" aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item" onclick="previousPage()"><a class="page-link" href="">Anterior</a></li>
+          <li class="page-item"><a id="nav-curr-page" class="page-link" href="">1</a></li>
+          <li class="page-item" onclick="nextPage()"><a class="page-link" href="">Siguiente</a></li>
+        </ul>
+    </nav>
+
+    <script>
+          function clearLocalStorage() {
+            localStorage.token = "";
+            localStorage.currUserID = "";
+            localStorage.currUserType = "";
+          }
+    </script>
+    <script src="register-course.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
