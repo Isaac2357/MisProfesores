@@ -7,20 +7,20 @@ let hCurs = document.getElementById("hCurs");
 let nombreC;
 let profID = localStorage.profID;
 let cursID = localStorage.cursID;
-let idRel = 7; // quitar, poner profid y cursid en fetchrel
+//let idRel = 7; // quitar, poner profid y cursid en fetchrel
 
 fetchRel(); //títulos
 
 function fetchRel() {
     let xhrR = new XMLHttpRequest();
-    xhrR.open("GET", `http://localhost:3000/api/relations/${idRel}`, true); //http://localhost:3000/api/relations?idCurso=1&idProfesor=32 (jala primero al prof) 
+    xhrR.open("GET", `http://localhost:3000/api/relations?idCurso=${cursID}&idProfesor=${profID}`, true); //http://localhost:3000/api/relations?idCurso=1&idProfesor=32 (jala primero al prof) 
     xhrR.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
     xhrR.send();
     xhrR.onload = function() {
-        console.log("fetchRel:",JSON.parse(xhrR.responseText), xhrR.status, xhrR.statusText, xhrR.response, JSON.parse(xhrR.response));
+        console.log("fetchRel:",JSON.parse(xhrR.responseText));
         if (xhrR.status == 200) {
-            let item = JSON.parse(xhrR.responseText);
-                //for(let item of relacion){
+            let relacion = JSON.parse(xhrR.responseText);
+                for(let item of relacion){
                     let idProf = item.idProfesor;
                     let idCurs = item.idCurso;
                     let idRela = item.rid;
@@ -29,7 +29,7 @@ function fetchRel() {
                     fetchProf(idProf);
                     fetchCurs(idCurs);
                     fetchCom(idRela); //idRel
-                //}
+                }
         }
    }
     

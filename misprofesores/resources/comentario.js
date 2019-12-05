@@ -46,7 +46,7 @@ function generateJson() {
     let puntaje = document.querySelector("input:checked").value;
     let likes = "0";
     let dislikes = "0";
-    let idUsuario = "45"; //localstorage.currUserID
+    let idUsuario = "45"; //quitar 45 y  PONER localstorage.currUserID!!!
     let idRelacion = idRel;
 
 
