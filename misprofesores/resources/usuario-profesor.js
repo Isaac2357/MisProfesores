@@ -3,9 +3,9 @@
 let container = document.getElementById("lista");
 let hNom = document.getElementById("hNom");
 let idUser = 45; //obtener desde local storage
-
 let idUserr = localStorage.curUserID; 
-fetchUsr(idUser);
+
+fetchUsr(idUser)
 
 //test
 //fetchCom(47);
