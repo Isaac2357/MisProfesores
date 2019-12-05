@@ -1,4 +1,5 @@
 "use strict"
+
 //let globalUsers = [];
 let container = document.getElementById("lista");
 let hCurs = document.getElementById("hCurs");
