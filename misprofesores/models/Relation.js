@@ -35,8 +35,11 @@ relationsSchema.statics.getRelations = function() {
                                 _id: 0 });
 }
 
-relationsSchema.statics.getRelation = function(rid){
-    return Relation.findOne({rid}); 
+relationsSchema.statics.getRelation = async function(rid){
+    return await Relation.findOne({rid}); 
+}
+relationsSchema.statics.getRelationP =  function(idProfesor){
+    return  Relation.findOne({idProfesor}); 
 }
 
 relationsSchema.statics.updateRelation = function(rid, datos){
