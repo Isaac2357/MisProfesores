@@ -15,7 +15,7 @@ function fetch() {
         console.log(xhr.status, xhr.statusText, xhr.response, JSON.parse(xhr.response));
         if (xhr.status == 200) {
             //globalUsers.push(JSON.parse(xhr.response));
-            let userHtml = JSON.parse(xhr.responseText);
+            let userHtml = JSON.parse(xhr.responseText)
             console.log(xhr.responseText)
             //let usr = xhr.response
             //let users = usr.map(user => user.nombre);
