@@ -35,6 +35,30 @@ function deleteCourse(couid, nombre) {
     input.value = nombre;
     input.disabled = true;
     console.log(couid);
+    let update = document.querySelector("#cofirm-btn-c");
+    update.onclick = () => {
+        let xhr = new XMLHttpRequest();
+                xhr.open("DELETE", `http://localhost:3000/api/courses/${couid}`);
+                xhr.setRequestHeader("x-user-token", localStorage.token);
+                xhr.send();
+                xhr.onload = function() {
+                    console.log(xhr.response);
+                    console.log(xhr.status, xhr.statusText);
+                    if (xhr.status == 200) {
+                        let res = JSON.parse(xhr.response);
+                        if (res.status != undefined) {
+                            displayMsg(res.status, "Estatus")
+                        }
+                    } else {
+                        let error = JSON.parse(xhr.response).error;
+                        if (error != undefined) {
+                            displayMsg(error, "Error");
+                        }
+                    }
+            }
+    }
+
+
 }
 
 function updateCourse(couid, nombre, departamento, creditos) {
@@ -222,10 +246,11 @@ function courseToHtml(course) {
                     <h4>${course.nombre}</h4>
                     <p >Departamento: ${course.departamento}</p>
                     <p >Creditos: ${course.creditos} </p>
+                    <p >Estatus: ${(course.estatus) ? "Activo" : "Inactivo"} </p>
                 </div>
                 <div class="media-right align-self-center">
                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit" onclick="updateCourse(${course.couid}, '${course.nombre}','${course.departamento}', '${course.creditos}')">Editar</button>
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete" onclick="deleteCourse(${course.couid},'${course.nombre}')">Eliminar</button>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete" onclick="deleteCourse(${course.couid},'${course.nombre}')">${(course.estatus) ? "Desactivar" : "Activar"}</button>
                 </div>
             </div>`;
 }

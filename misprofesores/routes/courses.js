@@ -19,7 +19,8 @@ router.route('/')
                 couid: 1,
                 nombre: 1,
                 departamento: 1,
-                creditos: 1
+                creditos: 1,
+                estatus: 1
             })
             .skip(qpage*qlimit)
             .limit(qlimit)
@@ -104,14 +105,14 @@ router.route('/:id')
         try {
             let course = await Course.findOne({couid});
             if (course) {
-                let doc = await Course.findOneAndDelete({couid});
+                let doc = await Course.findOneAndUpdate({couid}, {estatus: !course.estatus});
                 if (doc) {
-                    res.statusMessage = "Course deleted.";
-                    res.send({status: "Course created"});
+                    res.statusMessage = "Course estatus updated.";
+                    res.send({status: "Course estatus updated."});
                 } else {
                     res.status(406);
-                    res.statusMessage = "Semething went wrong, course not deleted.";
-                    res.send();
+                    res.statusMessage = "Semething went wrong, estatus not updated.";
+                    res.send({error: `Semething went wrong, estatus not updated.`});
                 }
             } else {
                 res.statusMessage = `${couid} is an invalid course id.`;
