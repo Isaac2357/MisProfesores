@@ -40,27 +40,15 @@ let userSchema = mongoose.Schema({
 });
 
 userSchema.statics.getUsers = function() {
-    return User.find({}, {favProfesores: 1,
-                            favCursos: 1,
-                            idRelacion: 1,
-                            nombre: 1,
-                            correo: 1,
-                            password: 1,
-                            tipo: 1,
-                            uid: 1,
-                            _id: 0});
+    return User.find({});
 }
 
 userSchema.statics.getUser = function(correo){
-    return User.findOne({correo}, {favProfesores: 1,
-                                    favCursos: 1,
-                                    idRelacion: 1,
-                                    nombre: 1,
-                                    correo: 1,
-                                    password: 1,
-                                    tipo: 1,
-                                    uid: 1,
-                                    _id: 0}); 
+    return User.findOne({correo}); 
+
+}
+userSchema.statics.getUseruid = function(uid){
+    return User.findOne({uid}); 
 }
 
 userSchema.statics.createUser = async function(usr){
