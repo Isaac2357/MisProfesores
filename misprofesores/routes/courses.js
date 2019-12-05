@@ -10,16 +10,32 @@ const credits = ["4", "6", "8", "16"];
 router.route('/')
 .get(auth, async (req, res) => {
     try {
+        let qpage = req.query.page;
+        let qlimit = req.query.limit || 4; // solo si page está especificado
+        console.log("qpage", qpage);
+        if (qpage != undefined) {
+            let page = await Course.find({}, {
+                _id: 0,
+                couid: 1,
+                nombre: 1,
+                departamento: 1,
+                creditos: 1
+            })
+            .skip(qpage*qlimit)
+            .limit(qlimit)
+            res.send(page);
+            return;
+        }
         let docs = await Course.getCourses();
         if (docs) {
             let mappedDocs = docs.map((course) => formatCourse(course));
             res.send(mappedDocs);
         } else {
-            res.status(500).send();
+            res.status(500).send({error: "Internal server error"});
         }
     } catch (error) {
         console.log(error);
-        res.status(400).send();
+        res.status(500).send({error: "Internal server error"});
     }
 })
 .post(auth, async (req, res) => {
@@ -34,44 +50,44 @@ router.route('/')
                             let doc = await Course.findOne({nombre: data.nombre});
                             if (doc) {
                                 res.statusMessage = `${data.nombre} already exits in the database.`;
-                                res.status(406).send();
+                                res.status(406).send({error: `${data.nombre} already exits in the database.`});
                             } else {
                                 let post = await Course.createCourse(data);
                                 console.log(post);
                                 if (post) {
                                     res.statusMessage = "Course created."
-                                    res.status(201).send();
+                                    res.status(201).send({status: "Course created"});
                                 } else {
                                     res.statusCode = 400;
-                                    res.send();
+                                    res.send({error: "Database error"});
                                 }
                             }
                         } catch (error) {
                             console.log(error);
                             res.status(500);
                             res.statusMessage = "Internal server error";
-                            res.send();
+                            res.send({error: "Internal server error."});
                         }
                     } else {
                         res.statusMessage = `${data.creditos} is an invalid number of credits.`;
-                        res.status(406).send();
+                        res.status(406).send({error: `${data.creditos} is an invalid number of credits.`});
                     }
                 } else {
                     res.statusMessage = `${data.departamento} is an invalid deparment.`;
-                    res.status(406).send();
+                    res.status(406).send({error: `${data.departamento} is an invalid deparment.`});
                 }
             } else {
                 res.statusMessage = `Invalid payload`;
-                res.status(406).send();
+                res.status(406).send({error: `Invalid payload`});
             }
             
         } else {
             res.statusMessage = `Empty payload`;
-            res.status(406).send();
+            res.status(406).send({error: `Empty payload`});
         }
     } else {  
         res.statusMessage = `User type: ${type} hasn't permissions to perform this action`;
-        res.status(403).send();
+        res.status(403).send({error: `User type: ${type} hasn't permissions to perform this action`});
     }
 })  
 
@@ -91,7 +107,7 @@ router.route('/:id')
                 let doc = await Course.findOneAndDelete({couid});
                 if (doc) {
                     res.statusMessage = "Course deleted.";
-                    res.send();
+                    res.send({status: "Course created"});
                 } else {
                     res.status(406);
                     res.statusMessage = "Semething went wrong, course not deleted.";
@@ -99,17 +115,17 @@ router.route('/:id')
                 }
             } else {
                 res.statusMessage = `${couid} is an invalid course id.`;
-                res.status(406).send();
+                res.status(406).send({error: `${couid} is an invalid course id.`});
             }
         } catch (error) {
             console.log(error);
             res.status(500);
             res.statusMessage = "Internal server error";
-            res.send();
+            res.send({error: "Internal server error"});
         }
     } else {
         res.statusMessage = `User type: ${type} hasn't permissions to perform this action`;
-        res.status(403).send();  
+        res.status(403).send({error: `User type: ${type} hasn't permissions to perform this action`});  
     }
 
 })
@@ -144,43 +160,43 @@ router.route('/:id')
                         if (data.departamento != undefined && !departments.includes(data.departamento)) {
                             res.status(406);
                             res.statusMessage = `Department type: ${data.departamento} is invalid.`
-                            res.send();
+                            res.send({error: `Department type: ${data.departamento} is invalid.`});
                         } else if (data.creditos != undefined && !credits.includes(data.creditos)){
                             res.status(406);
                             res.statusMessage = `${data.creditos} is an invalid number of credits.`
-                            res.send();
+                            res.send({error: `${data.creditos} is an invalid number of credits.`});
                         } else {
                             let doc = await Course.updateCourse(couid, data);
                             if (doc) {
                                 res.statusMessage = "Course updated"
-                                res.status(200).send()
+                                res.status(200).send({status: "Course updated"})
                             } else {
-                                res.status(500).send();
+                                res.status(500).send({error: "Internal server error."});
                             }
                         }
                     } else {
                         res.status(406);
                         res.statusMessage = "Invalid payload."
-                        res.send();
+                        res.send({error: "Invalid payload."});
                     }
                 } else {
                     res.status(406);
                     res.statusMessage = "Empty payload."
-                    res.send();
+                    res.send({error: "Emmpty payload"});
                 }
             } else {
                 res.statusMessage = `${couid} is an invalid course id.`;
-                res.status(406).send();
+                res.status(406).send({error: `${couid} is an invalid course id.`});
             }
         } catch (error) {
             console.log(error);
             res.status(500);
             res.statusMessage = "Internal server error";
-            res.send();
+            res.send({error: "Internal server error"});
         }
     } else {
         res.statusMessage = `User type: ${type} hasn't permissions to perform this action`;
-        res.status(403).send();  
+        res.status(403).send({error: `User type: ${type} hasn't permissions to perform this action`});  
     }
 
 })
@@ -201,11 +217,11 @@ router.route('/:id')
             res.send(course);
         } else {
             res.statusMessage = `${couid} is an invalid course id.`;
-            res.status(406).send();
+            res.status(406).send(`${couid} is an invalid course id.`);
         }
     } catch (error) {
         console.log(error);
-        res.status(400).send();
+        res.status(400).send({error: "Internal server error"});
     }
 });
 

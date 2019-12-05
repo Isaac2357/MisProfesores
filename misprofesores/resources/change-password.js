@@ -43,30 +43,67 @@ changePassBtn.addEventListener("click", (e) => getId(e))
  function sendEmail(event) {
     console.log("Send email");
     event.preventDefault();
-    tokenEmail = parseInt((Math.random()*8999 + 1000) + ""); //Create random number (token) [1000,9999]
-    console.log(tokenEmail);
-    
-    /**
-     * We will need to use another API for send email
-     */
-    email = inputEmail.value;
+    let xhr = new XMLHttpRequest();
 
-    emailForm.style.display = "none";
-    verForm.style.display = "block";
+    xhr.open("GET", `http://localhost:3000/api/password/token/${inputEmail.value}`);
+    xhr.send();
+    xhr.onload = function() {
+        console.log(xhr.status, xhr.statusText);
+        let res = JSON.parse(xhr.response);
+        if (xhr.status == 200) {
+            sendEmailFun(JSON.parse(xhr.response).token);
+        } else {
+            displayMsg(`${res.error}`, "Error")
+        }
+   }
+ }
+
+ function sendEmailFun(tokenEmail) {
+    let xhr = new XMLHttpRequest();
+    /** The endpoint will change to /${email} when we have our backend.*/
+    xhr.open("POST", `http://localhost:3000/api/password/sendemail`);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    let payload = {correo: inputEmail.value, code: tokenEmail};
+    console.log(payload);
+    xhr.send(JSON.stringify(payload));
+    xhr.onload = function() {
+        console.log(xhr.status, xhr.statusText);
+        let res = JSON.parse(xhr.response);
+        if (xhr.status == 200) {
+            displayMsg(`${res.status}`, "Estatus")
+            email = inputEmail.value;
+            emailForm.style.display = "none";
+            verForm.style.display = "block";
+        } else {
+            displayMsg(`${res.error}`, "Error")
+        }
+   }
  }
 
  function enableCodeBtn(event) {
     event.preventDefault();
-    verBtn.disabled = inputCode.value.length == 0 || inputCode.value.length > 4 || !inputCode.validity.valid;
+    verBtn.disabled = inputCode.value.length == 0
  }
 
  function validateCode(event) {
-    event.preventDefault();
-    if (tokenEmail == parseInt(inputCode.value)) {
-        passForm.style.display = "block";
-        verForm.style.display = "none";
-    } else {
-        alert("El código proporcionado es incorrecto. Intente de nuevo.")
+     //lamada a back
+     event.preventDefault();
+     let xhr = new XMLHttpRequest();
+     /** The endpoint will change to /${email} when we have our backend.*/
+     xhr.open("POST", `http://localhost:3000/api/password/token/${inputEmail.value}`);
+     xhr.setRequestHeader("Content-Type", "application/json");
+     let payload = {token: inputCode.value};
+     console.log(payload);
+     xhr.send(JSON.stringify(payload));
+     xhr.onload = function() {
+         console.log(xhr.status, xhr.statusText);
+         let res = JSON.parse(xhr.response);
+         if (xhr.status == 200) {
+             passForm.style.display = "block";
+             verForm.style.display = "none";
+         } else {
+            displayMsg(`${res.error}`, "Error")
+         }
     }
  }
 
@@ -80,18 +117,18 @@ changePassBtn.addEventListener("click", (e) => getId(e))
      console.log("Get id");
     let xhr = new XMLHttpRequest();
     /** The endpoint will change to /${email} when we have our backend.*/
-    xhr.open("GET", `http://localhost:3000/usuarios?correo=${inputEmail.value}`);
-    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.open("GET", `http://localhost:3000/api/password/validate/${inputEmail.value}`);
     xhr.send();
     xhr.onload = function() {
+        console.log("status: ", xhr.status, xhr.statusText, xhr.response);
         if (xhr.status == 200) {
-            user = JSON.parse(xhr.response)[0];
-            console.log(user);
-            if (user == undefined) {
-                alert('El correo proporcionado no corresponde al de ningún usuario.')
-            } else {
+            let res = JSON.parse(xhr.response);
+            console.log("response", res.valid, typeof res.valid);
+            if (res.valid) {
                 changePassword(event)
             }
+        } else {
+            displayMsg(`${res.error}`, "Error")
         }
     }
  }
@@ -102,22 +139,35 @@ changePassBtn.addEventListener("click", (e) => getId(e))
         console.log("Update pass");
         let xhr = new XMLHttpRequest();
         /** The endpoint will change to /${email} when we have our backend.*/
-        xhr.open("PUT", `http://localhost:3000/usuarios/${user.id}`);
+        xhr.open("PUT", `http://localhost:3000/api/password/update/${inputEmail.value}`);
         xhr.setRequestHeader("Content-Type", "application/json");
-        user["contraseña"] = inputConPass.value;
-        console.log(user);
-        xhr.send(JSON.stringify(user));
+        let payload = {password: inputPass.value};
+        console.log(payload);
+        xhr.send(JSON.stringify(payload));
         xhr.onload = function() {
             console.log(xhr.status, xhr.statusText);
+            let res = JSON.parse(xhr.response);
             if (xhr.status == 200) {
                 window.open('login.html', '_self',false) 
-                alert('La contraseña se actualizo correctamente.')
+                displayMsg(`${res.status}`, "Estatus")
             } else {
-                alert('Ha ocurrido un error al actualizar su contraseña.')
+                displayMsg(`${res.error}`, "Error")
             }
        }
      } else {
-         alert("Contraseñas no coinciden.");
-     }
+        displayMsg(`${res.error}`, "Error")
+    }
  }
+
+function displayMsg(msg, title) {
+    let modalError = document.getElementById("modal-msg");
+    modalError.querySelector(".modal-title").innerText = title;
+    modalError.querySelector("#input-msg-modal").value = msg;
+    $('#modal-msg').modal('show');
+}
+
+function closeMsg() {
+    $('#modal-msg').modal('hide');
+}
+
  

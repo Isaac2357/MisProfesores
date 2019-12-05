@@ -25,6 +25,10 @@ let userSchema = mongoose.Schema({
         required: true,
         enum: ["ADMIN", "PROF", "ALUMN"]
     },
+    imagen:{
+        type: String,
+        required: true
+    },
     favProfesores:[{
         type: Number,
         required: true
@@ -47,6 +51,7 @@ userSchema.statics.getUsers = function() {
                             correo: 1,
                             password: 1,
                             tipo: 1,
+                            imagen: 1,
                             uid: 1,
                             _id: 0});
 }
@@ -60,6 +65,7 @@ userSchema.statics.getUser = function(correo){
                                     password: 1,
                                     tipo: 1,
                                     uid: 1,
+                                    imagen: 1,
                                     _id: 0}); 
 }
 

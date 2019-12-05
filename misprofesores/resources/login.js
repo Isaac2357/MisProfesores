@@ -17,36 +17,39 @@ function enableLoginBtn() {
 
 function login(event) {
     console.log("Login");
-    //
     let xhr = new XMLHttpRequest();
-    /** The endpoint will change to /${email} when we have our backend,
-     * or we could user another endpoint /login and send the email and pass.
-     * Json-server doesn´t allow us to add more than 5 fields in the db,
-     * that's why we don´t use it.
-    */
-    xhr.open("GET", `http://localhost:3000/usuarios?correo=${inputEmail.value}`);
+    let correo = inputEmail.value;
+    let password = inputPass.value;
+    console.log(correo, password);
+    xhr.open("POST", `http://localhost:3000/api/login`);
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send();
+    xhr.send(JSON.stringify({correo, password}));
     xhr.onload = function() {
-        console.log(xhr.status, xhr.statusText);
+        console.log("status: ", xhr.status, xhr.statusText, xhr.response);
         if (xhr.status == 200) {
             let response = JSON.parse(xhr.response);
+            localStorage.token = response.token;
+            localStorage.currUserID = response.uid;
+            localStorage.currUserType = response.tipo;
+            localStorage.userEmail = inputEmail.value;
             console.log(response);
-            if (response.length > 0) {
-                if (response[0].correo == inputEmail.value && response[0]["contraseña"] == inputPass.value) {
-                    window.open('PantallaPrincipal.html', '_self',false)
-                    localStorage.token = "asdfgh123"    // Hardcoded token will change with the backend.
-                    localStorage.usermail  = inputEmail.value;
-                    localStorage.usertype = reponse[0].tipo;
-                } else {
-                    alert('Contraseña incorrecta.')
-                }
-            } else {
-                alert('Usuario no registrado.')
-            }
-            
+            window.open('profesores.html', '_self',false)  
         } else {
-            alert('Ocurrió un error.')
+            let error = JSON.parse(xhr.response).error;
+            if (error != undefined) {
+                displayMsg(error, "Error");
+            }
         }
     }
+}
+
+function displayMsg(msg, title) {
+    let modalError = document.getElementById("modal-msg");
+    modalError.querySelector(".modal-title").innerText = title;
+    modalError.querySelector("#input-msg-modal").value = msg;
+    $('#modal-msg').modal('show');
+}
+
+function closeMsg() {
+    $('#modal-msg').modal('hide');
 }

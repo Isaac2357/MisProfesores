@@ -4,6 +4,7 @@ function auth(req, res, next) {
     let token = req.header('x-user-token');
     console.log(token);
     if (token == undefined) {
+
         res.status(403).send({
             error: "Missing token."
         })
@@ -20,6 +21,7 @@ function auth(req, res, next) {
         }
         if (err) {
             console.log("Error", err);
+            return
         }
 
         res.status(403).send({
