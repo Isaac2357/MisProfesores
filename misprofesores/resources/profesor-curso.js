@@ -27,7 +27,7 @@ function fetchRel() {
                     console.log("id:",idProf,idCurs);
                     fetchProf(idProf);
                     fetchCurs(idCurs);
-                    fetchCom(5); //idRel
+                    fetchCom(2); //idRel
                 }
         }
    }

@@ -7,6 +7,7 @@ const {auth} = require("../middlewares/auth");
 router.route('/')
 .get(auth, async (req, res) => {
     let relacion = req.query.idRelacion;
+    let usuario = req.query.idUsuario;
     if (relacion != undefined) {
         try {
             let docs = await Comment.find({idRelacion: relacion}, { puntaje: 1, 
@@ -27,6 +28,26 @@ router.route('/')
             res.status(500).send();
         }
     } 
+    else if (usuario != undefined) {
+        try {
+            let docs = await Comment.find({idUsuario: usuario}, { puntaje: 1, 
+                                                                    comentario: "",
+                                                                    likes: 1,
+                                                                    dislikes: 1,
+                                                                    idUsuario: 1,
+                                                                    idRelacion: 1,
+                                                                    comid: 1, 
+                                                                    _id: 0 });
+            if (docs) {
+                res.send(docs);
+            } else {
+                res.status(406).send({error: "Error comments not found."});
+            }
+        } catch (error) {
+            console.log(error);
+            res.status(500).send();
+        }
+    }  
     try {
         let docs = await Comment.getComments();
         if (docs) {
@@ -40,21 +61,22 @@ router.route('/')
         res.status(400).send();
     }
 })
-
-.get(auth, async (req, res) => {
-    let profesor = req.query.idProfesor;
-    if (profesor != undefined) {
+/* .get(auth, async (req, res) => {
+    let usuario = req.query.idUsuario;
+    if (usuario != undefined) {
         try {
-            let docs = await Relation.find({idProfesor: profesor}, { idProfesor: 1, 
-                                                                    idCurso: 1,
-                                                                    periodo: 1,
-                                                                    year: 1,
-                                                                    rid: 1, 
+            let docs = await Relation.find({idUsuario: usuario}, { puntaje: 1, 
+                                                                    comentario: "",
+                                                                    likes: 1,
+                                                                    dislikes: 1,
+                                                                    idUsuario: 1,
+                                                                    idRelacion: 1,
+                                                                    comid: 1, 
                                                                     _id: 0 });
             if (docs) {
                 res.send(docs);
             } else {
-                res.status(406).send({error: "Error relations not found."});
+                res.status(406).send({error: "Error comments not found."});
             }
         } catch (error) {
             console.log(error);
@@ -63,7 +85,7 @@ router.route('/')
     }   
     try {
 
-        let docs = await Relation.getRelations();
+        let docs = await Comment.getComments();
         if (docs) {
             res.send(docs);
         } else {
@@ -73,7 +95,8 @@ router.route('/')
         console.log(error);
         res.status(400).send();
     }
-})
+}) */
+
 .post(auth, async (req, res) => {
     res.send("comments post");
 });
