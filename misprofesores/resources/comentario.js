@@ -14,9 +14,10 @@ function postRes(e){
     console.log("submit");
     e.preventDefault();
     let xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:3000/resenas');
+    xhr.open('POST', 'http://localhost:3000/api/comments');
     //console.log(localStorage.token);
     xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
     //xhr.setRequestHeader('x-auth', localStorage.token);
     let comJson = generateJson();
     console.log(comJson);
@@ -48,7 +49,7 @@ function generateJson() {
     let idRelacion = idRel;
 
 
-    let com = { id,
+    let com = { comid,
                  puntaje,
                  comentario,
                  puntaje,
@@ -63,7 +64,8 @@ function generateJson() {
 
 function fetchRel(idRel) {
     let xhrR = new XMLHttpRequest();
-    xhrR.open("GET", `http://localhost:3000/relaciones?id=${idRel}`, true);
+    xhrR.open("GET", `http://localhost:3000/api/relationsrelaciones?id=${idRel}`, true);
+    xhrR.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
     xhrR.send();
     xhrR.onload = function() {
         console.log("fetchRel:",JSON.parse(xhrR.responseText), xhrR.status, xhrR.statusText, xhrR.response, JSON.parse(xhrR.response));
@@ -83,7 +85,8 @@ function fetchRel(idRel) {
 
 function fetchProf(id){
     let xhrP = new XMLHttpRequest();
-    xhrP.open("GET", `http://localhost:3000/profesores?id=${id}`, true);
+    xhrP.open("GET", `http://localhost:3000/api/professors/${id}`, true);
+    xhrP.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
     xhrP.send();
     xhrP.onload = function() {
         console.log("fetchProf:",JSON.parse(xhrP.responseText), xhrP.status, xhrP.statusText, xhrP.response, JSON.parse(xhrP.response));
@@ -91,7 +94,7 @@ function fetchProf(id){
             let profesor = JSON.parse(xhrP.responseText);
                 for(let itemP of profesor){
                     let nombreP = itemP.nombre;
-                    let deptoP = itemP.departamento;
+                    let deptoP = itemP.correo;
                     hProf.innerHTML = `<i class="fa fa-user" aria-hidden="true"></i>${nombreP}<small>${deptoP}</small>`
                     console.log(nombreP, deptoP);
                 }
@@ -101,7 +104,8 @@ function fetchProf(id){
 
 function fetchCurs(id){
 let xhrC = new XMLHttpRequest();
-    xhrC.open("GET", `http://localhost:3000/cursos?id=${id}`, true);
+    xhrC.open("GET", `http://localhost:3000/api/courses/${id}`, true);
+    xhrC.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
     xhrC.send();
     xhrC.onload = function() {
         console.log("fetchCurs:",JSON.parse(xhrC.responseText), xhrC.status, xhrC.statusText, xhrC.response, JSON.parse(xhrC.response));

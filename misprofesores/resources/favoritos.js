@@ -6,6 +6,7 @@ let idUser = 45;
 fetchUsr(idUser)
 
 
+
 /* contProf.innerHTML = "";
 contCurs.innerHTML = ""; */
 
@@ -56,7 +57,7 @@ function fetchProf(id) {
         
                             <h3 class="card-title">${item.nombre}</h3>
                             <p class="card-text">${item.correo}</p>
-                            <a id="${item.id}" href="#" class="stretched-link" onclick="openProf('${item.id}');"></a>
+                            <a id="${item.uid}" href="#" class="stretched-link" onclick="openProf('${item.uid}');"></a>
                     </div>
         
                     <div class="card-footer text-muted">
@@ -89,7 +90,7 @@ function fetchCurs(id) {
     xhr.onload = function() {
         //console.log(xhr.status, xhr.statusText, xhr.response, JSON.parse(xhr.response));
         if (xhr.status == 200) {
-            
+
             //globalUsers.push(JSON.parse(xhr.response));
             let item = JSON.parse(xhr.responseText);
             //let usr = xhr.response
@@ -103,7 +104,7 @@ function fetchCurs(id) {
         
                             <h3 class="card-title">${item.nombre}</h3>
                             <p class="card-text">${item.departamento}</p>
-                            <a id="${item.id}" href="#" class="stretched-link" onclick="openCurs('${item.id}');"></a>
+                            <a id="${item.couid}" href="#" class="stretched-link" onclick="openCurs('${item.couid}');"></a>
                     </div>
         
                     <div class="card-footer text-muted">
