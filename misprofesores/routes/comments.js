@@ -97,9 +97,30 @@ router.route('/')
     }
 }) */
 
-.post(auth, async (req, res) => {
-    res.send("comments post");
-});
+.post(auth, async (req, res) => { //NO LO SUPE HACER
+    let data = req.body;
+        if (data != undefined && !isEmpty(data)) {
+            try {
+                let post = await Comment.createComment(data);
+                    console.log(post);
+                    if (post) {
+                        res.statusMessage = "Comment created."
+                        res.status(201).send();
+                    } else {
+                        res.statusCode = 400;
+                        res.send();
+                    }
+            } catch (error) {
+                console.log(error);
+                res.status(500);
+                res.statusMessage = "Internal server error";
+                res.send();
+            }
+        } else {
+            res.statusMessage = `Empty payload`;
+            res.status(406).send();
+        }
+});  
 
 router.route("/:id")
 .delete(auth, async (req, res) => {
@@ -155,6 +176,14 @@ function formatComment(comment) {
         }
     }
     return c;
+}
+
+function isEmpty(payload) {
+    for(let key in payload) {
+        if(payload.hasOwnProperty(key))
+            return false;
+    }
+    return true;  
 }
 
 module.exports = router;

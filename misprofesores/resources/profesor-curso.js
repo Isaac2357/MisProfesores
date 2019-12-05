@@ -7,28 +7,29 @@ let hCurs = document.getElementById("hCurs");
 let nombreC;
 let profID = localStorage.profID;
 let cursID = localStorage.cursID;
-let idRel = 2;
+let idRel = 7; // quitar, poner profid y cursid en fetchrel
+
 fetchRel(); //títulos
 
 function fetchRel() {
     let xhrR = new XMLHttpRequest();
-    xhrR.open("GET", `http://localhost:3000/api/relations?idProfesor=${profID}&idCurso=${cursID}`, true);//http://localhost:3000/relaciones?id=${idRel}`
+    xhrR.open("GET", `http://localhost:3000/api/relations/${idRel}`, true); //http://localhost:3000/api/relations?idCurso=1&idProfesor=32 (jala primero al prof) 
     xhrR.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
     xhrR.send();
     xhrR.onload = function() {
         console.log("fetchRel:",JSON.parse(xhrR.responseText), xhrR.status, xhrR.statusText, xhrR.response, JSON.parse(xhrR.response));
         if (xhrR.status == 200) {
-            let relacion = JSON.parse(xhrR.responseText);
-                for(let item of relacion){
+            let item = JSON.parse(xhrR.responseText);
+                //for(let item of relacion){
                     let idProf = item.idProfesor;
                     let idCurs = item.idCurso;
-                    let idRel = item.id;
-                    localStorage.relID = item.id;
+                    let idRela = item.rid;
+                    localStorage.relID = item.rid;
                     console.log("id:",idProf,idCurs);
                     fetchProf(idProf);
                     fetchCurs(idCurs);
-                    fetchCom(2); //idRel
-                }
+                    fetchCom(idRela); //idRel
+                //}
         }
    }
     
@@ -73,7 +74,6 @@ let xhrC = new XMLHttpRequest();
    }
 }
 
-
 function fetchCom(id) {
     container.innerHTML = "";
     let xhr = new XMLHttpRequest();
@@ -107,7 +107,6 @@ function fetchCom(id) {
         }
    }
 } 
-
 
 
 //_____________json server

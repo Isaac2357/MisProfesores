@@ -35,7 +35,7 @@ router.route('/')
             res.status(500).send();
         }
     }
-    
+
     else if (curso != undefined) {
         try {
             let docs = await Relation.find({idCurso: curso}, { idProfesor: 1, 
@@ -157,5 +157,48 @@ function isEmpty(payload) {
             return false;
     }
     return true;  
+}
+
+
+router.route('/:id')
+.get(auth, async (req, res) => {
+    let rid = req.params.id;
+    console.log(parseInt(rid));
+    if (isNaN(parseInt(rid))) {
+        res.statusMessage = `Id must be numeric`;
+        res.status(406).send();
+        return;
+    }
+    try {
+        let doc = await Relation.getRelation(rid);
+        console.log(doc);
+        if (doc) {
+            let relation = formatRelation(doc);
+            console.log(relation);
+            res.send(relation);
+        } else {
+            res.statusMessage = `${rid} is an invalid relation id.`;
+            res.status(406).send();
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(400).send();
+    }
+});
+
+function formatRelation(relation) {
+    let c = {};
+    const fields = ["rid",
+                    "idProfesor",
+                    "idCurso",
+                    "periodo",
+                    "year"];
+                    
+    for (let key in relation) {
+        if (fields.includes(key)) {
+            c[key] = relation[key];
+        }
+    }
+    return c;
 }
 module.exports = router;
