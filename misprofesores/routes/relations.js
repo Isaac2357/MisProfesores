@@ -16,6 +16,7 @@ const fields = ["rid",
 router.route('/')
 .get(auth, async (req, res) => {
     let profesor = req.query.idProfesor;
+    let curso = req.query.idCurso;
     if (profesor != undefined) {
         try {
             let docs = await Relation.find({idProfesor: profesor}, { idProfesor: 1, 
@@ -34,8 +35,8 @@ router.route('/')
             res.status(500).send();
         }
     }
-    let curso = req.query.idCurso;
-    if (curso != undefined) {
+    
+    else if (curso != undefined) {
         try {
             let docs = await Relation.find({idCurso: curso}, { idProfesor: 1, 
                                                                     idCurso: 1,
@@ -66,7 +67,6 @@ router.route('/')
         res.status(400).send();
     }
 })
-
 .post(auth, async (req, res) => {
     let type = req.tipo;
     if (type != undefined && type == "ADMIN") {
