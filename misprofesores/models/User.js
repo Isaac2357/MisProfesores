@@ -25,6 +25,10 @@ let userSchema = mongoose.Schema({
         required: true,
         enum: ["ADMIN", "PROF", "ALUMN"]
     },
+    imagen:{
+        type: String,
+        required: true
+    },
     favProfesores:[{
         type: Number,
         required: true
@@ -40,6 +44,29 @@ let userSchema = mongoose.Schema({
 });
 
 userSchema.statics.getUsers = function() {
+    return User.find({}, {favProfesores: 1,
+                            favCursos: 1,
+                            idRelacion: 1,
+                            nombre: 1,
+                            correo: 1,
+                            password: 1,
+                            tipo: 1,
+                            imagen: 1,
+                            uid: 1,
+                            _id: 0});
+}
+
+userSchema.statics.getUser = function(correo){
+    return User.findOne({correo}, {favProfesores: 1,
+                                    favCursos: 1,
+                                    idRelacion: 1,
+                                    nombre: 1,
+                                    correo: 1,
+                                    password: 1,
+                                    tipo: 1,
+                                    uid: 1,
+                                    imagen: 1,
+                                    _id: 0}); 
     return User.find({});
 }
 

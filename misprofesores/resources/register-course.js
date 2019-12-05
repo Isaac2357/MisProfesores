@@ -1,48 +1,231 @@
 "use strict"
-/**
- * Register course
- */
 
- let registerFormC = document.querySelector("form");
- let ins =registerFormC.querySelectorAll("input");
- let name = ins[0];
- let department = ins[1];
- let credits = ins[2];
- let registerCourseBtn = registerFormC.querySelector("button");
+let drop = document.querySelector("#drop-credits");
+let lista = document.querySelector("#lista");
+let searchBtn = document.querySelector("#search-courses-btn");
+let addBtn = document.querySelector("#add-courses-btn");
+let localData;
+let currPage = document.getElementById("nav-curr-page");
 
- registerFormC.addEventListener("keyup", (e) => enableRegisterCourseBtn(e));
- registerCourseBtn.addEventListener("click", (e) => registerCourse(e))
+displayCourses();
 
- function enableRegisterCourseBtn(event) {
-     console.log("Register c");
-     registerCourseBtn.disabled = name.value.length == 0
-                                    || department.value.length == 0
-                                    || credits.value == 0;
- }
+addBtn.onclick = addCourse;
+searchBtn.onclick = searchCourses;
 
- function registerCourse(event) {
-     console.log("Register course");
-     event.preventDefault();
-     let c = parseInt(credits.value);
-     if (c < 4 || c > 16) {
-         alert('Número de creditos inválidos.')
-     } else {
-         let newCourse = {
-            nombre: name.value,
-            departamento: department.value,
-            creditos: parseInt(credits.value)
-         };
-         console.log(newCourse);
-         let xhr = new XMLHttpRequest();
-         xhr.open("POST", `http://localhost:3000/cursos`);
-         xhr.setRequestHeader("Content-Type", "application/json");
-         xhr.send(JSON.stringify(newCourse));
-         xhr.onload = function() {
-             if (xhr.status == 201) {
-                alert("Curso registrado correctamente.");
-                location.reload();
-             }
-         }
-     }
- }
- 
+function displayCourses() {
+    let page = parseInt(currPage.innerText) - 1;
+    console.log(page);
+    let xhr = new XMLHttpRequest();
+        /** The endpoint will change to /${email} when we have our backend.*/
+        xhr.open("GET", `http://localhost:3000/api/courses?page=${page}`);
+        xhr.setRequestHeader("x-user-token", localStorage.token);
+        xhr.send();
+        xhr.onload = function() {
+            console.log(xhr.response);
+            console.log(xhr.status, xhr.statusText);
+            let docs = JSON.parse(xhr.response);
+            let html = docs.map((c) => courseToHtml(c)).join("");
+            lista.innerHTML =  html;
+            localData = docs;
+       }
+}
+
+function deleteCourse(couid, nombre) {
+    let input = document.querySelector("#del-course-name-modal");
+    input.value = nombre;
+    input.disabled = true;
+    console.log(couid);
+}
+
+function updateCourse(couid, nombre, departamento, creditos) {
+    let saveBtn = document.querySelector("#save-btn-update-model");
+    let nombreIn = document.querySelector("#nombre-input-update-model");
+    let departamentoIn = document.querySelector("#department-input-update-model");
+    let creditosIn = document.querySelector("#credits-input-update-model");
+    let dropD = document.querySelector("#drop-department-update-modal");
+    let dropC = document.querySelector("#drop-credits-update-modal");
+
+    //load data
+    nombreIn.value = nombre;
+    departamentoIn.value = departamento;
+    creditosIn.value = creditos;
+
+    //listeners for the modal
+    saveBtn.onclick = () => {
+        let nombre = nombreIn.value;
+        let departamento = departamentoIn.value;
+        let creditos = creditosIn.value;
+        console.log(nombre, departamento, creditos);
+        if (nombre.length == 0) {
+            displayMsg("Error", "Nombre de curso no capturado.")
+        } else {
+            console.log(nombre, departamento, creditos);
+            let xhr = new XMLHttpRequest();
+            xhr.open("PUT", `http://localhost:3000/api/courses/${couid}`);
+            xhr.setRequestHeader("x-user-token", localStorage.token);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            console.log({nombre, departamento, creditos});
+            xhr.send(JSON.stringify({nombre, departamento, creditos}));
+            xhr.onload = function() {
+                console.log(xhr.response);
+                console.log(xhr.status, xhr.statusText);
+                if (xhr.status == 200) {
+                    let res = JSON.parse(xhr.response);
+                    if (res.status != undefined) {
+                        displayMsg(res.status, "Estatus")
+                    }
+                } else {
+                    let error = JSON.parse(xhr.response).error;
+                    if (error != undefined) {
+                        displayMsg(error, "Error");
+                    }
+                }
+           }
+        }       
+    }
+
+    dropD.onclick = () => {
+        departamentoIn.value = event.target.innerText;
+    }
+
+    dropC.onclick = () => {
+        creditosIn.value = event.target.innerText;
+    }
+    
+}
+
+function addCourse() {
+    let saveBtn = document.querySelector("#save-btn-add-modal");
+    let nombreIn = document.querySelector("#nombre-input-add-model");
+    let departamentoIn = document.querySelector("#department-input-add-modal");
+    let creditosIn = document.querySelector("#credits-input-add-modal");
+    let dropD = document.querySelector("#drop-department-add-modal");
+    let dropC = document.querySelector("#drop-credits-add-modal");
+
+    //listeners for the modal
+    saveBtn.onclick = () => {
+        let nombre = nombreIn.value;
+        let departamento = departamentoIn.value;
+        let creditos = creditosIn.value;
+        console.log(nombre, departamento, creditos);
+        if (nombre.length == 0) {
+            displayMsg("Error", "Nombre de curso no capturado.")
+        } else {
+            console.log(nombre, departamento, creditos);
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", `http://localhost:3000/api/courses`);
+            xhr.setRequestHeader("x-user-token", localStorage.token);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            console.log({nombre, departamento, creditos});
+            xhr.send(JSON.stringify({nombre, departamento, creditos}));
+            xhr.onload = function() {
+                console.log(xhr.response);
+                console.log(xhr.status, xhr.statusText);
+                if (xhr.status == 201) {
+                    let res = JSON.parse(xhr.response);
+                    if (res.status != undefined) {
+                        displayMsg(res.status, "Estatus");
+                        location.reload;
+                    }
+                } else {
+                    let error = JSON.parse(xhr.response).error;
+                    if (error != undefined) {
+                        displayMsg(error, "Error");
+                    }
+                }
+           }
+        }
+    }
+    dropD.onclick = () => {
+        departamentoIn.value = event.target.innerText;
+    }
+
+    dropC.onclick = () => {
+        creditosIn.value = event.target.innerText;
+    }
+    
+}
+
+function previousPage() {
+    event.preventDefault();
+    let page = parseInt(currPage.innerText) - 2;
+    if (page < 0) {
+        return false;
+    }
+    let xhr = new XMLHttpRequest();
+        xhr.open("GET", `http://localhost:3000/api/courses?page=${page}`);
+        xhr.setRequestHeader("x-user-token", localStorage.token);
+        xhr.send();
+        xhr.onload = function() {
+            console.log(xhr.response);
+            console.log(xhr.status, xhr.statusText);
+            if (xhr.status == 200) {
+                let docs = JSON.parse(xhr.response);
+                let html = docs.map((c) => courseToHtml(c)).join("");
+                lista.innerHTML =  html;
+                localData = docs;
+                currPage.innerText = page+1;
+            } else {
+                let error = JSON.parse(xhr.response).error;
+                if (error) {
+                    displayMsg(error, "Error");
+                }
+            }
+       }
+}
+
+function nextPage() {
+    event.preventDefault();
+    let page = parseInt(currPage.innerText);
+    console.log(page);
+    let xhr = new XMLHttpRequest();
+        xhr.open("GET", `http://localhost:3000/api/courses?page=${page}`);
+        xhr.setRequestHeader("x-user-token", localStorage.token);
+        xhr.send();
+        xhr.onload = function() {
+            console.log(xhr.response);
+            console.log(xhr.status, xhr.statusText);
+            if (xhr.status == 200) {
+                let docs = JSON.parse(xhr.response);
+                let html = docs.map((c) => courseToHtml(c)).join("");
+                lista.innerHTML =  html;
+                localData = docs;
+                currPage.innerText = page + 1;
+            } else {
+                let error = JSON.parse(xhr.response).error;
+                if (error) {
+                    displayMsg(error, "Error");
+                }
+            }
+       }
+}
+
+function searchCourses() {
+    console.log("Search");
+    console.log(localData);
+}
+
+function displayMsg(msg, title) {
+    let modalError = document.getElementById("modal-msg");
+    modalError.querySelector(".modal-title").innerText = title;
+    modalError.querySelector("#input-msg-modal").value = msg;
+    $('#modal-msg').modal('show');
+}
+
+function closeMsg() {
+    $('#modal-msg').modal('hide');
+}
+
+function courseToHtml(course) {
+    return `<div class="media col-8 mt-2">
+                <div class="media-body">
+                    <h4>${course.nombre}</h4>
+                    <p >Departamento: ${course.departamento}</p>
+                    <p >Creditos: ${course.creditos} </p>
+                </div>
+                <div class="media-right align-self-center">
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit" onclick="updateCourse(${course.couid}, '${course.nombre}','${course.departamento}', '${course.creditos}')">Editar</button>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete" onclick="deleteCourse(${course.couid},'${course.nombre}')">Eliminar</button>
+                </div>
+            </div>`;
+}
