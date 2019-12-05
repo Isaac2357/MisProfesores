@@ -8,6 +8,29 @@ const types = ["ADMIN", "PROF", "ALUMN"];
 
 router.route('/')
 .get( auth, async (req, res) => {
+    let id = req.query.uid;
+    if (id != undefined) {
+        try {
+            let docs = await User.find({uid: id}, { favProfesores: 1, 
+                                                    favCursos: "",
+                                                    idRelacion: 1,
+                                                    nombre: 1,
+                                                    correo: 1,
+                                                    password: 1,
+                                                    tipo: 1,
+                                                    uid: 1, 
+                                                    _id: 0 });
+            if (docs) {
+                res.send(docs);
+            } else {
+                res.status(406).send({error: "Error user not found."});
+            }
+        } catch (error) {
+            console.log(error);
+            res.status(500).send();
+        }
+    } 
+
     try {
         let usrs = await User.getUsers();
         if (usrs != null) {
@@ -224,6 +247,9 @@ router.route('/:id')
     }
 });
 
+
+
+
 function isValidUser(user) {
     if (user != null) {
         let validFields = 0;
@@ -257,6 +283,28 @@ function isValidUpdate(user) {
         return true
     }
     return false;
+}
+
+router.route('/:id')
+
+function formatUser(user) {
+    let c = {};
+    const fields = ["favProfesores",
+                    "favCursos",
+                    "idRelacion",
+                    "nombre",
+                    "correo",
+                    "password",
+                    "tipo",
+                    "imagen",
+                    "uid"];
+                    
+    for (let key in user) {
+        if (fields.includes(key)) {
+            c[key] = user[key];
+        }
+    }
+    return c;
 }
 
 module.exports = router
