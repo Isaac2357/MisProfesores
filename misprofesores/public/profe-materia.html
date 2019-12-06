@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<style>
+ 
+        .container {
+        background-color: white;
+        border-radius: 6px;
+        padding: 30px;
+    }
+    .my-custom-scrollbar {
+position: relative;
+height: 200px;
+overflow: auto;
+}
+.table-wrapper-scroll-y {
+display: block;
+}
+
+</style>
+<body>
+    <!--Navigation bar-->
+    <div id="nav-placeholder"></div>
+
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("nav.html");
+        });
+    </script>
+    <!--end of Navigation bar-->
+    <div class="container">
+
+            <button id="alumnoir"><a href="editarAlumno.html">Alumnos</a> </button>
+            <button id="registroProfeir"><a href="profe-materia.html"> Registro Profe-Curso</a></button>
+    
+    
+           <!--PROFESORES-->     
+       <h1 class="h2 text-center my-3">Profesor-Curso</h1>
+      Busqueda por idMateria: <select id="BusquedaProfesor" name="profesor" onchange="filtrarmateria()" >
+            <option>o</option>
+            <option>p</option>
+    
+        </select>
+    
+       <div class="form-group">
+        <div class="tab tab-1">
+                <button class="btn" id="botonusuarios">Mostrar </button>
+                <div class="table-wrapper-scroll-y my-custom-scrollbar" >
+                        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+    
+                        <table id="tableProfes"class="table table-striped table-bordered table-sm"  border="1">
+                            <tr>
+                                <th>Id</th>
+                                <th >IdProfesor<button onclick="sortProf()">🔽</button></th>
+     
+                            </tr>
+                            
+                            <tbody id = "res2">
+                 
+                            </tbody>
+                
+                        </table>
+                        </div>
+                    </div>
+                    <div class="table-wrapper-scroll-y my-custom-scrollbar" >
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        
+                            <table id="tableProfes"class="table table-striped table-bordered table-sm"  border="1">
+                                <tr>
+                                    <th>Id</th>
+                                    <th >Materia</th>
+         
+                                </tr>
+                                
+                                <tbody id = "res3">
+                     
+                                </tbody>
+                    
+                            </table>
+                            </div>
+                        </div>
+            <div class="table-wrapper-scroll-y my-custom-scrollbar" >
+    
+            <table id="table"class="table table-striped table-bordered table-sm"  border="1">
+                <tr>
+                    <th>Id</th>
+                    <th >IdProfesor<button onclick="sortProf()">🔽</button></th>
+                    <th>IdMateria</th>
+                    <th>Periodo</th>
+                    <th>Año</th>
+    
+                </tr>
+                
+                <tbody id = "res1">
+     
+                </tbody>
+    
+            </table>
+            
+        </div>
+        <h1 class="h2 text-center my-3">Registro Profesor-Materia</h1>
+        
+        ruid: <select id="id" name="profesor" > 
+                <option>1</option>
+                <option>2</option>
+        
+            </select></div>
+        
+        Profesor: <select id="Profesor" name="profesor">
+            <option>Juan</option>
+            <option>Juan</option>
+    
+        </select></div>
+        <div>
+        Materia: <select id="Materia" name="Materia" >
+            <option>Diseño de Software</option>
+            <option>Algebra</option>
+    
+        </select></div>
+        Periodo: <select id="Periodo" name="Materia" >
+            <option>P</option>
+            <option>V</option>
+            <option>O</option>
+        </select></div>
+    <div>
+        Año:<select id="Año" name="Materia" >
+            <option>2017</option>
+            <option>2018</option>
+            <option>2019</option>
+    
+        </select></div>
+    
+    
+        <button id="añadir" onclick="registrarProfeMateria();">Añadir</button>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="profe-materia.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
+</body>
+
+</html>

@@ -293,9 +293,6 @@ router.route('/:id')
     }
 });
 
-
-
-
 function isValidUser(user) {
     if (user != null) {
         let validFields = 0;
@@ -331,7 +328,6 @@ function isValidUpdate(user) {
     return false;
 }
 
-<<<<<<< HEAD
 function isValidUpdateProfile(user) {
     if (user != null) {
         for (let key in user) {
@@ -342,28 +338,6 @@ function isValidUpdateProfile(user) {
         return true
     }
     return false;
-=======
-router.route('/:id')
-
-function formatUser(user) {
-    let c = {};
-    const fields = ["favProfesores",
-                    "favCursos",
-                    "idRelacion",
-                    "nombre",
-                    "correo",
-                    "password",
-                    "tipo",
-                    "imagen",
-                    "uid"];
-                    
-    for (let key in user) {
-        if (fields.includes(key)) {
-            c[key] = user[key];
-        }
-    }
-    return c;
->>>>>>> master
 }
 
 module.exports = router
