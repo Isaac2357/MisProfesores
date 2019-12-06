@@ -75,7 +75,7 @@
       <div class="row mt-3">
           <div class="col-6">
               <div class="form-group">
-                  <input type="text" name="" id="" class="form-control" placeholder="Nombre del curso"
+                  <input type="text" name="" id="input-search" class="form-control" placeholder="Nombre | Departamento | Creditos"
                       aria-describedby="helpId">
                   <small id="helpId" class="text-muted">Buscar curso</small>
               </div>
@@ -86,19 +86,7 @@
           </div>
     </div>
 
-      <div class="row  mt-4" id="lista">
-          <div class="media col-8 mt-2">
-              <div class="media-body">
-                  <h4>Seguridad en Redes</h4>
-                  <p >Departamento: DESI</p>
-                  <p >Creditos: 8 </p>
-              </div>
-              <div class="media-right align-self-center">
-                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit">Editar</button>
-                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">Eliminar</button>
-              </div>
-          </div>
-      </div>
+    <div class="row  mt-4" id="lista"></div>
 
   <!-- Modal agregar materia -->
   <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -130,9 +118,13 @@
                       <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dpto</button>
                       <div id="drop-department-add-modal"  class="dropdown-menu">
                         <a class="dropdown-item" href="#">DESI</a>
-                        <a class="dropdown-item" href="#">PTI</a>
+                        <a class="dropdown-item" href="#">DEL</a>
+                        <a class="dropdown-item" href="#">DFH</a>
+                        <a class="dropdown-item" href="#">EAM</a>
                         <a class="dropdown-item" href="#">MAF</a>
-                        <a class="dropdown-item" href="#">LAE</a>
+                        <a class="dropdown-item" href="#">PTI</a>
+                        <a class="dropdown-item" href="#">PES</a>
+                        <a class="dropdown-item" href="#">HDU</a>
                       </div>
                     </div>
                   </div> 
@@ -141,7 +133,8 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">Nombre</span>
                       </div>
-                      <input id="nombre-input-add-model" type="text" class="form-control" placeholder="Course" aria-label="Course" aria-describedby="basic-addon1">
+                      <input id="nombre-input-add-model" type="text" class="form-control" placeholder="Course" 
+                            aria-label="Course" aria-describedby="basic-addon1" onkeyup="this.value = this.value.toUpperCase();">
                     </div>
           </div>
           <div class="modal-footer">
@@ -180,10 +173,14 @@
                   <div class="input-group-append">
                     <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dpto</button>
                     <div id="drop-department-update-modal" class="dropdown-menu">
-                      <a class="dropdown-item" href="#">DESI</a>
-                      <a class="dropdown-item" href="#">PTI</a>
-                      <a class="dropdown-item" href="#">MAF</a>
-                      <a class="dropdown-item" href="#">LAE</a>
+                        <a class="dropdown-item" href="#">DESI</a>
+                        <a class="dropdown-item" href="#">DEL</a>
+                        <a class="dropdown-item" href="#">DFH</a>
+                        <a class="dropdown-item" href="#">EAM</a>
+                        <a class="dropdown-item" href="#">MAF</a>
+                        <a class="dropdown-item" href="#">PTI</a>
+                        <a class="dropdown-item" href="#">PES</a>
+                        <a class="dropdown-item" href="#">HDU</a>   
                     </div>
                   </div>
                 </div> 
@@ -192,7 +189,8 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="basic-addon1">Nombre</span>
                     </div>
-                    <input id="nombre-input-update-model" type="text" class="form-control" placeholder="Course" aria-label="Course" aria-describedby="basic-addon1">
+                    <input id="nombre-input-update-model" type="text" class="form-control" placeholder="Course" 
+                          aria-label="Course" aria-describedby="basic-addon1" onkeyup="this.value = this.value.toUpperCase();">
                   </div>
         </div>
         <div class="modal-footer">
@@ -208,7 +206,7 @@
       <div class="modal-dialog" role="document">
           <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title">Eliminar curso</h5>
+                <h5 class="modal-title">Actualizar estatus</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>

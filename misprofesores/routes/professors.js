@@ -24,7 +24,7 @@ router.route('/:id')
 .get(auth, async (req, res) =>{
     let id = req.params.id;
     try {
-        let doc = await    User.findOne({uid: id});
+        let doc = await User.findOne({uid: id});
         console.log(doc);
         if (doc) {
             res.send(doc);
