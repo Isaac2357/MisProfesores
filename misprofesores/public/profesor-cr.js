@@ -11,8 +11,8 @@ container.innerHTML = "";
 
 
 let xhrProf = new XMLHttpRequest();
-    xhrProf.open("GET", `http://localhost:3000/api/relations?idProfesor=${idProf}`);
-    xhrProf.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+    xhrProf.open("GET", `/api/relations?idProfesor=${idProf}`);
+    xhrProf.setRequestHeader("x-user-token", localStorage.token);
     xhrProf.send()
     xhrProf.onload = function() {
         console.log(xhrProf.status, xhrProf.statusText, xhrProf.response, JSON.parse(xhrProf.response));
@@ -29,8 +29,8 @@ let xhrProf = new XMLHttpRequest();
 
 function fetch(curso) {
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", `http://localhost:3000/api/courses/${curso}`);
-    xhr.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+    xhr.open("GET", `/api/courses/${curso}`);
+    xhr.setRequestHeader("x-user-token", localStorage.token);
     xhr.send();
     xhr.onload = function() {
         console.log(xhr.status, xhr.statusText, xhr.response, JSON.parse(xhr.response));
@@ -78,8 +78,8 @@ function openCurs(id) {
 function fetchProf(idProf) {
     //let nombre = "";
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", `http://localhost:3000/api/professors/${idProf}`)
-    xhr.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+    xhr.open("GET", `/api/professors/${idProf}`)
+    xhr.setRequestHeader("x-user-token", localStorage.token);
     xhr.send();
     xhr.onload = function() {
         console.log("fetchProf:",JSON.parse(xhr.responseText), xhr.status, xhr.statusText, xhr.response, JSON.parse(xhr.response));

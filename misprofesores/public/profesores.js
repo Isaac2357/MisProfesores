@@ -8,8 +8,8 @@ container.innerHTML = "";
 fetch();
 function fetch() {
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", `http://localhost:3000/api/professors`); //`http://localhost:3000/profesores`
-    xhr.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+    xhr.open("GET", `/api/professors`); //`http://localhost:3000/profesores`
+    xhr.setRequestHeader("x-user-token", localStorage.token);
     xhr.send();
     xhr.onload = function() {
         console.log(xhr.status, xhr.statusText, xhr.response, JSON.parse(xhr.response));

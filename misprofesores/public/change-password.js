@@ -45,7 +45,7 @@ changePassBtn.addEventListener("click", (e) => getId(e))
     event.preventDefault();
     let xhr = new XMLHttpRequest();
 
-    xhr.open("GET", `http://localhost:3000/api/password/token/${inputEmail.value}`);
+    xhr.open("GET", `/api/password/token/${inputEmail.value}`);
     xhr.send();
     xhr.onload = function() {
         console.log(xhr.status, xhr.statusText);
@@ -61,7 +61,7 @@ changePassBtn.addEventListener("click", (e) => getId(e))
  function sendEmailFun(tokenEmail) {
     let xhr = new XMLHttpRequest();
     /** The endpoint will change to /${email} when we have our backend.*/
-    xhr.open("POST", `http://localhost:3000/api/password/sendemail`);
+    xhr.open("POST", `/api/password/sendemail`);
     xhr.setRequestHeader("Content-Type", "application/json");
     let payload = {correo: inputEmail.value, code: tokenEmail};
     console.log(payload);
@@ -90,7 +90,7 @@ changePassBtn.addEventListener("click", (e) => getId(e))
      event.preventDefault();
      let xhr = new XMLHttpRequest();
      /** The endpoint will change to /${email} when we have our backend.*/
-     xhr.open("POST", `http://localhost:3000/api/password/token/${inputEmail.value}`);
+     xhr.open("POST", `/api/password/token/${inputEmail.value}`);
      xhr.setRequestHeader("Content-Type", "application/json");
      let payload = {token: inputCode.value};
      console.log(payload);
@@ -117,7 +117,7 @@ changePassBtn.addEventListener("click", (e) => getId(e))
      console.log("Get id");
     let xhr = new XMLHttpRequest();
     /** The endpoint will change to /${email} when we have our backend.*/
-    xhr.open("GET", `http://localhost:3000/api/password/validate/${inputEmail.value}`);
+    xhr.open("GET", `/api/password/validate/${inputEmail.value}`);
     xhr.send();
     xhr.onload = function() {
         console.log("status: ", xhr.status, xhr.statusText, xhr.response);
@@ -139,7 +139,7 @@ changePassBtn.addEventListener("click", (e) => getId(e))
         console.log("Update pass");
         let xhr = new XMLHttpRequest();
         /** The endpoint will change to /${email} when we have our backend.*/
-        xhr.open("PUT", `http://localhost:3000/api/password/update/${inputEmail.value}`);
+        xhr.open("PUT", `/api/password/update/${inputEmail.value}`);
         xhr.setRequestHeader("Content-Type", "application/json");
         let payload = {password: inputPass.value};
         console.log(payload);
@@ -148,7 +148,7 @@ changePassBtn.addEventListener("click", (e) => getId(e))
             console.log(xhr.status, xhr.statusText);
             let res = JSON.parse(xhr.response);
             if (xhr.status == 200) {
-                window.open('login.html', '_self',false) 
+                window.open('index.html', '_self',false) 
                 displayMsg(`${res.status}`, "Estatus")
             } else {
                 displayMsg(`${res.error}`, "Error")

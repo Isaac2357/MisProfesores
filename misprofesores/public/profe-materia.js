@@ -5,9 +5,8 @@
             console.log('dentro de funciossn');
                 const xhttp = new XMLHttpRequest();
                 //true es igual a que sea asincrono
-                xhttp.open('GET','  http://localhost:3000/api/users/?tipo=PROF',true);
-                xhttp.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
-
+                xhttp.open('GET','/api/users/?tipo=PROF',true);
+                xhttp.setRequestHeader("x-user-token", localStorage.token);
                 xhttp.send();
                 xhttp.onreadystatechange= function(){
                     if(this.readyState==4 && this.status == 200){
@@ -30,7 +29,7 @@
                 console.log('dentro de funciossn');
                     const xhttp = new XMLHttpRequest();
                     //true es igual a que sea asincrono
-                    xhttp.open('GET',' http://localhost:3000/usuarios',true);
+                    xhttp.open('GET','/usuarios',true);
                     xhttp.send();
                     xhttp.onreadystatechange= function(){
                         if(this.readyState==4 && this.status == 200){
@@ -56,8 +55,8 @@
             console.log('dentro de funciossn');
                 const xhttp = new XMLHttpRequest();
                 //true es igual a que sea asincrono
-                xhttp.open('GET','http://localhost:3000/api/courses',true);
-                xhttp.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+                xhttp.open('GET','/api/courses',true);
+                xhttp.setRequestHeader("x-user-token", localStorage.token);
 
                 xhttp.send();
                 xhttp.onreadystatechange= function(){
@@ -90,8 +89,8 @@
                 console.log('dentro de crvrfunciossn');
                     const xhttp = new XMLHttpRequest();
                     //true es igual a que sea asincrono
-                    xhttp.open('GET','  http://localhost:3000/api/users',true);
-                    xhttp.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+                    xhttp.open('GET','/api/users',true);
+                    xhttp.setRequestHeader("x-user-token", localStorage.token);
     
                     xhttp.send();
                     xhttp.onreadystatechange= function(){
@@ -125,8 +124,8 @@
             console.log('dentro de funcion');
                 const xhttp = new XMLHttpRequest();
                 //true es igual a que sea asincrono
-                xhttp.open('GET','http://localhost:3000/api/relations ',true);
-                xhttp.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+                xhttp.open('GET','/api/relations ',true);
+                xhttp.setRequestHeader("x-user-token", localStorage.token);
 
                 xhttp.send();
                 xhttp.onreadystatechange= function(){
@@ -157,8 +156,8 @@
             console.log('dentro de funcion');
                 const xhttp = new XMLHttpRequest();
                 //true es igual a que sea asincrono
-                xhttp.open('GET','http://localhost:3000/api/users?tipo=PROF',true);
-                xhttp.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+                xhttp.open('GET','/api/users?tipo=PROF',true);
+                xhttp.setRequestHeader("x-user-token", localStorage.token);
 
                 xhttp.send();
                 xhttp.onreadystatechange= function(){
@@ -186,8 +185,8 @@
                 console.log('dentro de funcion');
                     const xhttp = new XMLHttpRequest();
                     //true es igual a que sea asincrono
-                    xhttp.open('GET','http://localhost:3000/api/courses',true);
-                    xhttp.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+                    xhttp.open('GET','/api/courses',true);
+                    xhttp.setRequestHeader("x-user-token", localStorage.token);
     
                     xhttp.send();
                     xhttp.onreadystatechange= function(){
@@ -227,8 +226,8 @@
               
                 };
                 let xhr = new XMLHttpRequest();
-                xhr.open("POST",`http://localhost:3000/api/relations`);
-                xhr.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+                xhr.open("POST",`/api/relations`);
+                xhttp.setRequestHeader("x-user-token", localStorage.token);
                 xhr.setRequestHeader("content-Type","application/json");
                 xhr.send(JSON.stringify(data));
                 xhr.onload=function(){
@@ -261,7 +260,7 @@
                     console.log('DentroFiltro');
                         const xhttp = new XMLHttpRequest();
                         //true es igual a que sea asincrono
-                        xhttp.open('GET',' http://localhost:3000/profesores',true);
+                        xhttp.open('GET','/profesores',true);
                         xhttp.send();
                         xhttp.onreadystatechange= function(){
                             if(this.readyState==4 && this.status == 200){
