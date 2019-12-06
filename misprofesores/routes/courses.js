@@ -92,6 +92,45 @@ router.route('/')
     }
 })  
 
+router.route('/search')
+.post(auth, async (req, res) => {
+    let nombre = req.query.nombre;
+    let departamento = req.query.departamento;
+    let creditos = req.query.creditos;
+    if (nombre == undefined ||
+        departamento == undefined ||
+        creditos == undefined) {
+            res.statusMessage = `Invalid search`;
+            res.status(406).send({error: `Invalid search`});
+    } else {
+        try {
+            let filter = {};
+            if (nombre.length > 0) {
+                filter.nombre = new RegExp(nombre);
+            }
+            if (departamento.length > 0) {
+                filter.departamento = departamento;
+            }
+            if (creditos.length > 0) {
+                filter.creditos = parseInt(creditos);
+            }
+            let search = await Course.find(filter, {_id: 0,
+                                            couid: 1,
+                                            nombre: 1,
+                                            departamento: 1,
+                                            creditos: 1,
+                                            estatus: 1});
+            console.log(search);
+            res.send(search)     
+        } catch (error) {
+            console.log(error);
+            res.status(500);
+            res.statusMessage = "Internal server error";
+            res.send({error: "Internal server error."});
+        }
+    }
+});
+
 router.route('/:id')
 .delete(auth, async (req, res) => {
     let couid = req.params.id;
@@ -153,7 +192,7 @@ router.route('/:id')
                                 if ((intV-intV2) != 0) {
                                     res.status(406);
                                     res.statusMessage = `${data.nombre} course is already in the database.`
-                                    res.send();
+                                    res.send({error: `${data.nombre} course is already in the database.`});
                                     return;
                                 }
                             }

@@ -6,29 +6,12 @@ let searchBtn = document.querySelector("#search-courses-btn");
 let addBtn = document.querySelector("#add-courses-btn");
 let localData;
 let currPage = document.getElementById("nav-curr-page");
+let inputSearch = document.getElementById("input-search");
 
-displayCourses();
+loadCurrentPage();
 
 addBtn.onclick = addCourse;
 searchBtn.onclick = searchCourses;
-
-function displayCourses() {
-    let page = parseInt(currPage.innerText) - 1;
-    console.log(page);
-    let xhr = new XMLHttpRequest();
-        /** The endpoint will change to /${email} when we have our backend.*/
-        xhr.open("GET", `http://localhost:3000/api/courses?page=${page}`);
-        xhr.setRequestHeader("x-user-token", localStorage.token);
-        xhr.send();
-        xhr.onload = function() {
-            console.log(xhr.response);
-            console.log(xhr.status, xhr.statusText);
-            let docs = JSON.parse(xhr.response);
-            let html = docs.map((c) => courseToHtml(c)).join("");
-            lista.innerHTML =  html;
-            localData = docs;
-       }
-}
 
 function deleteCourse(couid, nombre) {
     let input = document.querySelector("#del-course-name-modal");
@@ -48,6 +31,11 @@ function deleteCourse(couid, nombre) {
                         let res = JSON.parse(xhr.response);
                         if (res.status != undefined) {
                             displayMsg(res.status, "Estatus")
+                            if (inputSearch.value.length > 0) {
+                                searchCourses();
+                            } else {
+                                loadCurrentPage();
+                            }
                         }
                     } else {
                         let error = JSON.parse(xhr.response).error;
@@ -76,9 +64,9 @@ function updateCourse(couid, nombre, departamento, creditos) {
 
     //listeners for the modal
     saveBtn.onclick = () => {
-        let nombre = nombreIn.value;
-        let departamento = departamentoIn.value;
-        let creditos = creditosIn.value;
+        let nombre = nombreIn.value.trim();
+        let departamento = departamentoIn.value.trim();
+        let creditos = creditosIn.value.trim();
         console.log(nombre, departamento, creditos);
         if (nombre.length == 0) {
             displayMsg("Error", "Nombre de curso no capturado.")
@@ -96,7 +84,11 @@ function updateCourse(couid, nombre, departamento, creditos) {
                 if (xhr.status == 200) {
                     let res = JSON.parse(xhr.response);
                     if (res.status != undefined) {
-                        displayMsg(res.status, "Estatus")
+                        if (inputSearch.value.length > 0) {
+                            searchCourses();
+                        } else {
+                            loadCurrentPage();
+                        }
                     }
                 } else {
                     let error = JSON.parse(xhr.response).error;
@@ -128,9 +120,9 @@ function addCourse() {
 
     //listeners for the modal
     saveBtn.onclick = () => {
-        let nombre = nombreIn.value;
-        let departamento = departamentoIn.value;
-        let creditos = creditosIn.value;
+        let nombre = nombreIn.value.trim();
+        let departamento = departamentoIn.value.trim();
+        let creditos = creditosIn.value.trim();
         console.log(nombre, departamento, creditos);
         if (nombre.length == 0) {
             displayMsg("Error", "Nombre de curso no capturado.")
@@ -149,7 +141,11 @@ function addCourse() {
                     let res = JSON.parse(xhr.response);
                     if (res.status != undefined) {
                         displayMsg(res.status, "Estatus");
-                        location.reload;
+                        if (inputSearch.value.length > 0) {
+                            searchCourses();
+                        } else {
+                            loadCurrentPage();
+                        }
                     }
                 } else {
                     let error = JSON.parse(xhr.response).error;
@@ -211,10 +207,37 @@ function nextPage() {
             console.log(xhr.status, xhr.statusText);
             if (xhr.status == 200) {
                 let docs = JSON.parse(xhr.response);
-                let html = docs.map((c) => courseToHtml(c)).join("");
-                lista.innerHTML =  html;
-                localData = docs;
-                currPage.innerText = page + 1;
+                if (docs.length > 0) {
+                    let html = docs.map((c) => courseToHtml(c)).join("");
+                    lista.innerHTML =  html;
+                    localData = docs;
+                    currPage.innerText = page + 1;
+                }
+            } else {
+                let error = JSON.parse(xhr.response).error;
+                if (error) {
+                    displayMsg(error, "Error");
+                }
+            }
+       }
+}
+
+function loadCurrentPage() {
+    let page = parseInt(currPage.innerText) - 1;
+    let xhr = new XMLHttpRequest();
+        xhr.open("GET", `http://localhost:3000/api/courses?page=${page}`);
+        xhr.setRequestHeader("x-user-token", localStorage.token);
+        xhr.send();
+        xhr.onload = function() {
+            console.log(xhr.response);
+            console.log(xhr.status, xhr.statusText);
+            if (xhr.status == 200) {
+                let docs = JSON.parse(xhr.response);
+                if (docs.length > 0) {
+                    let html = docs.map((c) => courseToHtml(c)).join("");
+                    lista.innerHTML =  html;
+                    localData = docs;
+                }
             } else {
                 let error = JSON.parse(xhr.response).error;
                 if (error) {
@@ -225,8 +248,39 @@ function nextPage() {
 }
 
 function searchCourses() {
-    console.log("Search");
-    console.log(localData);
+    let filter = inputSearch.value;
+    filter = filter.split(' ').join('');
+    filter = filter.split("|");
+    console.log(filter);
+    if (filter.length == 1 && filter[0].length == 0) {
+        loadCurrentPage();
+    } else if (filter.length != 3 ) {
+        displayMsg('Filtro inválido', 'Error')
+    } else {
+        console.log(filter);
+        let query = `?nombre=${filter[0].toUpperCase()}&departamento=${filter[1].toUpperCase()}&creditos=${filter[2]}`;
+        console.log(query);
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", `http://localhost:3000/api/courses/search${query}`);
+        xhr.setRequestHeader("x-user-token", localStorage.token);
+        xhr.send();
+        xhr.onload = function() {
+            console.log(xhr.response);
+            console.log(xhr.status, xhr.statusText);
+            if (xhr.status == 200) {
+                let docs = JSON.parse(xhr.response);
+                console.log(docs);
+                let html = docs.map((c) => courseToHtml(c)).join("");
+                lista.innerHTML =  html;
+            } else {
+                let error = JSON.parse(xhr.response).error;
+                if (error) {
+                    displayMsg(error, "Error");
+                }
+            }
+       }
+
+    }
 }
 
 function displayMsg(msg, title) {

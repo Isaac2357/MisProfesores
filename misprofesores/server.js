@@ -16,7 +16,7 @@ const passwordRouter = require('./routes/password');
 app.use(cors());
 app.use(express.json());
 
-app.use(express.static(__dirname+'/resources'));
+app.use(express.static(__dirname+'/public'));
 
 app.use('/api/login', loginRouter);
 app.use('/api/users', usersRouter);
