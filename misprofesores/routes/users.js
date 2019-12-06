@@ -331,7 +331,6 @@ function isValidUpdate(user) {
     return false;
 }
 
-<<<<<<< HEAD
 function isValidUpdateProfile(user) {
     if (user != null) {
         for (let key in user) {
@@ -342,8 +341,7 @@ function isValidUpdateProfile(user) {
         return true
     }
     return false;
-=======
-router.route('/:id')
+}
 
 function formatUser(user) {
     let c = {};
@@ -363,7 +361,6 @@ function formatUser(user) {
         }
     }
     return c;
->>>>>>> master
 }
 
 module.exports = router
