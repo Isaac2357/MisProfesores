@@ -12,8 +12,8 @@ container.innerHTML = "";
 
 
 let xhrProf = new XMLHttpRequest();
-    xhrProf.open("GET", `http://localhost:3000/api/relations?idCurso=${idCurso}`);
-    xhrProf.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+    xhrProf.open("GET", `/api/relations?idCurso=${idCurso}`);
+    xhr.setRequestHeader("x-user-token", localStorage.token);
     xhrProf.send();
     xhrProf.onload = function() {
         //console.log("rels:",xhrProf.status, xhrProf.statusText, xhrProf.response, JSON.parse(xhrProf.response));
@@ -29,8 +29,8 @@ let xhrProf = new XMLHttpRequest();
 
 function fetch(profesor) {
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", `http://localhost:3000/api/professors/${profesor}`);
-    xhr.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+    xhr.open("GET", `/api/professors/${profesor}`);
+    xhr.setRequestHeader("x-user-token", localStorage.token);
     xhr.send();
     xhr.onload = function() {
         //console.log("Prof:",xhr.status, xhr.statusText, xhr.response, JSON.parse(xhr.response));
@@ -77,8 +77,8 @@ function openProf(id) {
 function fetchCurs(idProf) {
     //let nombre = "";
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", `http://localhost:3000/api/courses/${idProf}`);
-    xhr.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+    xhr.open("GET", `/api/courses/${idProf}`);
+    xhr.setRequestHeader("x-user-token", localStorage.token);
     xhr.send();
     xhr.onload = function() {
         console.log("fetchCurs:",JSON.parse(xhr.responseText), xhr.status, xhr.statusText, xhr.response, JSON.parse(xhr.response));

@@ -13,8 +13,8 @@ contCurs.innerHTML = ""; */
 function fetchUsr(idUser) {
     console.log("fu");
     let xhrR = new XMLHttpRequest();
-    xhrR.open("GET", `http://localhost:3000/api/users?uid=${idUser}`, true);
-    xhrR.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+    xhrR.open("GET", `/api/users?uid=${idUser}`, true);
+    xhrR.setRequestHeader("x-user-token", localStorage.token);
     xhrR.send();
     xhrR.onload = function() {
         console.log("fetchUsr:",JSON.parse(xhrR.responseText), xhrR.status, xhrR.statusText, xhrR.response, JSON.parse(xhrR.response));
@@ -38,8 +38,8 @@ function fetchUsr(idUser) {
 function fetchProf(id) {
     contProf.innerHTML = ""
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", `http://localhost:3000/api/professors/${id}`);
-    xhr.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+    xhr.open("GET", `/api/professors/${id}`);
+    xhr.setRequestHeader("x-user-token", localStorage.token);
     xhr.send();
     xhr.onload = function() {
         console.log(xhr.status, xhr.statusText, xhr.response, JSON.parse(xhr.response));
@@ -84,8 +84,8 @@ function openProf(id) {
 function fetchCurs(id) {
     contCurs.innerHTML = ""
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", `http://localhost:3000/api/courses/${id}`);
-    xhr.setRequestHeader("x-user-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImNvcnJlbyI6InRlc3QyQGl0ZXNvLm14IiwidGlwbyI6IkFETUlOIiwiaWF0IjoxNTc1MzI0NzI5LCJleHAiOjE1NzU5Mjk1Mjl9.XgtAYRQA0ucDP0XXktqjRHGJ-zEJZNW4Sd-jv-sEexs");
+    xhr.open("GET", `/api/courses/${id}`);
+    xhr.setRequestHeader("x-user-token", localStorage.token);
     xhr.send();
     xhr.onload = function() {
         //console.log(xhr.status, xhr.statusText, xhr.response, JSON.parse(xhr.response));

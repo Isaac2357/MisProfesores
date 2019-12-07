@@ -21,7 +21,7 @@ function deleteCourse(couid, nombre) {
     let update = document.querySelector("#cofirm-btn-c");
     update.onclick = () => {
         let xhr = new XMLHttpRequest();
-                xhr.open("DELETE", `http://localhost:3000/api/courses/${couid}`);
+                xhr.open("DELETE", `/api/courses/${couid}`);
                 xhr.setRequestHeader("x-user-token", localStorage.token);
                 xhr.send();
                 xhr.onload = function() {
@@ -73,7 +73,7 @@ function updateCourse(couid, nombre, departamento, creditos) {
         } else {
             console.log(nombre, departamento, creditos);
             let xhr = new XMLHttpRequest();
-            xhr.open("PUT", `http://localhost:3000/api/courses/${couid}`);
+            xhr.open("PUT", `/api/courses/${couid}`);
             xhr.setRequestHeader("x-user-token", localStorage.token);
             xhr.setRequestHeader("Content-Type", "application/json");
             console.log({nombre, departamento, creditos});
@@ -129,7 +129,7 @@ function addCourse() {
         } else {
             console.log(nombre, departamento, creditos);
             let xhr = new XMLHttpRequest();
-            xhr.open("POST", `http://localhost:3000/api/courses`);
+            xhr.open("POST", `/api/courses`);
             xhr.setRequestHeader("x-user-token", localStorage.token);
             xhr.setRequestHeader("Content-Type", "application/json");
             console.log({nombre, departamento, creditos});
@@ -173,7 +173,7 @@ function previousPage() {
         return false;
     }
     let xhr = new XMLHttpRequest();
-        xhr.open("GET", `http://localhost:3000/api/courses?page=${page}`);
+        xhr.open("GET", `/api/courses?page=${page}`);
         xhr.setRequestHeader("x-user-token", localStorage.token);
         xhr.send();
         xhr.onload = function() {
@@ -199,7 +199,7 @@ function nextPage() {
     let page = parseInt(currPage.innerText);
     console.log(page);
     let xhr = new XMLHttpRequest();
-        xhr.open("GET", `http://localhost:3000/api/courses?page=${page}`);
+        xhr.open("GET", `/api/courses?page=${page}`);
         xhr.setRequestHeader("x-user-token", localStorage.token);
         xhr.send();
         xhr.onload = function() {
@@ -225,7 +225,7 @@ function nextPage() {
 function loadCurrentPage() {
     let page = parseInt(currPage.innerText) - 1;
     let xhr = new XMLHttpRequest();
-        xhr.open("GET", `http://localhost:3000/api/courses?page=${page}`);
+        xhr.open("GET", `/api/courses?page=${page}`);
         xhr.setRequestHeader("x-user-token", localStorage.token);
         xhr.send();
         xhr.onload = function() {
@@ -261,7 +261,7 @@ function searchCourses() {
         let query = `?nombre=${filter[0].toUpperCase()}&departamento=${filter[1].toUpperCase()}&creditos=${filter[2]}`;
         console.log(query);
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", `http://localhost:3000/api/courses/search${query}`);
+        xhr.open("POST", `/api/courses/search${query}`);
         xhr.setRequestHeader("x-user-token", localStorage.token);
         xhr.send();
         xhr.onload = function() {

@@ -1,0 +1,218 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "nombre": "Raúl Méndez",
+      "correo": "is685434@iteso.mx",
+      "contraseña": "qwe",
+      "tipo": "1",
+      "favProfesores": [
+        "1",
+        "2"
+      ],
+      "favCursos": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "idRelacion": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "nombre": "Isaac",
+      "correo": "is710110@iteso.mx",
+      "contraseña": "isaac123",
+      "tipo": 1,
+      "favProfesores": [],
+      "favCursos": [],
+      "idRelacion": [],
+      "id": 2
+    },
+    {
+      "nombre": "Aracelo De la Olla",
+      "correo": "if708243@iteso.mx",
+      "contraseña": "foxydog",
+      "tipo": 1,
+      "favProfesores": [],
+      "favCursos": [],
+      "idRelacion": [],
+      "id": 3
+    }
+  ],
+  "profesores": [
+    {
+      "id": 1,
+      "nombre": "Luis Fernando Gutierrez",
+      "departamento": "DESI"
+    },
+    {
+      "id": 2,
+      "nombre": "Erick de Santiago",
+      "departamento": "DESI"
+    },
+    {
+      "id": 3,
+      "nombre": "Ivan Villalón",
+      "departamento": "DESI"
+    },
+    {
+      "id": 4,
+      "nombre": "José Luis Elvira",
+      "departamento": "DESI"
+    },
+    {
+      "nombre": "Manuel",
+      "departamento": "DESI",
+      "id": 5
+    }
+  ],
+  "Departamentos": [
+    {
+      "departamento": "DESI"
+    },
+    {
+      "departamento": "MAF"
+    }
+  ],
+  "cursos": [
+    {
+      "id": 1,
+      "nombre": "Desarrollo de Aplicaciones y Servicioes Web",
+      "departamento": "DESI"
+    },
+    {
+      "id": 2,
+      "nombre": "Programación de Dispositivos Móviles",
+      "departamento": "DESI"
+    },
+    {
+      "id": 3,
+      "nombre": "Especificación de Requerimientos de Software",
+      "departamento": "DESI"
+    },
+    {
+      "id": 4,
+      "nombre": "Sistemas Operativos",
+      "departamento": "DESI"
+    },
+    {
+      "id": 5,
+      "nombre": "Seguridad en Redes",
+      "departamento": "DESI"
+    }
+  ],
+  "relaciones": [
+    {
+      "id": "1",
+      "idProfesor": "1",
+      "idCurso": "1",
+      "periodo": "P",
+      "año": "2019"
+    },
+    {
+      "id": "2",
+      "idProfesor": "2",
+      "idCurso": "2",
+      "periodo": "P",
+      "año": "2019"
+    },
+    {
+      "id": "3",
+      "idProfesor": "3",
+      "idCurso": "3",
+      "periodo": "P",
+      "año": "2019"
+    },
+    {
+      "id": "4",
+      "idProfesor": "4",
+      "idCurso": "4",
+      "periodo": "P",
+      "año": "2019"
+    },
+    {
+      "id": "5",
+      "idProfesor": "1",
+      "idCurso": "2",
+      "periodo": "P",
+      "año": "2019"
+    }
+  ],
+  "resenas": [
+    {
+      "id": "1",
+      "puntaje": "3",
+      "comentario": "Muy buen profesor.",
+      "likes": "46",
+      "dislikes": "19",
+      "idUsuario": "1",
+      "idRelacion": "1"
+    },
+    {
+      "id": "2",
+      "puntaje": "4",
+      "comentario": "Muy recomendado, es muy atento.",
+      "likes": "24",
+      "dislikes": "10",
+      "idUsuario": "2",
+      "idRelacion": "1"
+    },
+    {
+      "id": "4",
+      "puntaje": "3",
+      "comentario": "Algo pesada pero es buen profe",
+      "likes": "10",
+      "dislikes": "0",
+      "idUsuario": "1",
+      "idRelacion": "1"
+    },
+    {
+      "id": "5",
+      "puntaje": "5",
+      "comentario": "A veces va rápido pero es un excelente profe. Me gusta mucho su clase. Test para comentario largo ola ola olao lasjbkansxbhjsx hbsahbjsxahsxajkhasxkj sxahjksxahk shjksx ahjksxa hjksxa hkjs axhjksx ahjksxa hkjsxa hkjsa xsxa jhjhsax hjksxa khjasx hkjsa xkhsax hkjsax khjsxa khjsxa hkjs xakhjsaxkhjs axhkjasx khjsa xsaj hksxa kjh",
+      "likes": "32",
+      "dislikes": "0",
+      "idUsuario": "1",
+      "idRelacion": "2"
+    },
+    {
+      "id": "6",
+      "puntaje": "5",
+      "comentario": "Recomiendo mucho al profesor. Mi clase y curso favoritos.",
+      "likes": "3",
+      "dislikes": "0",
+      "idUsuario": "3",
+      "idRelacion": "2"
+    },
+    {
+      "id": "7",
+      "puntaje": 3,
+      "comentario": "Me divierte bastante su clase.",
+      "likes": 0,
+      "dislikes": 0,
+      "idUsuario": "4",
+      "idRelacion": "2"
+    },
+    {
+      "id": "8",
+      "puntaje": "5",
+      "comentario": "El profe está muy bien preparado. Recomendaría bastante su clase y al profesor.",
+      "likes": "0",
+      "dislikes": "0",
+      "idUsuario": "5",
+      "idRelacion": "2"
+    },
+    {
+      "id": "10",
+      "puntaje": "5",
+      "comentario": "buenadcacac",
+      "likes": "0",
+      "dislikes": "0",
+      "idUsuario": "2",
+      "idRelacion": "1"
+    }
+  ]
+}

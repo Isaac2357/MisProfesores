@@ -21,7 +21,7 @@ function login(event) {
     let correo = inputEmail.value;
     let password = inputPass.value;
     console.log(correo, password);
-    xhr.open("POST", `http://localhost:3000/api/login`);
+    xhr.open("POST", `/api/login`);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify({correo, password}));
     xhr.onload = function() {

@@ -19,7 +19,7 @@ loadUserData();
 
 function loadUserData() {
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", `http://localhost:3000/api/users/${localStorage.userEmail}`);
+    xhr.open("GET", `/api/users/${localStorage.userEmail}`);
     xhr.setRequestHeader("x-user-token", localStorage.token);
     xhr.send();
     xhr.onload = function() {
@@ -48,7 +48,7 @@ function save(event) {
     console.log("Save");
     event.preventDefault();
     let xhr = new XMLHttpRequest();
-    xhr.open("PUT", `http://localhost:3000/api/users/${localStorage.userEmail}/updateprofile`);
+    xhr.open("PUT", `/api/users/${localStorage.userEmail}/updateprofile`);
     xhr.setRequestHeader("x-user-token", localStorage.token);
     xhr.setRequestHeader("Content-Type", "application/json");
     let user = {nombre: name.value}
@@ -69,7 +69,7 @@ function updateProfilePicture() {
     console.log("update");
     event.preventDefault();
     let xhr = new XMLHttpRequest();
-    xhr.open("PUT", `http://localhost:3000/api/users/${localStorage.userEmail}/updateprofile`);
+    xhr.open("PUT", `/api/users/${localStorage.userEmail}/updateprofile`);
     xhr.setRequestHeader("x-user-token", localStorage.token);
     xhr.setRequestHeader("Content-Type", "application/json");
     let user = {imagen: inputImg.value}
