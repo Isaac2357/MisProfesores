@@ -21,6 +21,10 @@ let coursesSchema = mongoose.Schema({
         type: String,
         required: true,
         enum: ["4", "6", "8", "16"]
+    },
+    estatus: {
+        type: Boolean,
+        required: true
     }
 });
 
@@ -29,7 +33,14 @@ coursesSchema.statics.getCourses = function() {
 }
 
 coursesSchema.statics.getCourse = function(couid){
-    return Course.findOne({couid}); 
+    return Course.findOne({couid}, {
+        _id: 0,
+        couid: 1,
+        nombre: 1,
+        departamento: 1,
+        creditos: 1,
+        estatus: 1
+    }); 
 }
 
 coursesSchema.statics.updateCourse = function(couid, datos){
@@ -43,6 +54,7 @@ coursesSchema.statics.updateCourse = function(couid, datos){
 coursesSchema.statics.createCourse = async function(course){
     let couid = await Config.getNextCourseId()
     course.couid = couid;
+    course.estatus = true;
     let newCou = Course(course);
     return newCou.save()
 }

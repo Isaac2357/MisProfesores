@@ -57,7 +57,7 @@ function save(event) {
     xhr.onload = function() {
         console.log(xhr.status, xhr.statusText);
         if (xhr.status == 200) {
-            location.reload();
+            loadUserData();
         } else {
             let res = JSON.parse(xhr.response);
             alert(`${res.error}`)
@@ -78,7 +78,7 @@ function updateProfilePicture() {
     xhr.onload = function() {
         console.log(xhr.status, xhr.statusText);
         if (xhr.status == 200) {
-            //location.reload();
+            loadUserData();
         } else {
             let res = JSON.parse(xhr.response);
             alert(`${res.error}`)
