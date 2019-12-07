@@ -9,6 +9,8 @@ let profID = localStorage.profID;
 let cursID = localStorage.cursID;
 //let idRel = localStorage.relID;  //quitar, poner profid y cursid en fetchrel
 
+let pProf = document.getElementById("pProf");
+
 fetchRel(); //títulos
 
 
@@ -88,6 +90,9 @@ function fetchCom(id) {
         if (xhr.status == 200) {
             let comHtml = JSON.parse(xhr.responseText);
                 for(let item of comHtml){
+                    localStorage.puntaje += item.puntaje;
+                    pProf.innerHTML = localStorage.puntaje;
+
                     container.innerHTML +=` 
                     <div class="card text-center" >
                     <div class="card-body" style="min-height:200px; max-height:200px; overflow:auto;">
