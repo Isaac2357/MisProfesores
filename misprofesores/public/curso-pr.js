@@ -13,7 +13,7 @@ container.innerHTML = "";
 
 let xhrProf = new XMLHttpRequest();
     xhrProf.open("GET", `/api/relations?idCurso=${idCurso}`);
-    xhr.setRequestHeader("x-user-token", localStorage.token);
+    xhrProf.setRequestHeader("x-user-token", localStorage.token);
     xhrProf.send();
     xhrProf.onload = function() {
         //console.log("rels:",xhrProf.status, xhrProf.statusText, xhrProf.response, JSON.parse(xhrProf.response));
